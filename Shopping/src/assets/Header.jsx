@@ -17,9 +17,54 @@ function Header() {
     localStorage.removeItem("login");
   }
   return (
-    <div>
-      <Navbar bg="dark" variant="dark" expand="lg">
-        <Container>
+    <div className="">
+      <div className="bg-dark text-light py-3 ">
+        <Container className=" d-flex justify-content-between px-5">
+        <div >
+          <h6>Free shipping, 30-day return or refund guarantee.</h6>
+        </div>
+        <div className="d-flex">
+          {!auth.user ? (
+            <>
+              <Nav.Link as={Link} to="/Signup" className="px-md-3 px-4" >
+                Signup
+              </Nav.Link>
+              <Nav.Link as={Link} to="/Signin" className="px-md-3 px-4" >
+                Signin
+              </Nav.Link>
+              <Nav.Link as={Link} to="/Faq" className="px-md-3 px-4" >
+                FAQS
+              </Nav.Link>
+            </>
+          ) : (
+            <>
+              <>
+                <NavDropdown title={auth?.user?.name} id="basic-nav-dropdown">
+                  <Link
+                    to={`/Dashboard/${
+                      auth?.user?.role === 1 ? "admin" : "user"
+                    }`}
+                    className="dropdown-item"
+                  >
+                    Dashboard
+                  </Link>
+                  <Link
+                    onClick={handleLogout}
+                    to="Signin"
+                    className="dropdown-item"
+                  >
+                    Signout
+                  </Link>
+                </NavDropdown>
+              </>{" "}
+            </>
+          )}
+          
+        </div>
+        </Container>
+      </div>
+      <Navbar bg="light" variant="dark" expand="lg">
+        <Container >
           <Navbar.Brand as={Link} to="/">
             Navbar
           </Navbar.Brand>
@@ -35,41 +80,6 @@ function Header() {
               <Nav.Link as={Link} to="/Contact">
                 Contact
               </Nav.Link>
-              {!auth.user ? (
-                <>
-                  <Nav.Link as={Link} to="/Signup">
-                    Signup
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/Signin">
-                    Signin
-                  </Nav.Link>
-                </>
-              ) : (
-                <>
-                  <>
-                    <NavDropdown
-                      title={auth?.user?.name}
-                      id="basic-nav-dropdown"
-                    >
-                      <Link
-                        to={`/Dashboard/${
-                          auth?.user?.role === 1 ? "admin" : "user"
-                        }`}
-                        className="dropdown-item"
-                      >
-                        Dashboard
-                      </Link>
-                      <Link
-                        onClick={handleLogout}
-                        to="Signin"
-                        className="dropdown-item"
-                      >
-                        Signout
-                      </Link>
-                    </NavDropdown>
-                  </>{" "}
-                </>
-              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

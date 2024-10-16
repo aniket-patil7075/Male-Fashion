@@ -19,6 +19,7 @@
     font-size: 15px;
     background-color: black;
     color: white;
+    
 }
 .navbar{
     background-color:white;
@@ -28,3 +29,55 @@
     font-weight: 400;
     font-size: 18px;
 }
+.navFix {
+    position: fixed;
+    width: 100%;
+    z-index: 999; /* Stays behind the top nav but above the rest */
+    background-color: #fff; /* Example background color */
+  }
+  
+/* ************************************************** Hero component ************************************************* */
+
+.custom-carousel .carousel-control-prev-icon,
+.custom-carousel .carousel-control-next-icon {
+  filter: invert(100%);
+  color: black;
+}
+.caraImg{
+    margin-top: 8%;
+}
+
+/* ***************************************************** Below 425 px ********************************************************** */
+@media (max-width: 426px) {
+  .caraImg{
+    height: 400px;
+  }
+  .divNavBlack{
+    display: none;
+  }
+  }
+  
+  /************************************************** 426px to 768px ******************************************************/
+  @media (min-width: 427px) and (max-width: 768px) {
+    .caraImg{
+        height: 500px;
+      }
+  }
+  
+  /************************************************* 769px to 1024px *******************************************************/
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .caraImg{
+        height: 600px;
+      }
+  }
+  
+  /************************************************* 1025px to 1440px *******************************************************/
+  @media (min-width: 1025px) and (max-width: 1440px) {
+    
+  }
+  
+  /*************************************************** Above 1440px ********************************************************/
+  @media (min-width: 1441px) {
+    
+  }
+  

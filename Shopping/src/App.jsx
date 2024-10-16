@@ -7,6 +7,7 @@ import About from "./assets/About";
 import Contact from "./assets/Contact";
 import Signup from "./assets/Signup";
 import Signin from "./assets/Signin";
+import Shop from "./assets/Shop";
 import Dashboard from "./user/Dashboard";
 import PrivateRoute from "./assets/Private";
 import ForgotPassword from "./assets/ForgotPassword";
@@ -17,6 +18,11 @@ import AdminDashboard from "./admin/AdminDashboard";
 import CreateCategory from "./admin/CreateCategory";
 import CreateProduct from "./admin/CreateProduct";
 import Users from "./admin/users";
+import ShoppingCart from "./assets/ShoppingCart";
+import ShopDetails from "./assets/ShopDetails"
+import CheckOut from "./assets/CheckOut"
+import BlogDetails from "./assets/BlogDetails"
+import Blog from "./assets/Blog";
 
 function App() {
   return (
@@ -25,7 +31,13 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/Shop" element={<Shop/>} />
           <Route path="/About" element={<About />} />
+          <Route path="/ShopDetails" element={<ShopDetails/>} />
+          <Route path="/ShoppingCart" element={<ShoppingCart/>} />
+          <Route path="/CheckOut" element={<CheckOut/>} />
+          <Route path="/BlogDetails" element={<BlogDetails/>} />
+          <Route path="/Blog" element={<Blog/>} />
           <Route path="/Contact" element={<Contact />} />
 
           {/* {Private Routes for users} */}

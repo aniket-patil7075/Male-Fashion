@@ -18,8 +18,8 @@ function Header() {
   }
   return (
     <div className="">
-      <div className="bg-dark text-light py-3 ">
-        <Container className=" d-flex justify-content-between px-5">
+      <div className="divNavBlack py-2 ">
+        <Container className="d-flex justify-content-between px-5">
         <div >
           <h6>Free shipping, 30-day return or refund guarantee.</h6>
         </div>
@@ -27,10 +27,10 @@ function Header() {
           {!auth.user ? (
             <>
               <Nav.Link as={Link} to="/Signup" className="px-md-3 px-4" >
-                Signup
+                SIGNUP
               </Nav.Link>
               <Nav.Link as={Link} to="/Signin" className="px-md-3 px-4" >
-                Signin
+                SIGNIN
               </Nav.Link>
               <Nav.Link as={Link} to="/Faq" className="px-md-3 px-4" >
                 FAQS
@@ -63,21 +63,48 @@ function Header() {
         </div>
         </Container>
       </div>
-      <Navbar bg="light" variant="dark" expand="lg">
-        <Container >
+      <Navbar expand="lg" >
+        <Container className="px-5 py-3">
           <Navbar.Brand as={Link} to="/">
-            Navbar
+            <img src="/logo.png" alt="Logo" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              <Nav.Link as={Link} to="/">
+              <Nav.Link as={Link} to="/" className="px-4">
                 Home
               </Nav.Link>
-              <Nav.Link as={Link} to="/About">
-                About
+              <Nav.Link as={Link} to="/Shop" className="px-4">
+                Shop
               </Nav.Link>
-              <Nav.Link as={Link} to="/Contact">
+              <NavDropdown title="Pages" id="basic-nav-dropdown" className="px-4">
+              <NavDropdown.Item  as={Link} to="/About" >About Us</NavDropdown.Item>
+              <NavDropdown.Item  as={Link} to="/ShopDetails" >
+                Shop Details
+              </NavDropdown.Item>
+              <NavDropdown.Item  as={Link} to="/ShoppingCart" >Shopping Cart</NavDropdown.Item>
+              <NavDropdown.Item  as={Link} to="/CheckOut" >
+                Check Out
+              </NavDropdown.Item>
+              <NavDropdown.Item  as={Link} to="/BlogDetails" >
+                Blog Details
+              </NavDropdown.Item>
+            </NavDropdown>
+              <Nav.Link as={Link} to="/Blog" className="px-4">
+                Blog
+              </Nav.Link>
+              <Nav.Link as={Link} to="/Contact" className="px-4">
+                Contact
+              </Nav.Link>
+            </Nav>
+            <Nav>
+            <Nav.Link as={Link} to="/" className="px-4">
+                Pages
+              </Nav.Link>
+              <Nav.Link as={Link} to="/" className="px-4">
+                Blog
+              </Nav.Link>
+              <Nav.Link as={Link} to="/" className="px-4">
                 Contact
               </Nav.Link>
             </Nav>

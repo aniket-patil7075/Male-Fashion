@@ -56,7 +56,7 @@
 
 .caraText {
   position: absolute;
-  top: 43%;
+  top: 40%;
   left: 10%;
   text-align: left !important;
 }
@@ -70,6 +70,47 @@
   margin-bottom: 4px;
 }
 
+/* *******************************************************Banner******************************************************************** */
+.banner1{
+  position: absolute;
+  right: 13%;
+}
+.banner1-Text{
+  position: absolute;
+  text-align: left;
+  right: 40%;
+  top:14%;
+  width: 300px;
+  z-index: 1;
+}
+.banner1-Text h1{
+  font-weight: 700;
+}
+.banner2-Text h1{
+  font-weight: 700;
+}
+.banner3-Text h1{
+  font-weight: 700;
+}
+.banner2-Row{
+  padding-top: 25%;
+}
+.banner3-Col{
+  padding-top: 15%;
+  margin-right: -6%;
+}
+.banner3-Text{
+  position: absolute;
+  text-align: left;
+  right: 33%;
+  top:72%;
+  width: 300px;
+  z-index: 2;
+}
+.banner3{
+  position: absolute;
+  right: 5%;
+}
 /* ***************************************************** Below 425 px ********************************************************** */
 @media (max-width: 426px) {
   
@@ -82,7 +123,7 @@
   .caraText {
     font-size: xx-small;
     position: absolute;
-    top: 30%;
+    top: 27%;
     left: 10%;
     text-align: left !important;
   }
@@ -105,7 +146,7 @@
   .caraText {
     font-size: 15px;
     position: absolute;
-    top: 33%;
+    top: 30%;
     left: 10%;
     text-align: left !important;
   }

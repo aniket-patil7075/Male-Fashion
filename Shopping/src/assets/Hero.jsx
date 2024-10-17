@@ -2,6 +2,10 @@ import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import Button from "react-bootstrap/Button";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { FaFacebookF } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
+import { FaPinterestP } from "react-icons/fa";
 
 function Hero() {
   return (
@@ -26,6 +30,7 @@ function Hero() {
             <Button variant="dark" className="heroButton mt-4  px-4 py-3">
               SHOP NOW <FaArrowRightLong className="heroArrow ms-1"/>
             </Button>
+            <div className="mt-3"><FaFacebookF className="mx-2"/><FaPinterestP className="mx-2" /><FaInstagram className="mx-2" /><FaTwitter className="mx-2" /></div>
           </div>
         </Carousel.Item>
         <Carousel.Item>
@@ -42,6 +47,7 @@ function Hero() {
             <Button variant="dark" className="heroButton mt-4  px-4 py-3">
               SHOP NOW <FaArrowRightLong className="heroArrow ms-1"/>
             </Button>
+            <div className="mt-3"><FaFacebookF className="mx-2"/><FaPinterestP className="mx-2" /><FaInstagram className="mx-2" /><FaTwitter className="mx-2" /></div>
           </div>
         </Carousel.Item>
       </Carousel>

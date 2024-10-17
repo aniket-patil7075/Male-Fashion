@@ -1,5 +1,5 @@
-*{
-    font-family: "Nunito Sans", sans-serif;
+* {
+  font-family: "Nunito Sans", sans-serif;
   font-optical-sizing: auto;
   /* font-weight: 200; */
   font-style: normal;
@@ -9,33 +9,39 @@
 }
 
 /* ****************************************NAVBAR**********************************************/
-.navbar a{
-    color: black;
-    text-decoration: none;
-    font-size: 18px;
+.navbar a {
+  color: black;
+  text-decoration: none;
+  font-size: 18px;
 }
-.divNavBlack{
-    font-weight: 200;
-    font-size: 15px;
-    background-color: black;
-    color: white;
-    
+
+.divNavBlack {
+  font-weight: 200;
+  font-size: 15px;
+  background-color: black;
+  color: white;
+
 }
-.navbar{
-    background-color:white;
+
+.navbar {
+  background-color: white;
 }
-.navbar .nav-link{
-    color: black;
-    font-weight: 400;
-    font-size: 18px;
+
+.navbar .nav-link {
+  color: black;
+  font-weight: 400;
+  font-size: 18px;
 }
+
 .navFix {
-    position: fixed;
-    width: 100%;
-    z-index: 999; /* Stays behind the top nav but above the rest */
-    background-color: #fff; /* Example background color */
-  }
-  
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  /* Stays behind the top nav but above the rest */
+  background-color: #fff;
+  /* Example background color */
+}
+
 /* ************************************************** Hero component ************************************************* */
 
 .custom-carousel .carousel-control-prev-icon,
@@ -43,41 +49,119 @@
   filter: invert(100%);
   color: black;
 }
-.caraImg{
-    margin-top: 8%;
+
+.caraImg {
+  margin-top: 8%;
+}
+
+.caraText {
+  position: absolute;
+  top: 43%;
+  left: 10%;
+  text-align: left !important;
+}
+.heroButton{
+  background-color: black !important;
+  border: 1px solid black !important;
+  color: white !important;
+  border-radius: 0% !important;
+}
+.heroArrow{
+  margin-bottom: 4px;
 }
 
 /* ***************************************************** Below 425 px ********************************************************** */
 @media (max-width: 426px) {
-  .caraImg{
-    height: 400px;
-  }
-  .divNavBlack{
+  
+  .divNavBlack {
     display: none;
   }
+  .caraImg {
+    height: 400px;
   }
-  
-  /************************************************** 426px to 768px ******************************************************/
-  @media (min-width: 427px) and (max-width: 768px) {
-    .caraImg{
-        height: 500px;
-      }
+  .caraText {
+    font-size: xx-small;
+    position: absolute;
+    top: 30%;
+    left: 10%;
+    text-align: left !important;
   }
-  
-  /************************************************* 769px to 1024px *******************************************************/
-  @media (min-width: 769px) and (max-width: 1024px) {
-    .caraImg{
-        height: 600px;
-      }
+  .caraText h1{
+    font-size: 15px;
   }
-  
-  /************************************************* 1025px to 1440px *******************************************************/
-  @media (min-width: 1025px) and (max-width: 1440px) {
-    
+  .caraText button{
+    font-size: 7px;
   }
-  
-  /*************************************************** Above 1440px ********************************************************/
-  @media (min-width: 1441px) {
-    
+  .heroArrow{
+    margin-bottom: 2px;
   }
-  
+}
+
+/************************************************** 426px to 768px ******************************************************/
+@media (min-width: 427px) and (max-width: 768px) {
+  .caraImg {
+    height: 500px;
+  }
+  .caraText {
+    font-size: 15px;
+    position: absolute;
+    top: 33%;
+    left: 10%;
+    text-align: left !important;
+  }
+  .caraText h1{
+    font-size: 24px;
+  }
+  .caraText button{
+    font-size: 12px;
+  }
+  .heroArrow{
+    margin-bottom: 2px;
+  }
+}
+
+/************************************************* 769px to 1024px *******************************************************/
+@media (min-width: 769px) and (max-width: 1024px) {
+  .caraImg {
+    height: 650px;
+  }
+  .caraText {
+    font-size: 20px;
+    position: absolute;
+    top: 36%;
+    left: 10%;
+    text-align: left !important;
+  }
+  .caraText h1{
+    font-size: 32px;
+  }
+  .caraText button{
+    font-size: 15px;
+  }
+  .heroArrow{
+    margin-bottom: 2px;
+  }
+}
+
+/************************************************* 1025px to 1440px *******************************************************/
+@media (min-width: 1025px) and (max-width: 1440px) {}
+
+/*************************************************** Above 1440px ********************************************************/
+/* @media (min-width: 1441px) {
+  .caraText {
+    font-size: 35px;
+    position: absolute;
+    top: 45%;
+    left: 10%;
+    text-align: left !important;
+  }
+  .caraText h1{
+    font-size: 70px;
+  }
+  .caraText button{
+    font-size: 30px;
+  }
+  .heroArrow{
+    margin-bottom: 5px;
+  }
+} */

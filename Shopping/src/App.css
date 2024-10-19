@@ -171,14 +171,25 @@ transform: scale(1,1);
   /* opacity: 0; */
   transition: 0.5s ease-in;
   pointer-events: none;
-  
  }
- 
+
  .banner-p:hover::after {
  /* opacity: 1; */
  background-color: #e53637;
  width: 45px;
  }
+
+ .custom-input::placeholder {
+  color: #f8f9fa !important; /* Bootstrap's light color */
+  opacity: 1; /* Ensure the color applies fully */
+}
+
+.custom-input {
+  border: none !important; /* Remove all borders */
+  border-bottom: 1px solid #f8f9fa !important; /* Add only bottom border */
+  border-radius: 0 !important; /* Remove any rounded corners */
+}
+
 /* ***************************************************** Below 425 px ********************************************************** */
 @media (max-width: 426px) {
   

@@ -72,16 +72,16 @@ function Header() {
           <Navbar.Collapse id="basic-navbar-nav" className="w-100">
             <div className="d-flex justify-content-between w-100 align-items-center">
               <Nav className="mx-auto">
-                <Nav.Link as={Link} to="/" className="px-4">
+                <Nav.Link as={Link} to="/" className="nav-home px-4">
                   Home
                 </Nav.Link>
-                <Nav.Link as={Link} to="/Shop" className="px-4">
+                <Nav.Link as={Link} to="/Shop" className="nav-line px-4">
                   Shop
                 </Nav.Link>
                 <NavDropdown
                   title="Pages"
                   id="basic-nav-dropdown"
-                  className="px-4"
+                  className="nav-line px-4"
                 >
                   <NavDropdown.Item as={Link} to="/About">
                     About Us
@@ -99,10 +99,10 @@ function Header() {
                     Blog Details
                   </NavDropdown.Item>
                 </NavDropdown>
-                <Nav.Link as={Link} to="/Blog" className="px-4">
+                <Nav.Link as={Link} to="/Blog" className="nav-line px-4">
                   Blog
                 </Nav.Link>
-                <Nav.Link as={Link} to="/Contact" className="px-4">
+                <Nav.Link as={Link} to="/Contact" className="nav-line px-4">
                   Contact
                 </Nav.Link>
               </Nav>

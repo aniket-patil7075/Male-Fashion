@@ -10,7 +10,7 @@ function Collections() {
           <Col lg={12}>
             <div className="banner1-Text">
               <h1>Clothing Collection 2024</h1>
-              <p>SHOP NOW</p>
+              <p className="banner-p">SHOP NOW</p>
             </div>
             <div>
               <img src="/banner-1.jpg" alt="banner1" className="banner1" />
@@ -25,13 +25,13 @@ function Collections() {
             </div>
             <div className="banner2-Text pt-4">
               <h1>Accessories</h1>
-              <p>SHOP NOW</p>
+              <p className="banner-p">SHOP NOW</p>
             </div>
           </Col>
           <Col lg={7} className="banner3-Col">
             <div className="banner3-Text">
               <h1>Shoes Spring 2024</h1>
-              <p>SHOP NOW</p>
+              <p className="banner-p">SHOP NOW</p>
             </div>
             <div className="d-flex flex-row-reverse">
               <img src="/banner-3.jpg" alt="banner3" className="banner3" />

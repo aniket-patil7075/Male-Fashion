@@ -179,17 +179,22 @@ transform: scale(1,1);
  width: 45px;
  }
 
+/* ********************************************************* Footer ******************************************************************* */
  .custom-input::placeholder {
-  color: #f8f9fa !important; /* Bootstrap's light color */
-  opacity: 1; /* Ensure the color applies fully */
+  color: #f8f9fa !important; 
+  opacity: 1; 
 }
 
 .custom-input {
-  border: none !important; /* Remove all borders */
-  border-bottom: 1px solid #f8f9fa !important; /* Add only bottom border */
-  border-radius: 0 !important; /* Remove any rounded corners */
+  border: none !important; 
+  border-bottom: 1px solid #f8f9fa !important; 
+  border-radius: 0 !important;
+  color: white !important;
 }
-
+.blogDiv{
+  position: absolute;
+  top: 18%;
+}
 /* ***************************************************** Below 425 px ********************************************************** */
 @media (max-width: 426px) {
   
@@ -214,6 +219,11 @@ transform: scale(1,1);
   }
   .heroArrow{
     margin-bottom: 2px;
+  }
+  .footerSecond{
+
+  }
+  .footerThird{
   }
 }
 

@@ -1,8 +1,15 @@
 import React from 'react'
+import Collections from './Collections'
+import Hero from './Hero'
 
 function Blog() {
   return (
-    <div>Blog</div>
+    <div>
+      <div className='blogDiv'>
+        <img src='/breadcrumb-bg.jpg' alt='' />
+      </div>
+      {/* <Hero/>    */}
+    </div>
   )
 }
 

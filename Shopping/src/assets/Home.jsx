@@ -8,7 +8,7 @@ function Home() {
   return(
     <div>
       <Hero/>
-      {/* <Collections/> */}
+      <Collections/>
       {JSON.stringify(auth)}
     
    </div>

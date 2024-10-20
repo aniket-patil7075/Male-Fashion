@@ -114,12 +114,26 @@ transform: scale(1,1);
   margin-bottom: 4px;
 }
 
+.custom-carousel .carousel-control-prev-icon
+ {
+  filter: invert(100%);
+  color: black;
+  position: absolute;
+  left: 20%;
+}
+.custom-carousel .carousel-control-next-icon{
+  filter: invert(100%);
+  color: black;
+  position: absolute;
+  right: 20%;
+}
+
 /* *******************************************************Banner******************************************************************** */
 .banner1{
   position: absolute;
   right: 13%;
 }
-.banner1-Text{
+/* .banner1-Text{
   position: absolute;
   text-align: left;
   right: 40%;
@@ -166,19 +180,75 @@ transform: scale(1,1);
   background:#111111;
   display: block;
   position: absolute;
-  /* left: 0; */
-  /* bottom: -8px; */
-  /* opacity: 0; */
   transition: 0.5s ease-in;
   pointer-events: none;
  }
 
  .banner-p:hover::after {
- /* opacity: 1; */
+ background-color: #e53637;
+ width: 45px;
+ } */
+ .banner1-text{
+  position: absolute;
+  text-align: left;
+  right: 44%;
+  top: 15%;
+  width: 300px;
+  z-index: 1;
+  color: black;
+}
+.collection p{
+  color:#111111;
+  font-weight: 700;
+}
+.banner1{
+  position: absolute;
+  right: 20%;
+}
+
+.banner2-row{
+  padding-top: 24%;
+}
+.banner3-col{
+  padding-top: 13%;
+}
+.banner3{
+  padding-right: 5%;
+}
+.banner2-col{
+  margin-left: 3%;
+}
+.banner2-text{
+  position: absolute;
+  left: 2%;
+  margin-top: 10px;
+}
+.banner3-text{
+  position: absolute;
+  top: 67%;
+  right: 36%;
+  width: 300px;
+}
+.banner-p{
+  width: 100px;
+}
+.banner-p::after{
+  color: black;
+  content: "";
+  height: 2px;
+  width: 95px;
+  background:#111111;
+  display: block;
+  position: absolute;
+  transition: 0.5s ease-in;
+  pointer-events: none;
+  
+ }
+ 
+ .banner-p:hover::after {
  background-color: #e53637;
  width: 45px;
  }
-
 /* ********************************************************* Footer ******************************************************************* */
  .custom-input::placeholder {
   color: #f8f9fa !important; 
@@ -220,11 +290,7 @@ transform: scale(1,1);
   .heroArrow{
     margin-bottom: 2px;
   }
-  .footerSecond{
 
-  }
-  .footerThird{
-  }
 }
 
 /************************************************** 426px to 768px ******************************************************/

@@ -1,6 +1,7 @@
 import React from 'react'
 import Collections from './Collections'
 import Hero from './Hero'
+import LatestNews from './LatestNews'
 
 function Blog() {
   return (
@@ -8,7 +9,7 @@ function Blog() {
       <div className='blogDiv'>
         <img src='/breadcrumb-bg.jpg' alt='' />
       </div>
-      {/* <Hero/>    */}
+      <LatestNews/>
     </div>
   )
 }

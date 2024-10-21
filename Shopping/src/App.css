@@ -20,7 +20,6 @@
   font-size: 15px;
   background-color: black;
   color: white;
-
 }
 
 .navbar {
@@ -37,53 +36,43 @@
   position: fixed;
   width: 100%;
   z-index: 999;
-  /* Stays behind the top nav but above the rest */
   background-color: #fff;
-  /* Example background color */
 }
-.navbar .nav-link{
+
+.navbar .nav-link {
   color: black;
   position: relative;
-
 }
 
-.navbar .nav-home::after{
+.navbar .nav-home::after {
   color: black;
   content: "";
   height: 3px;
   width: 50%;
-  background:#e53637;
+  background: #e53637;
   display: block;
   position: absolute;
-  /* left: 0; */
-  /* bottom: -8px; */
-  /* opacity: 0; */
-  transform: scale(1,1);
+  transform: scale(1, 1);
   transition: transform 0.5s ease-in;
   pointer-events: none;
-  
- }
- 
-.navbar .nav-line::after{
-color: black;
-content: "";
-height: 3px;
-width: 50%;
-background:#e53637;
-display: block;
-position: absolute;
-/* left: 0; */
-/* bottom: -8px; */
-/* opacity: 0; */
-transform: scale(0,1);
-transition: transform 0.5s ease-in;
-pointer-events: none;
 
 }
 
+.navbar .nav-line::after {
+  color: black;
+  content: "";
+  height: 3px;
+  width: 50%;
+  background: #e53637;
+  display: block;
+  position: absolute;
+  transform: scale(0, 1);
+  transition: transform 0.5s ease-in;
+  pointer-events: none;
+}
+
 .navbar .nav-line:hover::after {
-/* opacity: 1; */
-transform: scale(1,1);
+  transform: scale(1, 1);
 }
 
 /* ************************************************** Hero component ************************************************* */
@@ -104,24 +93,26 @@ transform: scale(1,1);
   left: 10%;
   text-align: left !important;
 }
-.heroButton{
+
+.heroButton {
   background-color: black !important;
   border: 1px solid black !important;
   color: white !important;
   border-radius: 0% !important;
 }
-.heroArrow{
+
+.heroArrow {
   margin-bottom: 4px;
 }
 
-.custom-carousel .carousel-control-prev-icon
- {
+.custom-carousel .carousel-control-prev-icon {
   filter: invert(100%);
   color: black;
   position: absolute;
   left: 20%;
 }
-.custom-carousel .carousel-control-next-icon{
+
+.custom-carousel .carousel-control-next-icon {
   filter: invert(100%);
   color: black;
   position: absolute;
@@ -129,10 +120,11 @@ transform: scale(1,1);
 }
 
 /* *******************************************************Banner******************************************************************** */
-.banner1{
+.banner1 {
   position: absolute;
   right: 13%;
 }
+
 /* .banner1-Text{
   position: absolute;
   text-align: left;
@@ -188,7 +180,7 @@ transform: scale(1,1);
  background-color: #e53637;
  width: 45px;
  } */
- .banner1-text{
+.banner1-text {
   position: absolute;
   text-align: left;
   right: 44%;
@@ -197,88 +189,102 @@ transform: scale(1,1);
   z-index: 1;
   color: black;
 }
-.collection p{
-  color:#111111;
+
+.collection p {
+  color: #111111;
   font-weight: 700;
 }
-.banner1{
+
+.banner1 {
   position: absolute;
   right: 20%;
 }
 
-.banner2-row{
+.banner2-row {
   padding-top: 24%;
+  margin-left: 3% !important;
 }
-.banner3-col{
-  padding-top: 13%;
-}
-.banner3{
-  padding-right: 5%;
-}
-.banner2-col{
+
+.banner2-col {
   margin-left: 3%;
 }
-.banner2-text{
+
+.banner2-text {
   position: absolute;
   left: 2%;
   margin-top: 10px;
 }
-.banner3-text{
+
+.banner3-col {
+  padding-top: 13%;
+}
+.banner3 {
+  margin-right: 8%;
+}
+
+.banner3-text {
   position: absolute;
   top: 67%;
   right: 36%;
   width: 300px;
 }
-.banner-p{
+
+.banner-p {
   width: 100px;
 }
-.banner-p::after{
+
+.banner-p::after {
   color: black;
   content: "";
   height: 2px;
   width: 95px;
-  background:#111111;
+  background: #111111;
   display: block;
   position: absolute;
   transition: 0.5s ease-in;
   pointer-events: none;
-  
- }
- 
- .banner-p:hover::after {
- background-color: #e53637;
- width: 45px;
- }
+}
+
+.banner-p:hover::after {
+  background-color: #e53637;
+  width: 45px;
+}
+
 /* ********************************************************* Footer ******************************************************************* */
- .custom-input::placeholder {
-  color: #f8f9fa !important; 
-  opacity: 1; 
+.custom-input::placeholder {
+  color: #f8f9fa !important;
+  opacity: 1;
 }
 
 .custom-input {
-  border: none !important; 
-  border-bottom: 1px solid #f8f9fa !important; 
+  border: none !important;
+  border-bottom: 1px solid #f8f9fa !important;
   border-radius: 0 !important;
   color: white !important;
 }
-.blogDiv{
+
+.blogDiv {
   position: absolute;
   top: 18%;
 }
 
-.categoryDiv{
-  position: absolute;
-  top: 10%;
+/* ***************************************************** Shop ********************************************************** */
+
+.shopDiv {
+  margin-left: 4%;
 }
+
 /* ***************************************************** Below 425 px ********************************************************** */
 @media (max-width: 426px) {
-  
+
   .divNavBlack {
     display: none;
   }
+
   .caraImg {
     height: 400px;
   }
+
   .caraText {
     font-size: xx-small;
     position: absolute;
@@ -286,16 +292,61 @@ transform: scale(1,1);
     left: 10%;
     text-align: left !important;
   }
-  .caraText h1{
+
+  .caraText h1 {
     font-size: 15px;
   }
-  .caraText button{
+
+  .caraText button {
     font-size: 7px;
   }
-  .heroArrow{
+
+  .heroArrow {
     margin-bottom: 2px;
   }
 
+  .banner1 {
+    width: 82%;
+    right: 9%;
+  }
+
+  .banner1-text {
+    top: 30%;
+    left: 9% !important;
+  }
+
+  .banner2-row {
+    padding-top: 100%;
+    margin-left: 0% !important;
+  }
+
+  .banner2-col {
+    padding-top: 35%;
+    margin-left: 0%;
+  }
+
+  .banner2 {
+    width: 100%;
+    margin-left: -4%;
+  }
+
+  .banner2-text {
+    margin-top: 3%;
+    left: -9% !important;
+  }
+
+  .banner3 {
+    padding-top: 15%;
+    width: 100%;
+    margin-right: 5%;
+  }
+
+  .banner3-text {
+    padding-top: 14px;
+    top: 100%;
+    left: 2% !important;
+    width: 250px;
+  }
 }
 
 /************************************************** 426px to 768px ******************************************************/
@@ -303,6 +354,7 @@ transform: scale(1,1);
   .caraImg {
     height: 500px;
   }
+
   .caraText {
     font-size: 15px;
     position: absolute;
@@ -310,22 +362,61 @@ transform: scale(1,1);
     left: 10%;
     text-align: left !important;
   }
-  .caraText h1{
+
+  .caraText h1 {
     font-size: 24px;
   }
-  .caraText button{
+
+  .caraText button {
     font-size: 12px;
   }
-  .heroArrow{
+
+  .heroArrow {
     margin-bottom: 2px;
   }
+
+  .banner1 {
+    right: 5% !important;
+    /* width: 40% !important; */
+  }
+
+  .banner1-text {
+    left: 5% !important;
+  }
+
+  .banner2-row {
+    padding-top: 70%;
+    margin-left: 0% !important;
+  }
+
+  .banner2-text {
+    margin-top: 3%;
+    left: 0% !important;
+  }
+
+  .banner3 {
+    padding-top: 7%;
+    margin-right: 0% !important;
+  }
+
+  .banner3-text {
+    top: 82%;
+    right: 55%;
+    width: 250px;
+  }
+
 }
 
 /************************************************* 769px to 1024px *******************************************************/
 @media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    width: 100%;
+  }
+
   .caraImg {
     height: 650px;
   }
+
   .caraText {
     font-size: 20px;
     position: absolute;
@@ -333,15 +424,56 @@ transform: scale(1,1);
     left: 10%;
     text-align: left !important;
   }
-  .caraText h1{
+
+  .caraText h1 {
     font-size: 32px;
   }
-  .caraText button{
+
+  .caraText button {
     font-size: 15px;
   }
-  .heroArrow{
+
+  .heroArrow {
     margin-bottom: 2px;
   }
+
+  .banner1 {
+    right: 10% !important;
+    width: 40% !important;
+  }
+
+  .banner1-text {
+    left: 30% !important;
+  }
+
+  .banner2-row {
+    padding-top: 24%;
+    margin-left: 0% !important;
+  }
+
+  .banner2 {
+    width: 350px !important;
+    left: 1% !important;
+  }
+
+  .banner2-row {
+    padding-top: 33% !important;
+  }
+
+  .banner3-col {
+    padding-top: 20% !important;
+  }
+
+  .banner3 {
+    padding-right: 1%;
+    width: 85%;
+
+  }
+
+  .banner3-text {
+    right: 25%;
+  }
+
 }
 
 /************************************************* 1025px to 1440px *******************************************************/

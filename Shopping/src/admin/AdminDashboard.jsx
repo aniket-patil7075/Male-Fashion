@@ -6,7 +6,7 @@ import { Card, Container,Row,Col } from 'react-bootstrap'
 function AdminDashboard() {
     const [auth] =useAuth()
   return (
-    <div>
+    <div style={{paddingTop:"180px"}}>
         <Container fluid>
             <Row>
                 <Col md={3}>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 function AdminMenu() {
   return (
-    <div>
+    <div >
         <ListGroup defaultActiveKey="#link1" className='m-3 p-3'>
             <h4 className='mt-4 mb-4'>Admin Panel</h4>
             <Link to='/Dashboard/admin/CreateCategory'>Create Category</Link>

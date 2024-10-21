@@ -90,7 +90,7 @@ function CreateCategory() {
   }
 
   return (
-    <div className="categoryDiv">
+    <div className="categoryDiv" style={{paddingTop:"200px"}}>
       <Container fluid>
         <Row>
           <Col md={3}>

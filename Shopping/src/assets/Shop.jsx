@@ -1,8 +1,14 @@
 import React from 'react'
+import { Container } from 'react-bootstrap'
 
 function Shop() {
   return (
-    <div>Shop</div>
+    <div className='shopDiv' style={{paddingTop:"180px"}}>
+      <Container>
+        <h4>Shop</h4>
+        <p>Home - Shop</p>
+      </Container>
+    </div>
   )
 }
 

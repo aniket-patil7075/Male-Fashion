@@ -265,6 +265,11 @@ transform: scale(1,1);
   position: absolute;
   top: 18%;
 }
+
+.categoryDiv{
+  position: absolute;
+  top: 10%;
+}
 /* ***************************************************** Below 425 px ********************************************************** */
 @media (max-width: 426px) {
   

@@ -7,7 +7,7 @@ function AdminDashboard() {
     const [auth] =useAuth()
   return (
     <div style={{paddingTop:"180px"}}>
-        <Container fluid>
+        <Container >
             <Row>
                 <Col md={3}>
                     <AdminMenu/>

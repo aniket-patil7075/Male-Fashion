@@ -63,7 +63,7 @@ function Header() {
         </Container>
       </div>
       <Navbar expand="lg" className="py-4" style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
-        <Container className="px-5">
+        <Container className="ps-5 pe-4">
           <Navbar.Brand as={Link} to="/" className="me-auto">
             <img src="/logo.png" alt="Logo" />
           </Navbar.Brand>

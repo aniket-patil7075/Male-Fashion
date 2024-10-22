@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import { CiStar } from "react-icons/ci";
-import Card from "react-bootstrap/Card";
-import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import AdminMenu from "./AdminMenu";
 
-function Shop() {
+function Products() {
   const [products, setProducts] = useState([]);
   function getprods() {
     fetch("http://localhost:4300/api/product/getproducts").then((resp1) => {
@@ -25,18 +25,17 @@ function Shop() {
     getprods();
     //eslint-disable-next-line
   }, []);
+
   return (
-    <div className="shopDiv   pb-4" style={{ paddingTop: "135px" }}>
-      <div className="bg-secondary bg-opacity-25 py-4 mb-5" style={{paddingLeft:"10%"}}>
-          <h4 className="fw-bold">Shop</h4>
-          <p>Home <span><MdOutlineKeyboardArrowRight /></span> <spam className="text-secondary"> Shop</spam></p>
-        </div>
+    <div style={{ paddingTop: "200px" }}>
       <Container>
-        
         <Row>
+          {/* Admin Menu on the left */}
           <Col md={3}>
-            {/* <AdminMenu /> */}
+            <AdminMenu />
           </Col>
+
+          {/* Product List */}
           <Col md={9}>
             <Container>
               <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
@@ -83,4 +82,4 @@ function Shop() {
   );
 }
 
-export default Shop;
+export default Products;

@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 
 function Footer() {
   return (
-    <div className="bg-dark text-light text-center p-4 ">
+    <div className="bg-dark text-light text-center p-4 " style={{marginTop:"75px"}}>
       <Container>
         <div className="d-flex justify-content-between">
           <Row>

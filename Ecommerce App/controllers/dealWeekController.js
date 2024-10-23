@@ -47,4 +47,40 @@ const createDealController = async (req,res)=>{
     }
 }
 
-module.exports=createDealController
+const getDealController=async (req,res)=>{
+    try{
+     const deal=await dealWeekModel.find({}).select("-photo").limit(10).sort({createdAt:-1})
+     res.status(200).send({
+         success:true,
+         total:deal.length,
+         message:"All Deals",
+         deal,
+         
+     })
+    } catch(error){
+     res.status(500).send({
+         success:false,
+         message:"Error in getting deals",
+         error:error.message
+     })
+    }
+ }
+
+ const getDealphotoController=async (req,resp)=>{
+    try{
+        const deal=await dealWeekModel.findById(req.params.pid).select("photo")
+        if(deal.photo.data)
+        {
+            resp.set('Content-type',deal.photo.contentType)
+            return resp.status(200).send(deal.photo.data)
+        }
+    } catch(error){
+        resp.status(500).send({
+            success:false,
+            message:"Error getting Deal Photo",
+            error
+        })
+    }
+}
+
+module.exports={createDealController,getDealController,getDealphotoController}

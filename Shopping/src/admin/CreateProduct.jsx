@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Row from 'react-bootstrap/esm/Row'
 import Col from 'react-bootstrap/esm/Col'
 import AdminMenu from '../assets/AdminMenu'
@@ -152,7 +152,9 @@ function CreateProduct() {
                             </div>
                             <Form.Group as={Row} className='mb-3'>
                                 <Col sm={{span:10 , offset:2}}>
-                                    <Button type='submit' className='mb-4'>Add Product</Button>
+                                <Button type='submit' variant="dark" className="heroButton mt-4  px-4 py-3">
+              ADD PRODUCT 
+            </Button>
                                 </Col>
                             </Form.Group>
 

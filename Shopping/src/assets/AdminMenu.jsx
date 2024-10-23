@@ -23,12 +23,21 @@ function AdminMenu() {
             Create Product
           </Link>
         </ListGroupItem>
+        
         <ListGroupItem>
           <Link
             to="/Dashboard/admin/Products"
             className="text-decoration-none text-dark my-2"
           >
             Products
+          </Link>
+        </ListGroupItem>
+        <ListGroupItem>
+          <Link
+            to="/Dashboard/admin/CreateDeal"
+            className="text-decoration-none text-dark my-2"
+          >
+            Create Deal
           </Link>
         </ListGroupItem>
         <ListGroupItem>

@@ -24,6 +24,7 @@ import CheckOut from "./assets/CheckOut"
 import BlogDetails from "./assets/BlogDetails"
 import Blog from "./assets/Blog";
 import Products from "./assets/Products";
+import CreateDeal from "./admin/CreateDeal";
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
             <Route path="admin" element={<AdminDashboard/>} />
             <Route path="admin/Createcategory" element={<CreateCategory/>} />
             <Route path="admin/Createproduct" element={<CreateProduct/>} />
+            <Route path="admin/CreateDeal" element={<CreateDeal/>} />
             <Route path="admin/Products" element={<Products/>} />
             <Route path="admin/Users" element={<Users/>} />
           </Route>

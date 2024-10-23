@@ -1,17 +1,17 @@
-import React from 'react'
-import Collections from './Collections'
-import Hero from './Hero'
-import LatestNews from './LatestNews'
+
+import LatestNews from "./LatestNews";
 
 function Blog() {
   return (
-    <div>
-      <div className='blogDiv'>
-        <img src='/breadcrumb-bg.jpg' alt='' />
+    <div className="">
+      <div className="blogDiv">
+        <img src="/breadcrumb-bg.jpg" alt="" />
       </div>
-      <LatestNews/>
+      <div className="ms-5">
+        <LatestNews />
+      </div>
     </div>
-  )
+  );
 }
 
-export default Blog
+export default Blog;

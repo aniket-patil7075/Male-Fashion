@@ -15,7 +15,7 @@ function Contact() {
     loading="lazy"
     referrerPolicy="no-referrer-when-downgrade"
   ></iframe>
-  <Container className='mt-5 px-5'>
+  <Container className='mt-5 px-5 text-start'>
     <Row>
       <Col lg={6} className='pe-3 mb-5'>
         <p className='text-danger fw-bold'>INFORMATION</p>

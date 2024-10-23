@@ -263,10 +263,7 @@
   color: white !important;
 }
 
-.blogDiv {
-  position: absolute;
-  top: 18%;
-}
+
 
 /* ***************************************************** Shop ********************************************************** */
 
@@ -278,6 +275,21 @@
   width: 100%;
 }
 
+/* ***************************************************** Blog ********************************************************** */
+.blogDiv {
+  padding-top: 135px;
+}
+.blogCard{
+  border: none !important;
+  border-radius: 0% !important;
+}
+.cardBody{
+  background-color: white;
+  position: absolute;
+  top: 85%;
+  left: 12%;
+  /* margin-bottom: 100px !important; */
+}
 
 /* ***************************************************** Below 425 px ********************************************************** */
 @media (max-width: 426px) {

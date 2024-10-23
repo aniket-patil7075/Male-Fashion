@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -19,7 +19,7 @@ function Header() {
   return (
     <div className="navFix">
       <div className="divNavBlack py-2 ">
-        <Container className="d-flex justify-content-between px-5">
+        <Container className="d-flex justify-content-between ps-5 pe-4">
           <div>
             <h6>Free shipping, 30-day return or refund guarantee.</h6>
           </div>

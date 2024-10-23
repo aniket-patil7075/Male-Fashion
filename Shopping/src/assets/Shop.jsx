@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { CiStar } from "react-icons/ci";
 import Card from "react-bootstrap/Card";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function Shop() {
   const [products, setProducts] = useState([]);
@@ -39,6 +40,25 @@ function Shop() {
           </Col>
           <Col md={9}>
             <Container>
+              <div className="d-flex justify-content-between pb-3 me-2">
+                <p>Showing 1–12 of 126 results</p>
+                <NavDropdown
+              id="nav-dropdown-light-example"
+              title="Sort by Price : "
+              menuVariant="light"
+            >
+              <NavDropdown.Item href="#action/3.1" className="fw-bold">Low To High</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">
+                High To Low
+              </NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">₹500 To ₹1000</NavDropdown.Item>
+              
+              <NavDropdown.Item href="#action/3.4">
+                ₹1000 To ₹2000
+              
+              </NavDropdown.Item>
+            </NavDropdown>
+              </div>
               <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
                 {products.map((item, index) => {
                   return (

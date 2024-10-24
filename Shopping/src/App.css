@@ -216,6 +216,20 @@
 
 
 /* ***************************************************** Shop ********************************************************** */
+.shopSearch{
+  width: 250px !important;
+  border-radius: 0% !important;
+}
+#nav-dropdown-light-exampl::after {
+  display: none !important;
+  /* border: none !important; */
+}
+.dropdown-menu {
+  border: none !important;
+  box-shadow: none !important; /* Optional: Remove shadow if present */
+  margin-left: -15px !important;
+}
+
 
 
 /* ***************************************************** Products ********************************************************** */

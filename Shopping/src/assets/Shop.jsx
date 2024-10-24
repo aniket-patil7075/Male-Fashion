@@ -1,12 +1,21 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { CiStar } from "react-icons/ci";
 import Card from "react-bootstrap/Card";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import NavDropdown from "react-bootstrap/NavDropdown";
+import Form from "react-bootstrap/Form";
+import { IoIosArrowDown } from "react-icons/io";
 
 function Shop() {
+
+  const [isFirstDropdownOpen, setIsFirstDropdownOpen] = useState(false);
+
+  const handleFirstDropdownToggle = (isOpen) => {
+    setIsFirstDropdownOpen(isOpen);
+  };
+
   const [products, setProducts] = useState([]);
   function getprods() {
     fetch("http://localhost:4300/api/product/getproducts").then((resp1) => {
@@ -28,36 +37,58 @@ function Shop() {
   }, []);
   return (
     <div className="shopDiv   pb-4" style={{ paddingTop: "135px" }}>
-      <div className="bg-secondary bg-opacity-25 py-4 mb-5" style={{paddingLeft:"10%"}}>
-          <h4 className="fw-bold">Shop</h4>
-          <p>Home <span><MdOutlineKeyboardArrowRight /></span> <spam className="text-secondary"> Shop</spam></p>
-        </div>
+      <div
+        className="bg-secondary bg-opacity-25 py-4 mb-5"
+        style={{ paddingLeft: "10%" }}
+      >
+        <h4 className="fw-bold">Shop</h4>
+        <p>
+          Home{" "}
+          <span>
+            <MdOutlineKeyboardArrowRight />
+          </span>{" "}
+          <spam className="text-secondary"> Shop</spam>
+        </p>
+      </div>
       <Container>
-        
-        <Row>
+        <Row className="ms-4">
           <Col md={3}>
             {/* <AdminMenu /> */}
+            <div>
+              <Form.Group as={Col} md="4" controlId="validationCustom01">
+                <Form.Control
+                  required
+                  type="text"
+                  placeholder="Search"
+                  className="shopSearch py-2"
+                />
+              </Form.Group>
+              
+            </div>
           </Col>
           <Col md={9}>
             <Container>
               <div className="d-flex justify-content-between pb-3 me-2">
                 <p>Showing 1–12 of 126 results</p>
                 <NavDropdown
-              id="nav-dropdown-light-example"
-              title="Sort by Price : "
-              menuVariant="light"
-            >
-              <NavDropdown.Item href="#action/3.1" className="fw-bold">Low To High</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                High To Low
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">₹500 To ₹1000</NavDropdown.Item>
-              
-              <NavDropdown.Item href="#action/3.4">
-                ₹1000 To ₹2000
-              
-              </NavDropdown.Item>
-            </NavDropdown>
+                  id="nav-dropdown-light-example"
+                  title="Sort by Price : "
+                  menuVariant="light"
+                >
+                  <NavDropdown.Item href="#action/3.1" className="fw-bold">
+                    Low To High
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.2">
+                    High To Low
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.3">
+                    ₹500 To ₹1000
+                  </NavDropdown.Item>
+
+                  <NavDropdown.Item href="#action/3.4">
+                    ₹1000 To ₹2000
+                  </NavDropdown.Item>
+                </NavDropdown>
               </div>
               <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
                 {products.map((item, index) => {

@@ -100,7 +100,12 @@
   color: white !important;
   border-radius: 0% !important;
 }
-
+.deleteButton{
+  background-color: #e53637 !important;
+  border: 1px solid #e53637 !important;
+  color: white !important;
+  border-radius: 0% !important;
+}
 .heroArrow {
   margin-bottom: 4px;
 }
@@ -125,61 +130,6 @@
   right: 13%;
 }
 
-/* .banner1-Text{
-  position: absolute;
-  text-align: left;
-  right: 40%;
-  top:14%;
-  width: 300px;
-  z-index: 1;
-}
-.banner1-Text h1{
-  font-weight: 700;
-}
-.banner2-Text h1{
-  font-weight: 700;
-}
-.banner3-Text h1{
-  font-weight: 700;
-}
-.banner2-Row{
-  padding-top: 25%;
-}
-.banner3-Col{
-  padding-top: 15%;
-  margin-right: -6%;
-}
-.banner3-Text{
-  position: absolute;
-  text-align: left;
-  right: 33%;
-  top:72%;
-  width: 300px;
-  z-index: 2;
-}
-.banner3{
-  position: absolute;
-  right: 5%;
-}
-.banner-p{
-  width: 100px;
-}
-.banner-p::after{
-  color: black;
-  content: "";
-  height: 2px;
-  width: 95px;
-  background:#111111;
-  display: block;
-  position: absolute;
-  transition: 0.5s ease-in;
-  pointer-events: none;
- }
-
- .banner-p:hover::after {
- background-color: #e53637;
- width: 45px;
- } */
 .banner1-text {
   position: absolute;
   text-align: left;

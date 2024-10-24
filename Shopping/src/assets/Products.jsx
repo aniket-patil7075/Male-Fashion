@@ -42,7 +42,7 @@ function Products() {
                 {products.map((item, index) => {
                   return (
                     <Link
-                      to={`/Singleproduct/${item.slug}`}
+                      to={`/Dashboard/admin/Updateproduct/${item.slug}`}
                       key={item._id}
                       className="product-link text-decoration-none"
                     >

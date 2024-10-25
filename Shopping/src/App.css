@@ -217,19 +217,60 @@
 
 /* ***************************************************** Shop ********************************************************** */
 .shopSearch{
-  width: 250px !important;
+  width: 270px !important;
   border-radius: 0% !important;
 }
-#nav-dropdown-light-exampl::after {
+/* #nav-dropdown-light-exampl::after {
   display: none !important;
-  /* border: none !important; */
 }
 .dropdown-menu {
   border: none !important;
-  box-shadow: none !important; /* Optional: Remove shadow if present */
+  box-shadow: none !important; 
   margin-left: -15px !important;
+} */
+
+.custom-accordion {
+  width: 270px;
+  border: none !important; 
 }
 
+.custom-accordion .accordion-item {
+  margin: 1px 0; 
+  padding: 0;
+  border: none; 
+}
+
+.custom-accordion .accordion-header {
+  font-size: smaller !important;
+  border: none;
+  background-color: transparent !important;
+  transition: none;
+  margin-left: -9px;
+}
+
+.custom-accordion .accordion-button {
+  background-color: transparent !important;
+  color: inherit;
+  box-shadow: none !important;
+}
+
+.custom-accordion .accordion-button:not(.collapsed) {
+  background-color: transparent !important;
+  color: inherit;
+  border: none;
+}
+
+.custom-accordion .accordion-body {
+  padding: 6px 12px; 
+  border: none;
+  color: #6c757d;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: white !important;
+  color: #212529 !important; /* Bootstrap's dark text color */
+  border-color: #212529 !important;
+}
 
 
 /* ***************************************************** Products ********************************************************** */

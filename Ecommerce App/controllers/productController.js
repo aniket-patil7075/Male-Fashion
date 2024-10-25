@@ -155,10 +155,10 @@ const filterProductController=async (req,resp)=>{
         let args={}
         if(checked.length>0) args.category=checked
         if(radio.length) args.price={$gte:radio[0],$lte:radio[1]}
-        const fproducts=await productModel.find(args)
+        const products=await productModel.find(args)
         resp.status(200).send({
             success:true,
-            fproducts,
+            products,
         })
 
     }catch(error)

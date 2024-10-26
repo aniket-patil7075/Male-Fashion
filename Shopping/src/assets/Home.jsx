@@ -129,6 +129,7 @@ function Home() {
                         <Card.Text>
                           {item.description}
                           <h4>{item.price}</h4>
+                          {/* <h4>{item.size}</h4> */}
                         </Card.Text>
                         <Button variant="success">Add To Cart</Button>
                       </Card.Body>

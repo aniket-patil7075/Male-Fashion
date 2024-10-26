@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, Row, Col, Pagination } from "react-bootstrap";
+import { Container, Row, Col, Pagination, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { CiStar } from "react-icons/ci";
 import Card from "react-bootstrap/Card";
@@ -105,6 +105,14 @@ function Shop() {
   useEffect(() => {
     getprods();
   }, []);
+
+  const [selectedSize, setSelectedSize] = useState(null);
+
+  // Filter products by the selected size (if any)
+  const filteredProducts = selectedSize
+    ? products.filter((product) => product.size.includes(selectedSize))
+    : products;
+
   return (
     <div className="shopDiv   pb-4" style={{ paddingTop: "135px" }}>
       <div
@@ -165,6 +173,35 @@ function Shop() {
                   })}
                 </Accordion.Item>
               </Accordion>
+
+              <Accordion defaultActiveKey="0" className="my-4">
+                <Accordion.Item eventKey="0">
+                  <Accordion.Header>SIZE</Accordion.Header>
+                  <Accordion.Body>
+                    <div className="d-flex flex-wrap">
+                      {["S", "M", "L", "XL", "XXL"].map((size) => (
+                        <div
+                          key={size}
+                          className={`w-25 text-dark fw-bold border border-secondary text-center py-2 m-2 ${
+                            selectedSize === size ? "bg-primary text-white" : ""
+                          }`}
+                          style={{ cursor: "pointer" }}
+                          onClick={() => setSelectedSize(size)}
+                        >
+                          {size}
+                        </div>
+                      ))}
+                    </div>
+                    <div
+                      className="w-25 text-dark fw-bold border border-secondary text-center py-2 m-2"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => setSelectedSize(null)}
+                    >
+                      All
+                    </div>
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
             </div>
           </Col>
           <Col md={9}>
@@ -181,15 +218,6 @@ function Shop() {
                   {Prices?.map((p) => {
                     return (
                       <div className="d-flex">
-                        {/* <input
-                          type="radio"
-                          name="r1"
-                          key={p._id}
-                          value={p.array}
-                          onChange={(e) => setRadio(e.target.value)}
-                          className="form-check"
-                        /> */}
-
                         <NavDropdown.Item
                           href="#action/3.1"
                           className="fw-bold text-secondary"
@@ -202,7 +230,7 @@ function Shop() {
                 </NavDropdown>
               </div>
               <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
-                {currentProducts.map((item, index) => {
+                {filteredProducts.map((item, index) => {
                   return (
                     <Link
                       to={`/Singleproduct/${item.slug}`}
@@ -229,6 +257,10 @@ function Shop() {
                               <CiStar />
                               <CiStar />
                             </div>
+
+                            <p>Available Size :<span> </span> 
+                               {item.size}
+                            </p>
                             <h5 className="m-0 fw-bold">₹ {item.price}</h5>
                           </Card.Body>
                         </Card>
@@ -238,20 +270,6 @@ function Shop() {
                 })}
               </div>
 
-              {/* <Pagination className="justify-content-center mt-5">
-                {[...Array(totalPages).keys()].map((page) => (
-                  <Pagination.Item
-                    key={page + 1}
-                    active={page + 1 === currentPage}
-                    onClick={() => handlePageChange(page + 1)}
-                    className={`text-dark bg-white border-dark ${
-                      page + 1 === currentPage ? "active" : ""
-                    }`}
-                  >
-                    {page + 1}
-                  </Pagination.Item>
-                ))}
-              </Pagination> */}
               <Pagination className="justify-content-center mt-4">
                 {Array.from({ length: totalPages }, (_, index) => (
                   <Pagination.Item

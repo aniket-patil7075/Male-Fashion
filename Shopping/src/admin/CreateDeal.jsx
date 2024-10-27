@@ -57,9 +57,9 @@ function CreateDeal() {
   }
 
   return (
-    <div style={{ paddingTop: "180px" }}>
+    <div style={{ paddingTop: "200px" }}>
       <Container>
-        <Row>
+        <Row className="mx-4">
           <Col md={3} className="mt-4">
             <AdminMenu />
           </Col>

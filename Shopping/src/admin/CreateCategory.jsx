@@ -91,13 +91,13 @@ function CreateCategory() {
 
   return (
     <div className="categoryDiv" style={{paddingTop:"200px"}}>
-      <Container fluid>
-        <Row>
+      <Container >
+        <Row className="mx-4">
           <Col md={3}>
             <AdminMenu />
           </Col>
           <Col md={9}>
-            <h1>Create Category</h1>
+            <h3 className="fw-bold text-center my-5">Create Category</h3>
             <div className="p-3">
               <Categoryform
                 handleSubmit={handleSubmit}

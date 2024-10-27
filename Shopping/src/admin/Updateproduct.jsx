@@ -116,8 +116,8 @@ function Updateproduct() {
 
   return (
     <div style={{ paddingTop: "200px" }}>
-      <Container fluid>
-        <Row>
+      <Container>
+        <Row className="mx-4">
           <Col md={3}>
             <AdminMenu />
           </Col>

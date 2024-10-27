@@ -102,8 +102,8 @@ function CreateProduct() {
 
   return (
     <div>
-      <Container fluid style={{ paddingTop: "180px" }}>
-        <Row>
+      <Container style={{ paddingTop: "200px" }}>
+        <Row className="mx-4">
           <Col md={3}>
             <AdminMenu />
           </Col>

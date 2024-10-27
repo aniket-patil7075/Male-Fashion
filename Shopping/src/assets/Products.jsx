@@ -29,7 +29,7 @@ function Products() {
   return (
     <div style={{ paddingTop: "200px" }}>
       <Container>
-        <Row>
+        <Row className="mx-4">
           {/* Admin Menu on the left */}
           <Col md={3}>
             <AdminMenu />

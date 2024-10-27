@@ -26,6 +26,7 @@ import Blog from "./assets/Blog";
 import Products from "./assets/Products";
 import CreateDeal from "./admin/CreateDeal";
 import Updateproduct from "./admin/Updateproduct";
+import Categories from "./admin/Categories";
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
           <Route path="Dashboard" element={<AdminRoute/>}>
             <Route path="admin" element={<AdminDashboard/>} />
             <Route path="admin/Createcategory" element={<CreateCategory/>} />
+            <Route path="admin/Category" element={<Categories/>} />
             <Route path="admin/Createproduct" element={<CreateProduct/>} />
             <Route path="admin/Updateproduct/:slug" element={<Updateproduct/>} />
             <Route path="admin/CreateDeal" element={<CreateDeal/>} />

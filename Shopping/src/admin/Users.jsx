@@ -6,9 +6,9 @@ import { Container } from 'react-bootstrap'
 
 function Users() {
   return (
-    <div>
-        <Container fluid>
-            <Row>
+    <div style={{paddingTop:"200px"}}>
+        <Container>
+            <Row className='mx-4'>
                 <Col md={3}>
                     <AdminMenu/>
                 </Col>

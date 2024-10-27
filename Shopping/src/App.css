@@ -220,15 +220,6 @@
   width: 270px !important;
   border-radius: 0% !important;
 }
-/* #nav-dropdown-light-exampl::after {
-  display: none !important;
-}
-.dropdown-menu {
-  border: none !important;
-  box-shadow: none !important; 
-  margin-left: -15px !important;
-} */
-
 .custom-accordion {
   width: 270px;
   border: none !important; 
@@ -320,7 +311,135 @@
   cursor: pointer;
   /* margin-top: 5px; */
 }
+.deal-sale {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  line-height: 20px;
+  right: 10%;
+  margin-top: -40px;
+  background-color: #111111;
+  animation: blink 1s infinite alternate;
+}
 
+@keyframes blink {
+  0% {
+    background-color: #111111; /* Black */
+  }
+  50% {
+    background-color:#e53637; /* Red */
+  }
+}
+
+.sale{
+  font-weight: 100;
+}
+
+
+.h11 {
+  position: absolute;
+  /* width: 300px; */
+  left: 22%;
+  top: 45%;
+  font-weight: 800;
+  border-right: 5px solid;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 2s  infinite alternate-reverse, cursor 0.4s  ;
+  animation-fill-mode: forwards;
+}
+
+/* @keyframes cursor {
+  50% {
+    border-color: transparent;
+  }
+} */
+
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 390px;
+  }
+}
+.white-div {
+  width: 350px;
+  height: 300px;
+  position: relative;
+  background: repeating-conic-gradient(
+    from var(--a),
+    #111111 0%,
+    #111111 5%,
+    transparent 5%,
+    transparent 40%,
+    #ff2770 50%
+  );
+  animation: animate 4s linear infinite;
+  border-radius: 20px;
+}
+
+/* @property --a {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+} */
+
+/* @keyframes animate {
+  0% {
+    --a: 0deg;
+  }
+  100% {
+    --a: 360deg;
+  }
+} */
+
+/* .white-div::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: animate 4s linear infinite;
+  animation-delay: -1s;
+  border-radius: 20px;
+} */
+
+/* .white-div::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  background-color: white;
+  border-radius: 15px;
+  
+} */
+
+
+/* CSS */
+
+/* CSS */
+
+.admin-menu .admin-menu-item {
+  position: relative;
+}
+
+.admin-menu .admin-menu-item a::after {
+  content: "";
+  display: inline-block; /* makes the underline match the text width */
+  height: 3px;
+  width: 100%;
+  background: #e53637;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: scaleX(0); /* initially hidden */
+  transform-origin: left; /* start animation from the left side */
+  transition: transform 0.5s ease-in;
+  pointer-events: none;
+}
+
+.admin-menu .admin-menu-item a:hover::after {
+  transform: scaleX(1); /* reveal underline on hover */
+}
 
 /* ***************************************************** Below 425 px ********************************************************** */
 @media (max-width: 426px) {
@@ -395,6 +514,20 @@
     left: 2% !important;
     width: 250px;
   }
+  .users-page {
+    padding-top: 50px;
+  }
+
+  .table thead th, .table tbody td {
+    font-size: 0.7rem;
+  }
+  .admin-menu h4 {
+    font-size: 1.5rem;
+  }
+
+  .admin-menu-item {
+    padding: 12px 15px;
+  }
 }
 
 /************************************************** 426px to 768px ******************************************************/
@@ -452,7 +585,21 @@
     right: 55%;
     width: 250px;
   }
+  .users-page {
+    padding-top: 100px;
+  }
 
+  .table thead th, .table tbody td {
+    font-size: 0.8rem;
+  }
+  .admin-menu h4 {
+    font-size: 1.3rem;
+  }
+
+  .admin-menu-item {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
 }
 
 /************************************************* 769px to 1024px *******************************************************/
@@ -460,11 +607,9 @@
   .container {
     width: 100%;
   }
-
   .caraImg {
     height: 650px;
   }
-
   .caraText {
     font-size: 20px;
     position: absolute;
@@ -472,56 +617,55 @@
     left: 10%;
     text-align: left !important;
   }
-
   .caraText h1 {
     font-size: 32px;
   }
-
   .caraText button {
     font-size: 15px;
   }
-
   .heroArrow {
     margin-bottom: 2px;
   }
-
   .banner1 {
     right: 10% !important;
     width: 40% !important;
   }
-
   .banner1-text {
     left: 30% !important;
   }
-
   .banner2-row {
     padding-top: 24%;
     margin-left: 0% !important;
   }
-
   .banner2 {
     width: 350px !important;
     left: 1% !important;
   }
-
   .banner2-row {
     padding-top: 33% !important;
   }
-
   .banner3-col {
     padding-top: 20% !important;
   }
-
   .banner3 {
     padding-right: 1%;
     width: 85%;
-
   }
-
   .banner3-text {
     right: 25%;
   }
-
+  .users-page {
+    padding-top: 150px;
+  }
+  .table thead th, .table tbody td {
+    font-size: 0.9rem;
+  }
+  .admin-menu h4 {
+    font-size: 1.5rem;
+  }
+  .admin-menu-item {
+    padding: 12px 15px;
+  }
 }
 
 /************************************************* 1025px to 1440px *******************************************************/

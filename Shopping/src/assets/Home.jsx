@@ -81,10 +81,10 @@ function Home() {
 
   return(
     <div>
-      {/* <Hero/>
+      <Hero/>
       <Collections/>
       <NewArrivals/>
-      <DealWeek/>*/}
+      <DealWeek/>
       <Instagram/> 
       {/* {JSON.stringify(auth)} */}
 

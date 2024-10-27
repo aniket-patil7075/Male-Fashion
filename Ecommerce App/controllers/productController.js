@@ -68,12 +68,20 @@ const getProductsController = async (req, resp) => {
 const getSingleProductController = async (req, resp) => {
   try {
     const product = await productModel
-      .findOne({ slug: req.params.slug })
+      .findById(req.params.id) // Use findById to query by _id
       .select("-photo")
       .populate("category");
+
+    if (!product) {
+      return resp.status(404).send({
+        success: false,
+        message: "Product not found",
+      });
+    }
+
     resp.status(200).send({
       success: true,
-      message: "Single Product Fetched",
+      message: "Single Product Fetched successfully",
       product,
     });
   } catch (error) {
@@ -84,6 +92,7 @@ const getSingleProductController = async (req, resp) => {
     });
   }
 };
+
 const getProductphotoController = async (req, resp) => {
   try {
     const product = await productModel.findById(req.params.pid).select("photo");

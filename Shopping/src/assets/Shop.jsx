@@ -125,7 +125,7 @@ function Shop() {
           <span>
             <MdOutlineKeyboardArrowRight />
           </span>{" "}
-          <spam className="text-secondary"> Shop</spam>
+          <span className="text-secondary"> Shop</span>
         </p>
       </div>
       <Container>
@@ -233,7 +233,7 @@ function Shop() {
                 {filteredProducts.map((item, index) => {
                   return (
                     <Link
-                      to={`/Singleproduct/${item.slug}`}
+                      to={`/getsingleproduct/${item._id}`}
                       key={item._id}
                       className="product-link text-decoration-none"
                     >

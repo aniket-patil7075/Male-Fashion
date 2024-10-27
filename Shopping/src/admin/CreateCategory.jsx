@@ -97,16 +97,19 @@ function CreateCategory() {
             <AdminMenu />
           </Col>
           <Col md={9}>
-            <h3 className="fw-bold text-center my-5">Create Category</h3>
-            <div className="p-3">
+            <h3 className="fw-bold text-center mb-3">Create Category</h3>
+            <div className="p-3 w-75">
               <Categoryform
                 handleSubmit={handleSubmit}
                 value={name}
                 setValue={setName}
               />
             </div>
-            <table className="table w-75">
-              <caption>All Categories</caption>
+
+            <h5 className="fw-bold mt-4 ms-3">All Categories</h5>
+
+            <table className="table w-75 ms-3 mt-4">
+              
               <thead>
                 <tr>
                   <th>Name</th>
@@ -120,7 +123,8 @@ function CreateCategory() {
                       <td>{item.name}</td>
                       <td>
                         <Button
-                          variant="primary"
+                          variant="dark"
+                          className="rounded-0 px-5 py-2 "
                           onClick={() => {
                             handleShow();
                             setUpdateName(item.name);
@@ -144,7 +148,7 @@ function CreateCategory() {
                         </Modal>
                         <Button
                           variant="danger"
-                          className="ms-3"
+                         className="rounded-0 px-5 py-2 ms-3"
                           onClick={() => handleDelete(item._id)}
                         >
                           Delete

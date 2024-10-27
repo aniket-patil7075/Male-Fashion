@@ -27,6 +27,8 @@ import Products from "./assets/Products";
 import CreateDeal from "./admin/CreateDeal";
 import Updateproduct from "./admin/Updateproduct";
 import Categories from "./admin/Categories";
+import Deals from "./admin/Deals";
+import SingleProduct from "./assets/SingleProduct";
 
 function App() {
   return (
@@ -43,6 +45,8 @@ function App() {
           <Route path="/BlogDetails" element={<BlogDetails/>} />
           <Route path="/Blog" element={<Blog/>} />
           <Route path="/Contact" element={<Contact />} />
+          <Route path="/getsingleproduct/:id" element={<SingleProduct />} />
+
 
           {/* {Private Routes for users} */}
           <Route path="Dashboard" element={<PrivateRoute />}>
@@ -59,6 +63,7 @@ function App() {
             <Route path="admin/Createproduct" element={<CreateProduct/>} />
             <Route path="admin/Updateproduct/:slug" element={<Updateproduct/>} />
             <Route path="admin/CreateDeal" element={<CreateDeal/>} />
+            <Route path="admin/Deals" element={<Deals/>} />
             <Route path="admin/Products" element={<Products/>} />
             <Route path="admin/Users" element={<Users/>} />
           </Route>

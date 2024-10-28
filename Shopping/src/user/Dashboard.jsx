@@ -6,14 +6,14 @@ import UserMenu from '../assets/UserMenu'
 function Dashboard() {
   const [auth]=useAuth()
   return (
-    <div className='p-5' style={{paddingTop:"180px"}}>
+    <div className='p-5' style={{paddingTop:"200px"}}>
       <Container fluid>
           <Row>
             <Col md={3}>
               <UserMenu/>
             </Col>
             <Col md={9}>
-            <h1>Your Profile</h1>
+            <h1 className='mt-5'>Your Profile</h1>
             <Card style={{width : '20rem'}} className='p-3 m-3'>
               <Card.Body>
                 <h4>{auth?.user?.name}</h4>

@@ -18,6 +18,8 @@ function CreateProduct() {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [size, setSize] = useState([]);
+  const [color, setColor] = useState(["#000000"]);
+  const [newColor, setNewColor] = useState("#000000");
   const [quantity, setQuantity] = useState(1);
   const [description, setDescription] = useState("");
   const [photo, setPhoto] = useState("");
@@ -47,6 +49,7 @@ function CreateProduct() {
     prod.append("description", description);
     prod.append("price", price);
     prod.append("size", size);
+    prod.append("color", color);
     prod.append("quantity", quantity);
     photo && prod.append("photo", photo);
     prod.append("category", category);
@@ -94,11 +97,24 @@ function CreateProduct() {
   const handleSizeChange = (e) => {
     const { value, checked } = e.target;
     if (checked) {
-        setSize((prevSizes) => [...prevSizes, value]); // Add selected size
+      setSize((prevSizes) => [...prevSizes, value]); // Add selected size
     } else {
-        setSize((prevSizes) => prevSizes.filter((s) => s !== value)); // Remove unselected size
+      setSize((prevSizes) => prevSizes.filter((s) => s !== value)); // Remove unselected size
     }
-};
+  };
+
+  const handleColorChange = (index, value) => {
+    const updatedColor = [...color];
+    updatedColor[index] = value;
+    setColor(updatedColor);
+  };
+
+  const addColorField = () => {
+    setColor([...color, ""]);
+  };
+  const removeColorField = (index) => {
+    setColor(color.filter((_, i) => i !== index)); // Remove selected color field
+  };
 
   return (
     <div>
@@ -162,32 +178,60 @@ function CreateProduct() {
                   </Col>
                 </Form.Group>
 
-                <Form.Group as={Row} className='mb-3' controlId='forHorizontalSize'>
-                <FormLabel column sm={2}>
+                <Form.Group
+                  as={Row}
+                  className="mb-3"
+                  controlId="forHorizontalSize"
+                >
+                  <FormLabel column sm={2}>
                     Sizes:
-                </FormLabel>
-                <Col sm={10}>
-                    {['S', 'M', 'L', 'XL', 'XXL'].map((option) => (
-                        <FormCheck
-                            key={option}
-                            type='checkbox'
-                            label={option}
-                            value={option}
-                            checked={size.includes(option)} // Check if the size is selected
-                            onChange={handleSizeChange} // Handle selection changes
-                            inline
-                        />
+                  </FormLabel>
+                  <Col sm={10}>
+                    {["S", "M", "L", "XL", "XXL"].map((option) => (
+                      <FormCheck
+                        key={option}
+                        type="checkbox"
+                        label={option}
+                        value={option}
+                        checked={size.includes(option)} // Check if the size is selected
+                        onChange={handleSizeChange} // Handle selection changes
+                        inline
+                      />
                     ))}
-                </Col>
-            </Form.Group>
+                  </Col>
+                </Form.Group>
 
-            {/* Display Selected Sizes */}
-            <Form.Group as={Row} className='mt-3'>
-                <FormLabel column sm={2}>Selected Sizes:</FormLabel>
-                <Col sm={10}>
-                    <p>{size.length > 0 ? size.join(', ') : 'None'}</p>
-                </Col>
-            </Form.Group>
+                {/* <Form.Group as={Row} className="mt-3">
+                  <FormLabel column sm={2}>
+                    Selected Sizes:
+                  </FormLabel>
+                  <Col sm={10}>
+                    <p>{size.length > 0 ? size.join(", ") : "None"}</p>
+                  </Col>
+                </Form.Group> */}
+                <div className="d-flex mb-4">
+                  <label className="mt-2">Colors:</label>
+                  {color.map((color, index) => (
+                    <div key={index} >
+                      <input
+                        type="color"
+                        value={color}
+                        onChange={(e) =>
+                          handleColorChange(index, e.target.value)
+                        }
+                        className="mx-2 rounded-color-input"
+                      />
+                    </div>
+                  ))}
+                  <button type="button" variant="dark"
+                      className="heroButton px-4 py-2 me-2" onClick={() => removeColorField(index)}>
+                    Remove
+                  </button>
+                  <button type="button" variant="dark"
+                      className="heroButton px-4 py-2 " onClick={addColorField}>
+                    Add Color
+                  </button>
+                </div>
                 <Form.Group
                   as={Row}
                   className="mb-3"

@@ -7,10 +7,14 @@ function SingleProduct() {
   const [product, setProduct] = useState(null); // Store product details
   const [loading, setLoading] = useState(true); // Loading state
   const [imageSrc, setImageSrc] = useState(""); // State for image source
-  const [selectedSize, setSelectedSize] = useState('');
+  const [selectedSize, setSelectedSize] = useState("");
+  const [selectedColor, setSelectedColor] = useState("");
 
   const handleSizeChange = (event) => {
     setSelectedSize(event.target.value);
+  };
+  const handleColorSelect = (color) => {
+    setSelectedColor(color);
   };
 
   // Fetch product data by id using Fetch API
@@ -52,40 +56,10 @@ function SingleProduct() {
 
   if (loading) return <p>Loading...</p>; // Show loading state
   if (!product) return <p>Product not found.</p>; // Handle error state
-
+  const colorArray = product?.color[0]?.split(",").filter(Boolean) || [];
   return (
     <div style={{ paddingTop: "200px" }}>
       <Container>
-        {/* <div className="row">
-          <div className="col-md-6">
-            <Carousel>
-              {imageSrc ? (
-                <Carousel.Item>
-                  <img
-                    className="d-block w-100"
-                    src={imageSrc}
-                    alt="Product image"
-                  />
-                </Carousel.Item>
-              ) : (
-                <p>No images available</p>
-              )}
-            </Carousel>
-          </div>
-          <div className="col-md-6">
-            <Card className="p-3">
-              <Card.Body>
-                <Card.Title>{product.name || "No name available"}</Card.Title>
-                <p>{product.description || "No description available"}</p>
-                <p>Available Sizes: {product.size || "No sizes available"}</p>
-                <h4 className="fw-bold">₹ {product.price || "N/A"}</h4>
-                <Button variant="primary" className="mt-3">
-                  Add to Cart
-                </Button>
-              </Card.Body>
-            </Card>
-          </div>
-        </div> */}
         <div className="mx-4">
           <Row>
             <Col lg={6}>
@@ -104,9 +78,47 @@ function SingleProduct() {
             <Col lg={6}>
               <div className="col-md-6 p-3">
                 <div>
-                  <h2 className="fw-bold">{product.name || "No name available"}</h2>
+                  <h2 className="fw-bold">
+                    {product.name || "No name available"}
+                  </h2>
                   <p>{product.description || "No description available"}</p>
-                  <p>Available Sizes: {product.size || "No sizes available"}</p>
+
+                  <p>Available Sizes:</p>
+                  <div className="size-options">
+                    {product ? (
+                      // Split the size string into an array
+                      product.size.split(",").map((size) => (
+                        <div key={size} className="size-option">
+                          <label>
+                            <input
+                              type="radio"
+                              value={size}
+                              checked={selectedSize === size}
+                              onChange={handleSizeChange}
+                            />
+                            {size}
+                          </label>
+                        </div>
+                      ))
+                    ) : (
+                      <p>No sizes available</p>
+                    )}
+                  </div>
+                  <div className="color-options d-flex">
+                    <p className="mt-2 me-3">Select Color:</p>
+                    <div className="color-circles">
+                      {colorArray.map((color, index) => (
+                        <div
+                          key={index}
+                          className={`color-circle ${
+                            selectedColor === color ? "selected" : ""
+                          }`}
+                          style={{ backgroundColor: color }}
+                          onClick={() => handleColorSelect(color)}
+                        />
+                      ))}
+                    </div>
+                  </div>
                   <h4 className="fw-bold">₹ {product.price || "N/A"}</h4>
                   <Button variant="dark" className="mt-3 px-4 py-2 rounded-0">
                     Add to Cart

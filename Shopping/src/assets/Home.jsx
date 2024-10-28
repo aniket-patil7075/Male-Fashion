@@ -7,6 +7,7 @@ import NewArrivals from "./NewArrivals";
 import Instagram from "./Instagram";
 import {Row,Col,Card,Button, Container} from 'react-bootstrap'
 import {Prices} from './Prices'
+import Demo from "./Demo";
 
 function Home() {
   const [auth, setAuth] = useAuth();
@@ -86,6 +87,7 @@ function Home() {
       <NewArrivals/>
       <DealWeek/>
       <Instagram/> 
+      {/* <Demo/> */}
       {/* {JSON.stringify(auth)} */}
 
     <Row className="" style={{paddingTop:"150px"}}>

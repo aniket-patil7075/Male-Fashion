@@ -270,6 +270,40 @@
   border-radius: 0% !important;
   width: 100%;
 }
+.rounded-color-input {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* Makes it round */
+  border: none; /* Optional: Removes the border */
+  padding: 0;
+  cursor: pointer;
+}
+.color-options {
+  margin-top: 20px;
+}
+
+.color-circles {
+  display: flex;
+  gap: 10px;
+}
+
+.color-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  cursor: pointer;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.color-circle:hover {
+  transform: scale(1.1);
+}
+
+.selected {
+  border-color: #000;
+  transform: scale(1.2);
+}
 
 /* ***************************************************** Blog ********************************************************** */
 .blogDiv {
@@ -440,6 +474,18 @@
 .admin-menu .admin-menu-item a:hover::after {
   transform: scaleX(1); /* reveal underline on hover */
 }
+
+/* *******************************************************Single Product*************************************************************** */
+.size-options {
+  display: flex; /* Use Flexbox for horizontal layout */
+  margin-top: 10px; /* Add margin above the size options if needed */
+}
+
+.size-option {
+  margin-right: 15px; /* Add margin between the size options */
+}
+
+
 
 /* ***************************************************** Below 425 px ********************************************************** */
 @media (max-width: 426px) {

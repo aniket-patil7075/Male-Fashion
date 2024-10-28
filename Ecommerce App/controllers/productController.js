@@ -3,7 +3,7 @@ const slugify = require("slugify");
 const fs = require("fs");
 const createProductController = async (req, resp) => {
   try {
-    const { name, description, price, size, quantity, category } = req.fields;
+    const { name, description, price, size,color, quantity, category } = req.fields;
     const { photo } = req.files;
     switch (true) {
       case !name:
@@ -14,6 +14,8 @@ const createProductController = async (req, resp) => {
         return resp.status(500).send({ error: "Price is required" });
       case !size:
         return resp.status(500).send({ error: "Size is required" });
+        case !color:
+        return resp.status(500).send({ error: "Color is required" });
       case !quantity:
         return resp.status(500).send({ error: "Quantity is required" });
       case !category:
@@ -125,7 +127,7 @@ const productDeleteController = async (req, resp) => {
 };
 const updateProductController = async (req, resp) => {
   try {
-    const { name, description, slug, price,size, quantity, category } = req.fields;
+    const { name, description, slug, price,size,color, quantity, category } = req.fields;
     const { photo } = req.files;
     switch (true) {
       case !name:
@@ -136,6 +138,8 @@ const updateProductController = async (req, resp) => {
         return resp.status(500).send({ error: "Price is required" });
         case !size:
         return resp.status(500).send({ error: "Size is required" });
+        case !color:
+        return resp.status(500).send({ error: "Color is required" });
       case !quantity:
         return resp.status(500).send({ error: "Quantity is required" });
       case !category:

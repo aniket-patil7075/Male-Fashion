@@ -18,6 +18,10 @@ const productSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    color: { // New field for colors
+        type: [String], // Array of strings to hold color values
+        required: true
+    },
     quantity:{
         type:Number,
         required:true

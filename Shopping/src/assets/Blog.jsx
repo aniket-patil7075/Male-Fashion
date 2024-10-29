@@ -3,11 +3,11 @@ import LatestNews from "./LatestNews";
 
 function Blog() {
   return (
-    <div className="">
+    <div className="blogMainDiv">
       <div className="blogDiv">
-        <img src="/breadcrumb-bg.jpg" alt="" />
+        <img src="/breadcrumb-bg.jpg" className="w-100" alt="" />
       </div>
-      <div className="ms-5">
+      <div className="">
         <LatestNews />
       </div>
     </div>

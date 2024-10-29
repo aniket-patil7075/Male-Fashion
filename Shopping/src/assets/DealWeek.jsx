@@ -63,7 +63,7 @@ function DealWeek() {
               <Row className="py-5">
                 <Col lg={4} className="position-relative pe-5">
                   <div className="white-div"></div>
-                  <h3 className=" h11">
+                  <h3 className="h11">
                     <span className="text-danger">D</span>EAL{" "}
                     <span className="text-danger">O</span>F{" "}
                     <span className="text-danger">T</span>HE{" "}

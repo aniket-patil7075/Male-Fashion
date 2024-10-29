@@ -125,7 +125,7 @@ function CreateProduct() {
           </Col>
           <Col md={9}>
             <Container>
-              <h1 className="mt-4 text-center">Add New Product</h1>
+            <h3 className="fw-bold text-center my-5">ADD NEW PRODUCT</h3>
               <Form onSubmit={(e) => addproduct(e)}>
                 <Form.Select
                   aria-label="Default select example"

@@ -65,7 +65,7 @@ function CreateDeal() {
           </Col>
           <Col md={9}>
             <Container>
-              <h1 className="mt-4 text-center">Add New Deal</h1>
+            <h3 className="fw-bold text-center my-5">ADD NEW DEAL</h3>
               <Form onSubmit={(e) => addDeal(e)}>
                 <Form.Group
                   as={Row}

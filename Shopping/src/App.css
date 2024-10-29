@@ -574,6 +574,29 @@
   .admin-menu-item {
     padding: 12px 15px;
   }
+  .instaImg{
+    width: 100%;
+  }
+  .instaTitle{
+    margin-top: 20px;
+  }
+  .h11 {
+    top: 2%;
+  }
+  .shopDiv{
+    padding-top: 180px !important;
+  }
+  .singleProduct{
+    padding-top: 350px !important;
+  }
+ 
+  .latestNewsMainDiv{
+    margin-left: 27px;
+  }
+  .blogCard{
+    margin-top: 80px;
+    margin-bottom: 80px;
+  }
 }
 
 /************************************************** 426px to 768px ******************************************************/
@@ -645,6 +668,30 @@
   .admin-menu-item {
     padding: 10px 12px;
     font-size: 0.9rem;
+  }
+  .newArrivalMainDiv{
+    margin-left: 70px;
+    margin-right: 40px;
+  }
+  .instaImg{
+    width: 50%;
+  }
+  .instaTitle{
+    margin-top: 20px;
+  }
+  .h11 {
+    top: 2%;
+  }
+  .singleProduct{
+    padding-top: 400px !important;
+  }
+ 
+  .latestNewsMainDiv{
+    margin-left: 55px;
+  }
+  .blogCard{
+    margin-top: 80px;
+    margin-bottom: 80px;
   }
 }
 

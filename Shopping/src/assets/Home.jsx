@@ -7,7 +7,6 @@ import NewArrivals from "./NewArrivals";
 import Instagram from "./Instagram";
 import {Row,Col,Card,Button, Container} from 'react-bootstrap'
 import {Prices} from './Prices'
-import Demo from "./Demo";
 
 function Home() {
   const [auth, setAuth] = useAuth();
@@ -85,12 +84,12 @@ function Home() {
       <Hero/>
       <Collections/>
       <NewArrivals/>
+      
       <DealWeek/>
       <Instagram/> 
-      {/* <Demo/> */}
       {/* {JSON.stringify(auth)} */}
 
-    <Row className="" style={{paddingTop:"150px"}}>
+    {/* <Row className="" style={{paddingTop:"150px"}}>
       <Col md={2}>
         <h5 className="mb-3">Filter By Category</h5>
         {
@@ -131,7 +130,6 @@ function Home() {
                         <Card.Text>
                           {item.description}
                           <h4>{item.price}</h4>
-                          {/* <h4>{item.size}</h4> */}
                         </Card.Text>
                         <Button variant="success">Add To Cart</Button>
                       </Card.Body>
@@ -143,7 +141,7 @@ function Home() {
           </div>
         </Container>
       </Col>
-    </Row>
+    </Row> */}
    </div>
   )
 }

@@ -58,7 +58,7 @@ function SingleProduct() {
   if (!product) return <p>Product not found.</p>; // Handle error state
   const colorArray = product?.color[0]?.split(",").filter(Boolean) || [];
   return (
-    <div style={{ paddingTop: "200px" }}>
+    <div className="singleProduct" style={{ paddingTop: "200px" }}>
       <Container>
         <div className="mx-4">
           <Row>

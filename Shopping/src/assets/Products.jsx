@@ -38,6 +38,7 @@ function Products() {
           {/* Product List */}
           <Col md={9}>
             <Container>
+            <h3 className="fw-bold text-center my-5">PRODUCTS</h3>
               <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
                 {products.map((item, index) => {
                   return (

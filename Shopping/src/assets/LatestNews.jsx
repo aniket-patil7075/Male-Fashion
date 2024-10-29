@@ -4,11 +4,11 @@ import Card from "react-bootstrap/Card";
 
 function LatestNews() {
   return (
-    <div className="m-5 " >
+    <div className="latestNewsMainDiv" >
       <Container className="">
         <Row>
           <Col lg={4}>
-          <Card style={{ width: "22rem" }} className="blogCard">
+          <Card style={{ width: "22rem" }} className="blogCard ">
           <Card.Img variant="top" src="/blog-1.jpg" />
           <Card.Body className="cardBody w-75 px-4">
             

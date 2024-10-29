@@ -114,7 +114,7 @@ function Shop() {
     : products;
 
   return (
-    <div className="shopDiv   pb-4" style={{ paddingTop: "135px" }}>
+    <div className="shopDiv pb-4" style={{ paddingTop: "135px" }}>
       <div
         className="bg-secondary bg-opacity-25 py-4 mb-5"
         style={{ paddingLeft: "10%" }}
@@ -204,7 +204,7 @@ function Shop() {
               </Accordion>
             </div>
           </Col>
-          <Col md={9}>
+          <Col sm={9} md={9}>
             <Container>
               <div className="d-flex justify-content-between pb-3 me-2">
                 <p>
@@ -239,6 +239,7 @@ function Shop() {
                     >
                       <div className="col">
                         <Card
+                        
                           key={index}
                           className="productCard"
                           style={{ padding: "0", margin: "0" }}
@@ -261,6 +262,7 @@ function Shop() {
                             <p>Available Size :<span> </span> 
                                {item.size}
                             </p>
+                            
                             <h5 className="m-0 fw-bold">₹ {item.price}</h5>
                           </Card.Body>
                         </Card>

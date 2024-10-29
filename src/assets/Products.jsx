@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
@@ -29,7 +29,7 @@ function Products() {
   return (
     <div style={{ paddingTop: "200px" }}>
       <Container>
-        <Row>
+        <Row className="mx-4">
           {/* Admin Menu on the left */}
           <Col md={3}>
             <AdminMenu />
@@ -38,11 +38,12 @@ function Products() {
           {/* Product List */}
           <Col md={9}>
             <Container>
+            <h3 className="fw-bold text-center my-5">PRODUCTS</h3>
               <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
                 {products.map((item, index) => {
                   return (
                     <Link
-                      to={`/Singleproduct/${item.slug}`}
+                      to={`/Dashboard/admin/Updateproduct/${item.slug}`}
                       key={item._id}
                       className="product-link text-decoration-none"
                     >

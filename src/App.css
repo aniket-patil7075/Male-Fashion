@@ -1,0 +1,785 @@
+* {
+  font-family: "Nunito Sans", sans-serif;
+  font-optical-sizing: auto;
+  /* font-weight: 200; */
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100,
+    "YTLC" 500;
+}
+
+/* ****************************************NAVBAR**********************************************/
+.navbar a {
+  color: black;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.divNavBlack {
+  font-weight: 200;
+  font-size: 15px;
+  background-color: black;
+  color: white;
+}
+
+.navbar {
+  background-color: white;
+}
+
+.navbar .nav-link {
+  color: black;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.navFix {
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  background-color: #fff;
+}
+
+.navbar .nav-link {
+  color: black;
+  position: relative;
+}
+
+.navbar .nav-home::after {
+  color: black;
+  content: "";
+  height: 3px;
+  width: 50%;
+  background: #e53637;
+  display: block;
+  position: absolute;
+  transform: scale(1, 1);
+  transition: transform 0.5s ease-in;
+  pointer-events: none;
+
+}
+
+.navbar .nav-line::after {
+  color: black;
+  content: "";
+  height: 3px;
+  width: 50%;
+  background: #e53637;
+  display: block;
+  position: absolute;
+  transform: scale(0, 1);
+  transition: transform 0.5s ease-in;
+  pointer-events: none;
+}
+
+.navbar .nav-line:hover::after {
+  transform: scale(1, 1);
+}
+
+/* ************************************************** Hero component ************************************************* */
+
+.custom-carousel .carousel-control-prev-icon,
+.custom-carousel .carousel-control-next-icon {
+  filter: invert(100%);
+  color: black;
+}
+
+.caraImg {
+  margin-top: 8%;
+}
+
+.caraText {
+  position: absolute;
+  top: 40%;
+  left: 10%;
+  text-align: left !important;
+}
+
+.heroButton {
+  background-color: black !important;
+  border: 1px solid black !important;
+  color: white !important;
+  border-radius: 0% !important;
+}
+.deleteButton{
+  background-color: #e53637 !important;
+  border: 1px solid #e53637 !important;
+  color: white !important;
+  border-radius: 0% !important;
+}
+.heroArrow {
+  margin-bottom: 4px;
+}
+
+.custom-carousel .carousel-control-prev-icon {
+  filter: invert(100%);
+  color: black;
+  position: absolute;
+  left: 20%;
+}
+
+.custom-carousel .carousel-control-next-icon {
+  filter: invert(100%);
+  color: black;
+  position: absolute;
+  right: 20%;
+}
+
+/* *******************************************************Banner******************************************************************** */
+.banner1 {
+  position: absolute;
+  right: 13%;
+}
+
+.banner1-text {
+  position: absolute;
+  text-align: left;
+  right: 44%;
+  top: 15%;
+  width: 300px;
+  z-index: 1;
+  color: black;
+}
+
+.collection p {
+  color: #111111;
+  font-weight: 700;
+}
+
+.banner1 {
+  position: absolute;
+  right: 20%;
+}
+
+.banner2-row {
+  padding-top: 24%;
+  margin-left: 3% !important;
+}
+
+.banner2-col {
+  margin-left: 3%;
+}
+
+.banner2-text {
+  position: absolute;
+  left: 2%;
+  margin-top: 10px;
+}
+
+.banner3-col {
+  padding-top: 13%;
+}
+.banner3 {
+  margin-right: 8%;
+}
+
+.banner3-text {
+  position: absolute;
+  top: 67%;
+  right: 36%;
+  width: 300px;
+}
+
+.banner-p {
+  width: 100px;
+}
+
+.banner-p::after {
+  color: black;
+  content: "";
+  height: 2px;
+  width: 95px;
+  background: #111111;
+  display: block;
+  position: absolute;
+  transition: 0.5s ease-in;
+  pointer-events: none;
+}
+
+.banner-p:hover::after {
+  background-color: #e53637;
+  width: 45px;
+}
+
+/* ********************************************************* Footer ******************************************************************* */
+.custom-input::placeholder {
+  color: #f8f9fa !important;
+  opacity: 1;
+}
+
+.custom-input {
+  border: none !important;
+  border-bottom: 1px solid #f8f9fa !important;
+  border-radius: 0 !important;
+  color: white !important;
+}
+
+
+
+/* ***************************************************** Shop ********************************************************** */
+.shopSearch{
+  width: 270px !important;
+  border-radius: 0% !important;
+}
+.custom-accordion {
+  width: 270px;
+  border: none !important; 
+}
+
+.custom-accordion .accordion-item {
+  margin: 1px 0; 
+  padding: 0;
+  border: none; 
+}
+
+.custom-accordion .accordion-header {
+  font-size: smaller !important;
+  border: none;
+  background-color: transparent !important;
+  transition: none;
+  margin-left: -9px;
+}
+
+.custom-accordion .accordion-button {
+  background-color: transparent !important;
+  color: inherit;
+  box-shadow: none !important;
+}
+
+.custom-accordion .accordion-button:not(.collapsed) {
+  background-color: transparent !important;
+  color: inherit;
+  border: none;
+}
+
+.custom-accordion .accordion-body {
+  padding: 6px 12px; 
+  border: none;
+  color: #6c757d;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: white !important;
+  color: #212529 !important; /* Bootstrap's dark text color */
+  border-color: #212529 !important;
+}
+
+
+/* ***************************************************** Products ********************************************************** */
+.productCard {
+  border: none !important;
+  border-radius: 0% !important;
+  width: 100%;
+}
+.rounded-color-input {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* Makes it round */
+  border: none; /* Optional: Removes the border */
+  padding: 0;
+  cursor: pointer;
+}
+.color-options {
+  margin-top: 20px;
+}
+
+.color-circles {
+  display: flex;
+  gap: 10px;
+}
+
+.color-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  cursor: pointer;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.color-circle:hover {
+  transform: scale(1.1);
+}
+
+.selected {
+  border-color: #000;
+  transform: scale(1.2);
+}
+
+/* ***************************************************** Blog ********************************************************** */
+.blogDiv {
+  padding-top: 135px;
+}
+.blogCard{
+  border: none !important;
+  border-radius: 0% !important;
+}
+.cardBody{
+  background-color: white;
+  position: absolute;
+  top: 85%;
+  left: 12%;
+  /* margin-bottom: 100px !important; */
+}
+
+/* ***************************************************** Deal Week ********************************************************** */
+.deal{
+  background-color: #f2f3ee;
+}
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.upload-button {
+  cursor: pointer;
+}
+
+.upload-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  /* margin-top: 5px; */
+}
+.deal-sale {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  line-height: 20px;
+  right: 10%;
+  margin-top: -40px;
+  background-color: #111111;
+  animation: blink 1s infinite alternate;
+}
+
+@keyframes blink {
+  0% {
+    background-color: #111111; /* Black */
+  }
+  50% {
+    background-color:#e53637; /* Red */
+  }
+}
+
+.sale{
+  font-weight: 100;
+}
+
+
+.h11 {
+  position: absolute;
+  /* width: 300px; */
+  left: 22%;
+  top: 45%;
+  font-weight: 800;
+  border-right: 5px solid;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 2s  infinite alternate-reverse, cursor 0.4s  ;
+  animation-fill-mode: forwards;
+}
+
+/* @keyframes cursor {
+  50% {
+    border-color: transparent;
+  }
+} */
+
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 390px;
+  }
+}
+.white-div {
+  width: 350px;
+  height: 300px;
+  position: relative;
+  background: repeating-conic-gradient(
+    from var(--a),
+    #111111 0%,
+    #111111 5%,
+    transparent 5%,
+    transparent 40%,
+    #ff2770 50%
+  );
+  animation: animate 4s linear infinite;
+  border-radius: 20px;
+}
+
+/* @property --a {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+} */
+
+/* @keyframes animate {
+  0% {
+    --a: 0deg;
+  }
+  100% {
+    --a: 360deg;
+  }
+} */
+
+/* .white-div::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: animate 4s linear infinite;
+  animation-delay: -1s;
+  border-radius: 20px;
+} */
+
+/* .white-div::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  background-color: white;
+  border-radius: 15px;
+  
+} */
+
+
+/* CSS */
+
+/* CSS */
+
+.admin-menu .admin-menu-item {
+  position: relative;
+}
+
+.admin-menu .admin-menu-item a::after {
+  content: "";
+  display: inline-block; /* makes the underline match the text width */
+  height: 3px;
+  width: 100%;
+  background: #e53637;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: scaleX(0); /* initially hidden */
+  transform-origin: left; /* start animation from the left side */
+  transition: transform 0.5s ease-in;
+  pointer-events: none;
+}
+
+.admin-menu .admin-menu-item a:hover::after {
+  transform: scaleX(1); /* reveal underline on hover */
+}
+
+/* *******************************************************Single Product*************************************************************** */
+.size-options {
+  display: flex; /* Use Flexbox for horizontal layout */
+  margin-top: 10px; /* Add margin above the size options if needed */
+}
+
+.size-option {
+  margin-right: 15px; /* Add margin between the size options */
+}
+
+
+
+/* ***************************************************** Below 425 px ********************************************************** */
+@media (max-width: 426px) {
+
+  .divNavBlack {
+    display: none;
+  }
+
+  .caraImg {
+    height: 400px;
+  }
+
+  .caraText {
+    font-size: xx-small;
+    position: absolute;
+    top: 27%;
+    left: 10%;
+    text-align: left !important;
+  }
+
+  .caraText h1 {
+    font-size: 15px;
+  }
+
+  .caraText button {
+    font-size: 7px;
+  }
+
+  .heroArrow {
+    margin-bottom: 2px;
+  }
+
+  .banner1 {
+    width: 82%;
+    right: 9%;
+  }
+
+  .banner1-text {
+    top: 30%;
+    left: 9% !important;
+  }
+
+  .banner2-row {
+    padding-top: 100%;
+    margin-left: 0% !important;
+  }
+
+  .banner2-col {
+    padding-top: 35%;
+    margin-left: 0%;
+  }
+
+  .banner2 {
+    width: 100%;
+    margin-left: -4%;
+  }
+
+  .banner2-text {
+    margin-top: 3%;
+    left: -9% !important;
+  }
+
+  .banner3 {
+    padding-top: 15%;
+    width: 100%;
+    margin-right: 5%;
+  }
+
+  .banner3-text {
+    padding-top: 14px;
+    top: 100%;
+    left: 2% !important;
+    width: 250px;
+  }
+  .users-page {
+    padding-top: 50px;
+  }
+
+  .table thead th, .table tbody td {
+    font-size: 0.7rem;
+  }
+  .admin-menu h4 {
+    font-size: 1.5rem;
+  }
+
+  .admin-menu-item {
+    padding: 12px 15px;
+  }
+  .instaImg{
+    width: 100%;
+  }
+  .instaTitle{
+    margin-top: 20px;
+  }
+  .h11 {
+    top: 2%;
+  }
+  .shopDiv{
+    padding-top: 180px !important;
+  }
+  .singleProduct{
+    padding-top: 350px !important;
+  }
+ 
+  .latestNewsMainDiv{
+    margin-left: 27px;
+  }
+  .blogCard{
+    margin-top: 80px;
+    margin-bottom: 80px;
+  }
+}
+
+/************************************************** 426px to 768px ******************************************************/
+@media (min-width: 427px) and (max-width: 768px) {
+  .caraImg {
+    height: 500px;
+  }
+
+  .caraText {
+    font-size: 15px;
+    position: absolute;
+    top: 30%;
+    left: 10%;
+    text-align: left !important;
+  }
+
+  .caraText h1 {
+    font-size: 24px;
+  }
+
+  .caraText button {
+    font-size: 12px;
+  }
+
+  .heroArrow {
+    margin-bottom: 2px;
+  }
+
+  .banner1 {
+    right: 5% !important;
+    /* width: 40% !important; */
+  }
+
+  .banner1-text {
+    left: 5% !important;
+  }
+
+  .banner2-row {
+    padding-top: 70%;
+    margin-left: 0% !important;
+  }
+
+  .banner2-text {
+    margin-top: 3%;
+    left: 0% !important;
+  }
+
+  .banner3 {
+    padding-top: 7%;
+    margin-right: 0% !important;
+  }
+
+  .banner3-text {
+    top: 82%;
+    right: 55%;
+    width: 250px;
+  }
+  .users-page {
+    padding-top: 100px;
+  }
+
+  .table thead th, .table tbody td {
+    font-size: 0.8rem;
+  }
+  .admin-menu h4 {
+    font-size: 1.3rem;
+  }
+
+  .admin-menu-item {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+  .newArrivalMainDiv{
+    margin-left: 70px;
+    margin-right: 40px;
+  }
+  .instaImg{
+    width: 50%;
+  }
+  .instaTitle{
+    margin-top: 20px;
+  }
+  .h11 {
+    top: 2%;
+  }
+  .singleProduct{
+    padding-top: 400px !important;
+  }
+ 
+  .latestNewsMainDiv{
+    margin-left: 55px;
+  }
+  .blogCard{
+    margin-top: 80px;
+    margin-bottom: 80px;
+  }
+}
+
+/************************************************* 769px to 1024px *******************************************************/
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    width: 100%;
+  }
+  .caraImg {
+    height: 650px;
+  }
+  .caraText {
+    font-size: 20px;
+    position: absolute;
+    top: 36%;
+    left: 10%;
+    text-align: left !important;
+  }
+  .caraText h1 {
+    font-size: 32px;
+  }
+  .caraText button {
+    font-size: 15px;
+  }
+  .heroArrow {
+    margin-bottom: 2px;
+  }
+  .banner1 {
+    right: 10% !important;
+    width: 40% !important;
+  }
+  .banner1-text {
+    left: 30% !important;
+  }
+  .banner2-row {
+    padding-top: 24%;
+    margin-left: 0% !important;
+  }
+  .banner2 {
+    width: 350px !important;
+    left: 1% !important;
+  }
+  .banner2-row {
+    padding-top: 33% !important;
+  }
+  .banner3-col {
+    padding-top: 20% !important;
+  }
+  .banner3 {
+    padding-right: 1%;
+    width: 85%;
+  }
+  .banner3-text {
+    right: 25%;
+  }
+  .users-page {
+    padding-top: 150px;
+  }
+  .table thead th, .table tbody td {
+    font-size: 0.9rem;
+  }
+  .admin-menu h4 {
+    font-size: 1.5rem;
+  }
+  .admin-menu-item {
+    padding: 12px 15px;
+  }
+}
+
+/************************************************* 1025px to 1440px *******************************************************/
+@media (min-width: 1025px) and (max-width: 1440px) {}
+
+/*************************************************** Above 1440px ********************************************************/
+/* @media (min-width: 1441px) {
+  .caraText {
+    font-size: 35px;
+    position: absolute;
+    top: 45%;
+    left: 10%;
+    text-align: left !important;
+  }
+  .caraText h1{
+    font-size: 70px;
+  }
+  .caraText button{
+    font-size: 30px;
+  }
+  .heroArrow{
+    margin-bottom: 5px;
+  }
+} */

@@ -8,7 +8,7 @@ function Footer() {
       <Container>
         <div className="d-flex justify-content-between">
           <Row>
-            <Col sm={12} lg={3} className="mt-5 pt-2">
+            <Col sm={6} lg={3} className="mt-5 pt-2">
               <img src="/footer-logo.png" alt="footerLogo" className="mb-4" />
               <p className="text-start text-light text-opacity-50 my-4">
                 The customer is at the heart of our unique business model, which
@@ -16,7 +16,7 @@ function Footer() {
               </p>
               <img src="/payment.png" alt="paymentCard" />
             </Col>
-            <Col sm={12} lg={3} className="footerSecond mt-5 pt-2">
+            <Col sm={6} lg={3} className="footerSecond mt-5 pt-2">
               <h6 className="text-start mb-4 fw-bold">SHOPPING</h6>
               <p className="text-start text-light text-opacity-50">
                 Clothing Store
@@ -31,7 +31,7 @@ function Footer() {
                 Sale
               </p>
             </Col>
-            <Col sm={12} lg={3} className="footerThird mt-5 pt-2">
+            <Col sm={6} lg={3} className="footerThird mt-5 pt-2">
               <h6 className="text-start mb-4 fw-bold">SHOPPING</h6>
               <p className="text-start text-light text-opacity-50">
                 Contact Us
@@ -46,7 +46,7 @@ function Footer() {
                 Return and Exchanges
               </p>
             </Col>
-            <Col sm={12} lg={3} className="mt-5 pt-2">
+            <Col sm={6} lg={3} className="mt-5 pt-2">
               <h6 className="text-start fw-bold">NEWSLETTER</h6>
               <p className="text-start text-light text-opacity-50 my-3">
                 Be the first to know about new arrivals, look books, sales &

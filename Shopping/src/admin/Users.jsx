@@ -35,7 +35,7 @@ function Users() {
   return (
     <div className="users-page" style={{paddingTop:"200px"}}>
       <Container>
-        <Row>
+        <Row className='mx-4'>
           <Col md={3} sm={12}>
             <AdminMenu />
           </Col>

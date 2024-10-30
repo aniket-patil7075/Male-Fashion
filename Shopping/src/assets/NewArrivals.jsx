@@ -80,7 +80,7 @@ function NewArrivals() {
                       src={`http://localhost:4300/api/product/getphoto/${item._id}`}
                     />
                     <Card.Body className="text-start p-2">
-                      <p className="m-0 p-0">{item.name}</p>
+                      <p className="m-0 p-0 fw-bold">{item.name}</p>
                       <div className="d-flex gap-1 my-1">
                         <CiStar />
                         <CiStar />

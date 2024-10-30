@@ -29,6 +29,9 @@ import Updateproduct from "./admin/Updateproduct";
 import Categories from "./admin/Categories";
 import Deals from "./admin/Deals";
 import SingleProduct from "./assets/SingleProduct";
+import Search from "./assets/Search"
+import Cartitems from "./assets/Cartitems";
+// import Cartitems from "./assets/Cartitems"
 
 function App() {
   return (
@@ -45,6 +48,8 @@ function App() {
           <Route path="/BlogDetails" element={<BlogDetails/>} />
           <Route path="/Blog" element={<Blog/>} />
           <Route path="/Contact" element={<Contact />} />
+          <Route path="/Search" element={<Search/>} />
+          <Route path="/Cart" element={<Cartitems/>} />
           <Route path="/getsingleproduct/:id" element={<SingleProduct />} />
 
 

@@ -1,13 +1,16 @@
-// import React from "react";
+import React from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/auth";
 import { NavDropdown } from "react-bootstrap";
+import Searchinput from "./Searchinput";
+import { useCart } from "../context/cart";
 
 function Header() {
   const [auth, setAuth] = useAuth();
+  const [cart] = useCart();
   function handleLogout() {
     setAuth({
       ...auth,
@@ -62,7 +65,11 @@ function Header() {
           </div>
         </Container>
       </div>
-      <Navbar expand="lg" className="py-4" style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
+      <Navbar
+        expand="lg"
+        className="py-4"
+        style={{ boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)" }}
+      >
         <Container className="ps-5 pe-4">
           <Navbar.Brand as={Link} to="/" className="me-auto">
             <img src="/logo.png" alt="Logo" />
@@ -105,8 +112,8 @@ function Header() {
                 <Nav.Link as={Link} to="/Contact" className="nav-line px-4">
                   Contact
                 </Nav.Link>
+                <Searchinput />
               </Nav>
-
 
               <Nav className="ms-auto">
                 <Nav.Link as={Link} to="/" className="px-3">
@@ -115,8 +122,13 @@ function Header() {
                 <Nav.Link as={Link} to="/" className="px-3">
                   <img src="/heart.png" alt="heart" />
                 </Nav.Link>
-                <Nav.Link as={Link} to="/" className="px-3">
+                <Nav.Link
+                  as={Link}
+                  to="/Cart"
+                  className="px-4 position-relative"
+                >
                   <img src="/cart.png" alt="cart" />
+                  <sup>{cart?.length}</sup>
                 </Nav.Link>
               </Nav>
             </div>

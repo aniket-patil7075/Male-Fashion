@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useReducer } from "react";
 import { Container, Row, Col, Pagination, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { CiStar } from "react-icons/ci";
@@ -8,6 +8,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Form from "react-bootstrap/Form";
 import Accordion from "react-bootstrap/Accordion";
 import { Prices } from "./Prices";
+import { useCart } from "../context/cart";
 
 function Shop() {
   const [isFirstDropdownOpen, setIsFirstDropdownOpen] = useState(false);
@@ -15,6 +16,16 @@ function Shop() {
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([]);
   const [radio, setRadio] = useState([]);
+  const [cart, setCart] = useCart();
+
+  function reducer(state, action) {
+    switch (action.type) {
+      case "cartfilter":
+        return console.log(state);
+      default:
+        return state;
+    }
+  }
 
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
@@ -264,6 +275,18 @@ function Shop() {
                             </p>
                             
                             <h5 className="m-0 fw-bold">₹ {item.price}</h5>
+                            <Button
+                          variant="success"
+                          onClick={() => {
+                            setCart([...cart, item]);
+                            localStorage.setItem(
+                              "cart",
+                              JSON.stringify([...cart, item])
+                            );
+                          }}
+                        >
+                          Add To Cart
+                        </Button>
                           </Card.Body>
                         </Card>
                       </div>

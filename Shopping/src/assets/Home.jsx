@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Prices } from "./Prices";
 import { useCart } from "../context/cart";
+import Hero from "./Hero"
 
 function Home() {
   const [cart, setCart] = useCart();
@@ -86,7 +87,8 @@ function Home() {
   }, [checked, radio]);
 
   return (
-    <div style={{ paddingTop: "200px" }}>
+    <div>
+    <Hero/>
       <Row className="mt-4">
         <Col md={2}>
           <h5 className="mb-3">Filter By Category</h5>

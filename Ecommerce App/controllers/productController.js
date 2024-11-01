@@ -2,6 +2,7 @@ const productModel = require("../models/productModel");
 const slugify = require("slugify");
 const fs = require("fs");
 const createProductController = async (req, resp) => {
+  
   try {
     const { name, description, price, size,color, quantity, category } = req.fields;
     const { photo } = req.files;

@@ -1,4 +1,5 @@
 const mongoose = require ('mongoose')
+
 const dealSchema = new mongoose.Schema({
     title:{
         type:String,

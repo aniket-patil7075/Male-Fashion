@@ -1,5 +1,6 @@
 const categoryModel =require('../models/categoryModel')
 const slugify=require('slugify')
+
 const createCategoryController=async (req,res)=>{
     try{
         const {name}=req.body

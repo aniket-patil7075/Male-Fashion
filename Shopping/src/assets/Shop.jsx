@@ -1,4 +1,4 @@
-import { useEffect, useState,useReducer } from "react";
+import { useEffect, useState, useReducer } from "react";
 import { Container, Row, Col, Pagination, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { CiStar } from "react-icons/ci";
@@ -51,53 +51,134 @@ function Shop() {
     setIsFirstDropdownOpen(isOpen);
   };
 
-  useEffect(() => {
-    if (!checked.length || !radio.length) getprods();
-  }, [checked.length, radio.length]);
+  // useEffect(() => {
+  //   if (!checked.length || !radio.length) getprods();
+  // }, [checked.length, radio.length]);
 
-  function filterProduct() {
-    let data = { checked, radio };
-    fetch("http://localhost:4300/api/product/filter", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }).then((res1) => {
-      res1.json().then((res2) => {
+  // function filterProduct() {
+  //  const data = { checked, radio };
+  //   fetch("http://localhost:4300/api/product/filter", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(data),
+  //   })
+  //     .then((res1) => res1.json())
+  //     .then((res2) => {
+  //       console.log(res2);
+  //       setProducts(res2.products);
+  //     })
+  //     .catch((error) => console.log(error));
+  // }
+
+  // useEffect(() => {
+  //   if (checked.length || radio.length) filterProduct();
+  // }, [checked.radio]);
+
+  // function handleFilter(value, id) {
+  //   let all = [...checked];
+  //   if (value) {
+  //     all.push(id);
+  //   } else {
+  //     all = all.filter((c) => c != id);
+  //   }
+  //   setChecked(all);
+  //   console.log(all);
+  // }
+
+  // function getAllCategory() {
+  //   fetch("http://localhost:4300/api/category/getcategory").then((res1) => {
+  //     res1.json().then((res2) => {
+  //       console.log(res2);
+  //       setCategories(res2.category);
+  //     });
+  //   });
+  // }
+
+  // useEffect(() => {
+  //   getAllCategory();
+  //   getProducts();
+  // }, []);
+
+  // function getProducts() {
+  //   fetch("http://localhost:4300/api/product/getproducts")
+  //     .then((resp1) => resp1.json())
+  //     .then((resp2) => {
+  //       console.log(resp2);
+  //       setProducts(resp2.product);
+  //     })
+  //     .catch((error) => console.log(error));
+  // }
+
+  // useEffect(() => {
+  //   if (checked.length || radio.length) {
+  //     filterProduct();
+  //   } else {
+  //     getProducts(); // Reset products if no filters are applied
+  //   }
+  // }, [checked, radio]);
+
+  function getAllCategory() {
+    fetch("http://localhost:4300/api/category/getcategory")
+      .then((res1) => res1.json())
+      .then((res2) => {
         console.log(res2);
-        setProducts(res2.products);
-        console.log(products);
-      });
-    });
+        setCategories(res2.category);
+      })
+      .catch((error) => console.log(error));
   }
 
-  useEffect(() => {
-    if (checked.length || radio.length) filterProduct();
-  }, [checked.radio]);
+  function getProducts() {
+    fetch("http://localhost:4300/api/product/getproducts")
+      .then((resp1) => resp1.json())
+      .then((resp2) => {
+        console.log(resp2);
+        setProducts(resp2.product);
+      })
+      .catch((error) => console.log(error));
+  }
 
   function handleFilter(value, id) {
     let all = [...checked];
     if (value) {
       all.push(id);
     } else {
-      all = all.filter((c) => c != id);
+      all = all.filter((c) => c !== id);
     }
     setChecked(all);
   }
 
-  function getAllCategory() {
-    fetch("http://localhost:4300/api/category/getcategory").then((res1) => {
-      res1.json().then((res2) => {
+  function filterProduct() {
+    const data = { checked, radio };
+    fetch("http://localhost:4300/api/product/filter", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res1) => res1.json())
+      .then((res2) => {
         console.log(res2);
-        setCategories(res2.category);
-      });
-    });
+        setProducts(res2.products);
+      })
+      .catch((error) => console.log(error));
   }
 
   useEffect(() => {
     getAllCategory();
+    getProducts();
   }, []);
+
+  useEffect(() => {
+    if (checked.length || radio.length) {
+      filterProduct();
+    } else {
+      getProducts(); // Reset products if no filters are applied
+    }
+  }, [checked, radio]);
+
 
   function getprods() {
     fetch("http://localhost:4300/api/product/getproducts").then((resp1) => {
@@ -158,16 +239,24 @@ function Shop() {
                   <Accordion.Header>CATEGORIES</Accordion.Header>
                   {categories.map((c) => {
                     return (
-                      <div className="d-flex">
-                        <Accordion.Body
-                          key={c._id}
-                          onChange={(e) =>
-                            handleFilter(e.target.checked, c._id)
-                          }
-                        >
-                          {c.name}
-                        </Accordion.Body>
-                      </div>
+                      // <div className="d-flex">
+                      //   <Accordion.Body
+                      //   style={{cursor:"pointer"}}
+                      //     key={c._id}
+                      //     onClick={(e) =>
+                      //       handleFilter(e.target.checked, c._id)
+                      //     }
+                      //   >
+                      //     {c.name}
+                      //   </Accordion.Body>
+                      // </div>
+                      <Form.Check
+                      className="text-secondary py-2 ms-2"
+                        type="checkbox"
+                        key={c._id}
+                        label={c.name}
+                        onChange={(e) => handleFilter(e.target.checked, c._id)}
+                      />
                     );
                   })}
                 </Accordion.Item>
@@ -250,7 +339,6 @@ function Shop() {
                     >
                       <div className="col">
                         <Card
-                        
                           key={index}
                           className="productCard"
                           style={{ padding: "0", margin: "0" }}
@@ -270,23 +358,24 @@ function Shop() {
                               <CiStar />
                             </div>
 
-                            <p>Available Size :<span> </span> 
-                               {item.size}
+                            <p>
+                              Available Size :<span> </span>
+                              {item.size}
                             </p>
-                            
+
                             <h5 className="m-0 fw-bold">₹ {item.price}</h5>
                             <Button
-                          variant="success"
-                          onClick={() => {
-                            setCart([...cart, item]);
-                            localStorage.setItem(
-                              "cart",
-                              JSON.stringify([...cart, item])
-                            );
-                          }}
-                        >
-                          Add To Cart
-                        </Button>
+                              variant="success"
+                              onClick={() => {
+                                setCart([...cart, item]);
+                                localStorage.setItem(
+                                  "cart",
+                                  JSON.stringify([...cart, item])
+                                );
+                              }}
+                            >
+                              Add To Cart
+                            </Button>
                           </Card.Body>
                         </Card>
                       </div>

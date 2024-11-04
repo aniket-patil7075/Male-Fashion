@@ -45,6 +45,8 @@ const createProductController = async (req, resp) => {
     });
   }
 };
+
+
 const getProductsController = async (req, resp) => {
   try {
     const product = await productModel

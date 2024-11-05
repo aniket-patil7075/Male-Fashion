@@ -63,11 +63,11 @@ function Signin() {
             </Form.Group>
           
 
-          <Button variant="dark" onClick={()=>navigate('/Forgotpassword')} type="submit" className="mx-auto d-block mb-3 mt-3">
+          <Button variant="dark" onClick={()=>navigate('/Forgotpassword')} type="submit" className="mx-auto d-block heroButton mt-4 px-4 py-2">
             Forgot Password
           </Button>
 
-          <Button variant="dark" type="submit" className="mx-auto d-block">
+          <Button variant="dark" type="submit" className="mx-auto d-block heroButton mt-4 px-4 py-2">
             Login
           </Button>
         </Form>

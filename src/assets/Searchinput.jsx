@@ -27,12 +27,9 @@ function Searchinput() {
               type="search"
               placeholder="Search"
               value={values.keyword}
-              className=" mr-sm-2"
+              className=" mr-sm-2 mt-1 rounded-0"
               onChange={(e)=>setValues({...values,keyword:e.target.value})}
             />
-          </Col>
-          <Col xs="auto">
-            <Button type="submit">Search</Button>
           </Col>
         </Row>
       </Form>

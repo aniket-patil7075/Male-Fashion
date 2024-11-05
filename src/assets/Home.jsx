@@ -7,6 +7,12 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Prices } from "./Prices";
 import { useCart } from "../context/cart";
+import Hero from "./Hero"
+import Collections from "./Collections"
+import NewArrivals from "./NewArrivals"
+import DealWeek from "./DealWeek"
+import Instagram from "./Instagram"
+import LatestNews from "./LatestNews"
 
 function Home() {
   const [cart, setCart] = useCart();
@@ -86,8 +92,14 @@ function Home() {
   }, [checked, radio]);
 
   return (
-    <div style={{ paddingTop: "200px" }}>
-      <Row className="mt-4">
+    <div>
+    <Hero/>
+    <Collections/>
+    <NewArrivals/>
+    <DealWeek/>
+    <Instagram/>
+    <LatestNews/>
+      {/* <Row className="mt-4">
         <Col md={2}>
           <h5 className="mb-3">Filter By Category</h5>
           {categories.map((c) => (
@@ -161,7 +173,7 @@ function Home() {
             </div>
           </Container>
         </Col>
-      </Row>
+      </Row> */}
     </div>
   );
 }

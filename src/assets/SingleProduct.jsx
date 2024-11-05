@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useReducer } from "react";
 import { useParams } from "react-router-dom";
 import { Carousel, Card, Button, Container, Col, Row } from "react-bootstrap";
+import { useCart } from "../context/cart";
 
 function SingleProduct() {
   const { id } = useParams(); // Extract 'id' from the URL
@@ -9,6 +10,16 @@ function SingleProduct() {
   const [imageSrc, setImageSrc] = useState(""); // State for image source
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
+  const [cart, setCart] = useCart();
+
+  function reducer(state, action) {
+    switch (action.type) {
+      case "cartfilter":
+        return console.log(state);
+      default:
+        return state;
+    }
+  }
 
   const handleSizeChange = (event) => {
     setSelectedSize(event.target.value);
@@ -120,7 +131,13 @@ function SingleProduct() {
                     </div>
                   </div>
                   <h4 className="fw-bold">₹ {product.price || "N/A"}</h4>
-                  <Button variant="dark" className="mt-3 px-4 py-2 rounded-0">
+                  <Button variant="dark" onClick={() => {
+                            setCart([...cart, product]);
+                            localStorage.setItem(
+                              "cart",
+                              JSON.stringify([...cart, product])
+                            );
+                          }} className="mt-3 px-4 py-2 rounded-0">
                     Add to Cart
                   </Button>
                 </div>

@@ -27,7 +27,7 @@ function Hero() {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt aliqua.
             </p>
-            <Button variant="dark" className="heroButton mt-4  px-4 py-3">
+            <Button variant="dark" className="heroButton mt-4 px-4 py-3">
               SHOP NOW <FaArrowRightLong className="heroArrow ms-1"/>
             </Button>
             <div className="mt-3"><FaFacebookF className="mx-2"/><FaPinterestP className="mx-2" /><FaInstagram className="mx-2" /><FaTwitter className="mx-2" /></div>

@@ -4,7 +4,7 @@ import Card from "react-bootstrap/Card";
 
 function LatestNews() {
   return (
-    <div className="latestNewsMainDiv" >
+    <div className="latestNewsMainDiv" style={{paddingTop:"180px"}} >
       <Container className="">
         <Row>
           <Col lg={4}>

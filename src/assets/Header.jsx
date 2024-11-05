@@ -112,10 +112,11 @@ function Header() {
                 <Nav.Link as={Link} to="/Contact" className="nav-line px-4">
                   Contact
                 </Nav.Link>
-                <Searchinput />
+                
               </Nav>
 
               <Nav className="ms-auto">
+              <Searchinput />
                 <Nav.Link as={Link} to="/" className="px-3">
                   <img src="/search.png" alt="search" />
                 </Nav.Link>
@@ -125,7 +126,7 @@ function Header() {
                 <Nav.Link
                   as={Link}
                   to="/Cart"
-                  className="px-4 position-relative"
+                  className="px-3 position-relative"
                 >
                   <img src="/cart.png" alt="cart" />
                   <sup>{cart?.length}</sup>

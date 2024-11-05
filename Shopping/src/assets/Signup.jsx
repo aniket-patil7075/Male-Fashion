@@ -96,7 +96,7 @@ function Signup() {
             />
           </Form.Group>
 
-          <Button variant="dark" type="submit" className="mx-auto d-block">
+          <Button variant="dark" type="submit" className="mx-auto d-block heroButton mt-4 px-4 py-2">
             Sign up
           </Button>
         </Form>

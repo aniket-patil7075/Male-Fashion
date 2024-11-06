@@ -92,8 +92,8 @@ function CreateCategory() {
   return (
     <div className="categoryDiv" style={{paddingTop:"200px"}}>
       <Container >
-        <Row className="mx-4">
-          <Col md={3}>
+        <Row className="mx-lg-4">
+          <Col md={3} >
             <AdminMenu />
           </Col>
           <Col md={9}>

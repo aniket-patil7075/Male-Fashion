@@ -14,7 +14,7 @@ function Categoryform({ handleSubmit, value, setValue }) {
           />
         </Form.Group>
 
-        <Button variant="dark" type="submit">
+        <Button variant="dark" type="submit" className="heroButton px-4 py-2">
           Submit
         </Button>
       </Form>

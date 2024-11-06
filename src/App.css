@@ -220,6 +220,7 @@
   width: 270px !important;
   border-radius: 0% !important;
 }
+
 .custom-accordion {
   width: 270px;
   border: none !important; 
@@ -259,10 +260,29 @@
 
 .pagination .page-item.active .page-link {
   background-color: white !important;
-  color: #212529 !important; /* Bootstrap's dark text color */
+  color: #212529 !important; 
   border-color: #212529 !important;
 }
 
+.addToCart{
+  display: none !important;
+ }
+
+ .addTo :hover .addToCart{
+  display: block !important;
+ }
+ .addTo :hover .prodName{
+  display: none !important;
+ }
+ .addTo .heart{
+  display: none !important;
+  background-color: white;
+  padding: 5px 10px;
+
+ }
+.addTo :hover .heart{
+  display: block !important;
+}
 
 /* ***************************************************** Products ********************************************************** */
 .productCard {
@@ -273,13 +293,13 @@
 .rounded-color-input {
   width: 40px;
   height: 40px;
-  border-radius: 50%; /* Makes it round */
-  border: none; /* Optional: Removes the border */
+  border-radius: 50%; 
+  border: none; 
   padding: 0;
   cursor: pointer;
 }
 .color-options {
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 .color-circles {
@@ -358,10 +378,10 @@
 
 @keyframes blink {
   0% {
-    background-color: #111111; /* Black */
+    background-color: #111111;
   }
   50% {
-    background-color:#e53637; /* Red */
+    background-color:#e53637; 
   }
 }
 
@@ -458,34 +478,132 @@
 
 .admin-menu .admin-menu-item a::after {
   content: "";
-  display: inline-block; /* makes the underline match the text width */
+  display: inline-block; 
   height: 3px;
   width: 100%;
   background: #e53637;
   position: absolute;
   left: 0;
   bottom: 0;
-  transform: scaleX(0); /* initially hidden */
-  transform-origin: left; /* start animation from the left side */
+  transform: scaleX(0); 
+  transform-origin: left; 
   transition: transform 0.5s ease-in;
   pointer-events: none;
 }
 
 .admin-menu .admin-menu-item a:hover::after {
-  transform: scaleX(1); /* reveal underline on hover */
+  transform: scaleX(1); 
 }
 
 /* *******************************************************Single Product*************************************************************** */
 .size-options {
-  display: flex; /* Use Flexbox for horizontal layout */
-  margin-top: 10px; /* Add margin above the size options if needed */
+  display: flex;
+  margin-top: 1px; 
 }
 
 .size-option {
-  margin-right: 15px; /* Add margin between the size options */
+  margin-right: 15px; 
 }
 
+/* ***********************************************************Blog Details********************************************************* */
+.blog-h1{
+  font-size: 42px;
+  color: #111111;
+  
+  
+}
+.blog-div1{
+  font-size: 15px;
+    color: #3d3d3d;
+}
+.bg-div1{
+  background-color: #f3f2ee;
+  /* position: relative; */
+}
+.blog-Img{
+  position: absolute;
+  margin-top: -130px;
+  
 
+}
+.blog-div-main {
+  padding-top: 150px;
+}
+
+.blog-h1 {
+  width: 70%;
+  font-size: 3rem;
+}
+.share-i{
+  color: #ffffff;
+    font-size: 18px;
+    height: 46px;
+    display: inline-block;
+    width: 46px;
+    border-radius: 50%;
+    line-height: 46px;
+    text-align: center;
+    background: #4267b2;
+}
+.share-p{
+  font-size: 18px;
+  line-height: 36px;
+}
+.share-when{
+  background-color: #f2f3ee;
+  font-style: italic;
+  width: 100%;
+}
+.share-when p{
+  font-style: italic;
+}
+.share-i1{
+  top: -20px;
+  left: 5%;
+}
+.share-col{
+  width: 100%;
+}
+.form .form-control{
+  padding: 13px;
+  border-radius: 0px;
+}
+.post{
+  letter-spacing: 5px;
+}
+/* ******************************About************************************ */
+.going{
+  font-size: 20px;
+  padding-bottom: 10px;
+}
+.Quote{
+  font-size: 60px;
+  color: #e53637;
+}
+.total h2{
+  color: #111111;
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 50px;
+}
+.total-span{
+  color: #3d3d3d;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 25px;
+  overflow: hidden;
+}
+
+/* *****************************pages dropdown**************************** */
+.custom-dropdown .dropdown-menu {
+  background-color: black !important; 
+  border-radius: 0px;
+}
+
+.custom-dropdown .dropdown-item {
+  color: white; 
+  font-size: 15px;
+}
 
 /* ***************************************************** Below 425 px ********************************************************** */
 @media (max-width: 426px) {

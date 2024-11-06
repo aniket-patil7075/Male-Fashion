@@ -92,23 +92,7 @@ function AdminDashboard() {
                     </Col>
                   </Form.Group>
 
-                  <Form.Group
-                    as={Row}
-                    className="mb-3 fw-bold"
-                    controlId="formPlaintextPassword"
-                  >
-                    <Form.Label column sm="2">
-                      Password
-                    </Form.Label>
-                    <Col sm="10">
-                      <Form.Control
-                        plaintext
-                        readOnly
-                        defaultValue={auth?.user?.password}
-                        className="ms-5"
-                      />
-                    </Col>
-                  </Form.Group>
+                 
                 </Form>
               </Card.Body>
             </Card>

@@ -31,7 +31,7 @@ import Deals from "./admin/Deals";
 import SingleProduct from "./assets/SingleProduct";
 import Search from "./assets/Search"
 import Cartitems from "./assets/Cartitems";
-// import Cartitems from "./assets/Cartitems"
+import Heartitems from "./assets/Heartitems";
 
 function App() {
   return (
@@ -51,6 +51,7 @@ function App() {
           <Route path="/Search" element={<Search/>} />
           <Route path="/Cart" element={<Cartitems/>} />
           <Route path="/getsingleproduct/:id" element={<SingleProduct />} />
+          <Route path="/Heart" element={<Heartitems/>} />
 
 
           {/* {Private Routes for users} */}

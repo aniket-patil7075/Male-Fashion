@@ -73,11 +73,11 @@ function SingleProduct() {
       <Container>
         <div className="mx-4">
           <Row>
-            <Col lg={6}>
-              <div className="col-md-6">
+            <Col lg={4}>
+              <div className="col-md-4 mt-4">
                 {imageSrc ? (
                   <img
-                    className="d-block w-100"
+                    className="d-block"
                     src={imageSrc}
                     alt="Product image"
                   />
@@ -86,16 +86,17 @@ function SingleProduct() {
                 )}
               </div>
             </Col>
-            <Col lg={6}>
-              <div className="col-md-6 p-3">
+            <Col lg={8}>
+              <div className="col-md-8 p-3">
                 <div>
                   <h2 className="fw-bold">
                     {product.name || "No name available"}
                   </h2>
                   <p>{product.description || "No description available"}</p>
 
+                  <div className="d-flex">
                   <p>Available Sizes:</p>
-                  <div className="size-options">
+                  <div className="size-options ms-3">
                     {product ? (
                       // Split the size string into an array
                       product.size.split(",").map((size) => (
@@ -114,6 +115,7 @@ function SingleProduct() {
                     ) : (
                       <p>No sizes available</p>
                     )}
+                  </div>
                   </div>
                   <div className="color-options d-flex">
                     <p className="mt-2 me-3">Select Color:</p>

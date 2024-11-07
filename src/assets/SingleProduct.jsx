@@ -68,6 +68,18 @@ function SingleProduct() {
   if (loading) return <p>Loading...</p>; // Show loading state
   if (!product) return <p>Product not found.</p>; // Handle error state
   const colorArray = product?.color[0]?.split(",").filter(Boolean) || [];
+
+  const handleCartClick=(item)=>{
+    const alreadyInCart = cart.find((prod)=>prod._id === item._id);
+    if(alreadyInCart){
+      alert("Product is already in your cartlist")
+    }else{
+      const updatedCart = [...cart,item];
+      setCart(updatedCart)
+      localStorage.setItem("cart",JSON.stringify(updatedCart))
+    }
+  }
+
   return (
     <div className="singleProduct" style={{ paddingTop: "200px" }}>
       <Container>
@@ -133,13 +145,7 @@ function SingleProduct() {
                     </div>
                   </div>
                   <h4 className="fw-bold">₹ {product.price || "N/A"}</h4>
-                  <Button variant="dark" onClick={() => {
-                            setCart([...cart, product]);
-                            localStorage.setItem(
-                              "cart",
-                              JSON.stringify([...cart, product])
-                            );
-                          }} className="mt-3 px-4 py-2 rounded-0">
+                  <Button variant="dark" onClick={()=>handleCartClick(product)} className="mt-3 px-4 py-2 rounded-0">
                     Add to Cart
                   </Button>
                 </div>

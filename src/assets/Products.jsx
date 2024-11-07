@@ -43,7 +43,7 @@ function Products() {
                 {products.map((item, index) => {
                   return (
                     <Link
-                      to={`/Dashboard/admin/Updateproduct/${item.slug}`}
+                      to={`/Dashboard/admin/Updateproduct/${item._id}`}
                       key={item._id}
                       className="product-link text-decoration-none"
                     >

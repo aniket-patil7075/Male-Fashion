@@ -146,7 +146,7 @@ function Shop() {
       const alreadyInWishlist = heart.find((prod) => prod._id === item._id);
   
       if (alreadyInWishlist) {
-        alert("Item is already in your wishlist!");
+        alert("Product is already in your wishlist!");
       } else {
         const updatedHeart = [...heart, item];
         setHeart(updatedHeart);
@@ -154,12 +154,23 @@ function Shop() {
       }
     };
 
+    const handleCartClick=(item)=>{
+      const alreadyInCart = cart.find((prod)=>prod._id === item._id);
+      if(alreadyInCart){
+        alert("Product is already in your cartlist")
+      }else{
+        const updatedCart = [...cart,item];
+        setCart(updatedCart)
+        localStorage.setItem("cart",JSON.stringify(updatedCart))
+      }
+    }
     const isInWishlist = (item) => heart.some((prod) => prod._id === item._id);
+    const isInCartList = (item) => cart.some((prod)=>prod._id === item._id)
 
   return (
     <div className="shopDiv pb-4" style={{ paddingTop: "135px" }}>
       <div
-        className="bg-secondary bg-opacity-25 py-4 mb-5"
+        className="bg-secondary bg-opacity-10 py-4 mb-5"
         style={{ paddingLeft: "10%" }}
       >
         <h4 className="fw-bold">Shop</h4>
@@ -321,13 +332,14 @@ function Shop() {
                             <a
                               href=""
                               variant="success"
-                              onClick={() => {
-                                setCart([...cart, item]);
-                                localStorage.setItem(
-                                  "cart",
-                                  JSON.stringify([...cart, item])
-                                );
-                              }}
+                              // onClick={() => {
+                              //   setCart([...cart, item]);
+                              //   localStorage.setItem(
+                              //     "cart",
+                              //     JSON.stringify([...cart, item])
+                              //   );
+                              // }}
+                              onClick={()=>handleCartClick(item)}
                               style={{
                                 backgroundColor: "transparent",
                                 border: "none",

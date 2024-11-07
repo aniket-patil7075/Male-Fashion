@@ -28,7 +28,7 @@ function NewArrivals() {
     const givenDate = new Date(createdAt);
     const today = new Date();
     const differenceInDays = (today - givenDate) / (1000 * 60 * 60 * 24);
-    return differenceInDays <= 7;
+    return differenceInDays <= 1;
   };
 
   const handleArrivalClick = () => {
@@ -39,36 +39,39 @@ function NewArrivals() {
       setNewArrivals(arrivals);
       setShowArrival(true);
     } else {
-      alert("No new arrivals within the last 7 days!");
+      alert("No new arrivals within the last 1 days!");
       setShowArrival(false);
     }
-    console.log("New Arrival")
+    console.log("New Arrival");
   };
 
-  // Determine which products to display (All or New Arrivals)
+
   const displayedProducts = showArrival ? newArrivals : products;
 
   return (
     <div className="newArrivalMainDiv my-5" style={{ paddingTop: "100px" }}>
       <Container>
-        <div className="">
-          <div className="d-flex justify-content-between text-secondary">
-            <h3 className="fw-bold" style={{ cursor: "pointer" }} onClick={() => setShowArrival(false)}>
+        <div className="mx-lg-5">
+          <div className="d-flex justify-content-around">
+            <h3
+              className={`fw-bold ${showArrival ? "text-secondary" : "text-dark"}`}
+              style={{ cursor: "pointer" }}
+              onClick={() => setShowArrival(false)}
+            >
               All
             </h3>
             <h3
-              className="fw-bold"
+              className={`fw-bold ${showArrival ? "text-dark" : "text-secondary"}`}
               style={{ cursor: "pointer" }}
               onClick={handleArrivalClick}
             >
               New Arrivals
             </h3>
-            <h3 className="fw-bold" style={{ cursor: "pointer" }}>Best Seller</h3>
           </div>
 
           <Row>
             {displayedProducts.map((item) => (
-              <Col sm={5} lg={3} key={item._id} className=" mb-4 mt-5">
+              <Col sm={5} lg={3} key={item._id} className="mb-4 mt-5">
                 <Link
                   to={`/getsingleproduct/${item._id}`}
                   className="product-link text-decoration-none"

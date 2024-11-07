@@ -3,6 +3,7 @@ import { useHeart } from '../context/heartlist'
 import { useAuth } from '../context/auth'
 import { Button, Col, Container, Row } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 function Heartitems() {
     const [heart, setHeart] = useHeart() // Correct hook usage
@@ -24,12 +25,25 @@ function Heartitems() {
     }
 
     return (
-        <div style={{ paddingTop: "170px" }}>
+        <div style={{ paddingTop: "135px" }}>
+            <div
+        className="bg-secondary bg-opacity-10 py-4 mb-5"
+        style={{ paddingLeft: "10%" }}
+      >
+        <h4 className="fw-bold">Shop</h4>
+        <p>
+          Home{" "}
+          <span>
+            <MdOutlineKeyboardArrowRight />
+          </span>{" "}
+          <span className="text-secondary"> Wishlist</span>
+        </p>
+      </div>
             <Container>
-                <h1 className='text-center p-3 mb-2'>{`Hello ${auth?.token && auth?.user?.name}`}</h1>
+                {/* <h1 className='text-center p-3 mb-2'>{`Hello ${auth?.token && auth?.user?.name}`}</h1>
                 <h4 className='text-center'>
                     {heart?.length > 1 ? `You have ${heart.length} items in your cart${auth.token ? "" : "Please Login to Checkout"}` : "Your cart is empty"}
-                </h4>
+                </h4> */}
                 {auth.token ? (
                     <Row className='mb-4 mt-5'>
                         <Col md={9}>
@@ -65,13 +79,15 @@ function Heartitems() {
                         </Col>
 
                         <Col md={3}>
-                            <h2>Cart Summary</h2>
+                            <div className='p-5 bg-secondary bg-opacity-10'>
+                            <h4>CART TOTAL</h4>
                             <p>Total | Checkout | Payment</p>
                             <hr />
-                            <h4>Total: ₹ {totalPrice()}</h4>
-                            <Button variant='success' className='mt-4 rounded-0' onClick={() => navigate('/Dashboard/user/Orders')}>
+                            <h6>Total: ₹ {totalPrice()}</h6>
+                            <Button variant='success' className='heroButton px-4 py-2 mt-4 rounded-0' onClick={() => navigate('/Dashboard/user/Orders')}>
                                 Proceed to Checkout
                             </Button>
+                            </div>
                         </Col>
                     </Row>
                 ) : ""}

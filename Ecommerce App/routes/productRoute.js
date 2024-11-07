@@ -9,7 +9,7 @@ router.post('/create',requireSignIn,isAdmin,formidable(),createProductController
 router.get('/getsingleproduct/:id', getSingleProductController);
 router.get('/getphoto/:pid',getProductphotoController)
 router.delete('/delete/:pid',productDeleteController)
-router.put('/update/:pid',updateProductController)
+router.put('/update/:pid',requireSignIn,isAdmin,formidable(),updateProductController)
 router.post('/filter',filterProductController)
 router.get('/search/:key',searchProductController)
 module.exports=router

@@ -32,20 +32,21 @@ function Updateproduct() {
     getAllCategory();
   }, []);
 
-  function getsingleprod(){
-    fetch(`http://localhost:4300/api/product/getsingleproduct/${params.slug}`).then((res1)=>{
-        res1.json().then((res2)=>{
-            console.log(res2.product)
-            console.log(res2.product.category)
-            setName(res2.product.name)
-            setPrice(res2.product.price)
-            setDescription(res2.product.description)
-            setQuantity(res2.product.quantity)
-            setId(res2.product._id)
-            setCategory(res2.product.category._id)
+function getsingleprod() {
+    fetch(`http://localhost:4300/api/product/getsingleproduct/${params.id}`)
+        .then((res1) => res1.json())
+        .then((res2) => {
+            console.log(res2.product);
+            console.log(res2.product.category);
+            setName(res2.product.name);
+            setPrice(res2.product.price);
+            setDescription(res2.product.description);
+            setQuantity(res2.product.quantity);
+            setId(res2.product._id);
+            setCategory(res2.product.category._id);
         })
-    })
-  }
+        .catch((error) => console.error("Error fetching product data:", error));
+}
 
   useEffect(()=>{
     getsingleprod()
@@ -62,7 +63,7 @@ function Updateproduct() {
     photo && prod.append("photo", photo);
     console.log(prod);
 
-    fetch(`http://localhost:4300/api/product/update/${params.slug}`, {
+    fetch(`http://localhost:4300/api/product/update/${params.id}`, {
       method: "post",
       headers: {
         // "Accept":'application/json',

@@ -40,7 +40,7 @@ function About() {
   return (
     <div style={{ paddingTop: "135px" }}>
       <div
-        className="bg-secondary bg-opacity-25 py-4 mb-5 text-start"
+        className="bg-secondary bg-opacity-10 py-4 mb-5 text-start"
         style={{ paddingLeft: "8%" }}
       >
         <h4 className="fw-bold ms-4">About Us</h4>

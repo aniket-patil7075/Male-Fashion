@@ -7,10 +7,13 @@ import { useAuth } from "../context/auth";
 import { NavDropdown } from "react-bootstrap";
 import Searchinput from "./Searchinput";
 import { useCart } from "../context/cart";
+import { useHeart } from "../context/heartlist";
 
 function Header() {
   const [auth, setAuth] = useAuth();
   const [cart] = useCart();
+  const [heart] = useHeart();
+
   function handleLogout() {
     setAuth({
       ...auth,
@@ -120,8 +123,9 @@ function Header() {
                 <Nav.Link as={Link} to="/" className="px-3">
                   <img src="/search.png" alt="search" />
                 </Nav.Link>
-                <Nav.Link as={Link} to="/" className="px-3">
+                <Nav.Link as={Link} to="/Heart" className="px-3">
                   <img src="/heart.png" alt="heart" />
+                  <sup>{heart?.length}</sup>
                 </Nav.Link>
                 <Nav.Link
                   as={Link}

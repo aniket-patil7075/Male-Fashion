@@ -8,11 +8,13 @@ function Cartitems() {
     const [cart,setCart]=useCart()
     const [auth,setAuth]=useAuth()
     const navigate=useNavigate()
+
     const totlePrice=()=>{
         let total=0
         cart?.map(item=>{total=total+item.price})
         return total
     }
+
     function removecartitem(cid){
         let myCart=[...cart]
         let index=myCart.findIndex(item=>item._id===cid)
@@ -20,6 +22,7 @@ function Cartitems() {
         setCart(myCart)
         localStorage.setItem('cart',JSON.stringify(myCart))
     }
+    
   return (
     <div style={{paddingTop:"200px"}}>
         <Container>
@@ -47,7 +50,7 @@ function Cartitems() {
                                             <td>{c.name}</td>
                                             <td>{c.price}</td>
                                             <td>
-                                                <Button variant='danger' onClick={()=>removecartitem(c._id)}>
+                                                <Button variant='danger' className='rounded-0' onClick={()=>removecartitem(c._id)}>
                                                 Remove
                                                 </Button>
                                             </td>
@@ -64,7 +67,7 @@ function Cartitems() {
                 <p>Total | Checkout | Payment</p>
                 <hr/>
                 <h4>Total:₹ {totlePrice()}</h4>
-                <Button variant='success' className='mt-4' onClick={()=>navigate('/Dashboard/user/Orders')}>
+                <Button variant='success' className='mt-4 rounded-0' onClick={()=>navigate('/Dashboard/user/Orders')}>
                     Proceed to Checkout
                 </Button>
                 </Col>

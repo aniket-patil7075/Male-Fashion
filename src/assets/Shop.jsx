@@ -142,6 +142,20 @@ function Shop() {
     ? products.filter((product) => product.size.includes(selectedSize))
     : products;
 
+    const handleWishlistClick = (item) => {
+      const alreadyInWishlist = heart.find((prod) => prod._id === item._id);
+  
+      if (alreadyInWishlist) {
+        alert("Item is already in your wishlist!");
+      } else {
+        const updatedHeart = [...heart, item];
+        setHeart(updatedHeart);
+        localStorage.setItem("heart", JSON.stringify(updatedHeart));
+      }
+    };
+
+    const isInWishlist = (item) => heart.some((prod) => prod._id === item._id);
+
   return (
     <div className="shopDiv pb-4" style={{ paddingTop: "135px" }}>
       <div
@@ -294,16 +308,10 @@ function Shop() {
                             right: "10px",
                           }}
                           className="heart"
-                          onClick={(e) => {
-                            // e.preventDefault();
-                            setHeart([...heart, item]);
-                            localStorage.setItem(
-                              "heart",
-                              JSON.stringify([...heart, item])
-                            );
-                          }}
+                          onClick={() => handleWishlistClick(item)}
                         >
-                          <img src="./heart.png" alt="Add to favorites" />
+                          <img src="./heart.png" alt="Add to favorites" 
+                          style={{ filter: isInWishlist(item) ? "invert(36%) sepia(80%) saturate(7482%) hue-rotate(340deg) brightness(91%) contrast(108%)" : "none" }} />
                         </a>
                         <Card.Body className="text-start p-2">
                           <div className="addToCart">

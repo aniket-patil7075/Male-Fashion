@@ -13,7 +13,7 @@ import { FaPlus } from "react-icons/fa6";
 import { useHeart } from "../context/heartlist";
 
 function Shop() {
-  const [isFirstDropdownOpen, setIsFirstDropdownOpen] = useState(false);
+  // const [isFirstDropdownOpen, setIsFirstDropdownOpen] = useState(false);
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([]);
@@ -36,7 +36,6 @@ function Shop() {
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
 
-  // Calculate the index range for products to display
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = products.slice(
@@ -44,7 +43,6 @@ function Shop() {
     indexOfLastProduct
   );
 
-  // Calculate total pages
   const totalPages = Math.ceil(products.length / productsPerPage);
   const startItem = (currentPage - 1) * productsPerPage + 1;
   const endItem = Math.min(currentPage * productsPerPage, products.length);
@@ -87,23 +85,6 @@ function Shop() {
     setChecked(all);
   }
 
-  function filterProduct() {
-    const data = { checked, radio };
-    fetch("http://localhost:4300/api/product/filter", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res1) => res1.json())
-      .then((res2) => {
-        console.log(res2);
-        setProducts(res2.products);
-      })
-      .catch((error) => console.log(error));
-  }
-
   useEffect(() => {
     getAllCategory();
     getProducts();
@@ -113,7 +94,7 @@ function Shop() {
     if (checked.length || radio.length) {
       filterProduct();
     } else {
-      getProducts(); // Reset products if no filters are applied
+      getProducts();
     }
   }, [checked, radio]);
 
@@ -137,7 +118,6 @@ function Shop() {
 
   const [selectedSize, setSelectedSize] = useState(null);
 
-  // Filter products by the selected size (if any)
   const filteredProducts = selectedSize
     ? products.filter((product) => product.size.includes(selectedSize))
     : products;
@@ -165,7 +145,9 @@ function Shop() {
       }
     }
     const isInWishlist = (item) => heart.some((prod) => prod._id === item._id);
-    const isInCartList = (item) => cart.some((prod)=>prod._id === item._id)
+    // const isInCartList = (item) => cart.some((prod)=>prod._id === item._id)
+
+    
 
   return (
     <div className="shopDiv pb-4" style={{ paddingTop: "135px" }}>
@@ -201,17 +183,6 @@ function Shop() {
                   <Accordion.Header>CATEGORIES</Accordion.Header>
                   {categories.map((c) => {
                     return (
-                      // <div className="d-flex">
-                      //   <Accordion.Body
-                      //   style={{cursor:"pointer"}}
-                      //     key={c._id}
-                      //     onClick={(e) =>
-                      //       handleFilter(e.target.checked, c._id)
-                      //     }
-                      //   >
-                      //     {c.name}
-                      //   </Accordion.Body>
-                      // </div>
                       <Form.Check
                         className="text-secondary py-2 ms-2"
                         type="checkbox"
@@ -228,7 +199,7 @@ function Shop() {
                   <Accordion.Header>FILTER</Accordion.Header>
                   {Prices.map((p) => {
                     return (
-                      <div className="d-flex">
+                      <div className="d-flex" key={p.id} style={{cursor:"pointer"}}>
                         <Accordion.Body>{p.name}</Accordion.Body>
                       </div>
                     );

@@ -7,7 +7,8 @@ import { CiStar } from "react-icons/ci";
 function NewArrivals() {
   const [products, setProducts] = useState([]);
   const [newArrivals, setNewArrivals] = useState([]);
-  const [showArrival, setShowArrival] = useState(false); // Toggle state
+  const [showArrival, setShowArrival] = useState(false); 
+  const [fade, setFade] = useState(false); 
 
   // Fetch products from the API
   function getprods() {
@@ -32,19 +33,29 @@ function NewArrivals() {
   };
 
   const handleArrivalClick = () => {
-    const arrivals = products.filter((item) =>
-      isWithinLast7Days(item.createdAt)
-    );
-    if (arrivals.length > 0) {
-      setNewArrivals(arrivals);
-      setShowArrival(true);
-    } else {
-      alert("No new arrivals within the last 1 days!");
-      setShowArrival(false);
-    }
-    console.log("New Arrival");
+    setFade(true); // Trigger fade-out effect
+
+    setTimeout(() => {
+      const arrivals = products.filter((item) => isWithinLast7Days(item.createdAt));
+      if (arrivals.length > 0) {
+        setNewArrivals(arrivals);
+        setShowArrival(true);
+      } else {
+        alert("No new arrivals within the last 1 day!");
+        setShowArrival(false);
+      }
+      setFade(false); // Trigger fade-in effect
+    }, 500); // Delay to match the CSS transition duration
   };
 
+  const handleAllClick = () => {
+    setFade(true); // Trigger fade-out effect
+
+    setTimeout(() => {
+      setShowArrival(false);
+      setFade(false); // Trigger fade-in effect
+    }, 500); // Delay to match the CSS transition duration
+  };
 
   const displayedProducts = showArrival ? newArrivals : products;
 
@@ -56,7 +67,7 @@ function NewArrivals() {
             <h3
               className={`fw-bold ${showArrival ? "text-secondary" : "text-dark"}`}
               style={{ cursor: "pointer" }}
-              onClick={() => setShowArrival(false)}
+              onClick={handleAllClick}
             >
               All
             </h3>
@@ -69,9 +80,9 @@ function NewArrivals() {
             </h3>
           </div>
 
-          <Row>
+          <Row className={`product-row ${fade ? 'fade-out' : 'fade-in'}`}>
             {displayedProducts.map((item) => (
-              <Col sm={5} lg={3} key={item._id} className="mb-4 mt-5">
+              <Col sm={5} lg={3} key={item._id} className="mb-4 mt-5 fade-in">
                 <Link
                   to={`/getsingleproduct/${item._id}`}
                   className="product-link text-decoration-none"

@@ -10,13 +10,16 @@ import Accordion from "react-bootstrap/Accordion";
 import { Prices } from "./Prices";
 import { useCart } from "../context/cart";
 import { FaPlus } from "react-icons/fa6";
+import Searchinput from "./Searchinput"
 import { useHeart } from "../context/heartlist";
 
 function Shop() {
-  const [isFirstDropdownOpen, setIsFirstDropdownOpen] = useState(false);
+  // const [isFirstDropdownOpen, setIsFirstDropdownOpen] = useState(false);
+  const [selectedSize, setSelectedSize] = useState(null);
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([]);
+  const [priceChecked, setPriceChecked] = useState([]);
   const [radio, setRadio] = useState([]);
   const [cart, setCart] = useCart();
   const [heart, setHeart] = useState(() => {
@@ -36,7 +39,6 @@ function Shop() {
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
 
-  // Calculate the index range for products to display
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = products.slice(
@@ -44,7 +46,6 @@ function Shop() {
     indexOfLastProduct
   );
 
-  // Calculate total pages
   const totalPages = Math.ceil(products.length / productsPerPage);
   const startItem = (currentPage - 1) * productsPerPage + 1;
   const endItem = Math.min(currentPage * productsPerPage, products.length);
@@ -87,8 +88,31 @@ function Shop() {
     setChecked(all);
   }
 
+  const priceRanges = [
+    { _id: 0, label: "0-999", min: 0, max: 999 },
+    { _id: 1, label: "1000-9999", min: 1000, max: 9999 },
+    { _id: 2, label: "10000-99999", min: 10000, max: 99999 },
+    { _id: 3, label: "100000-999999", min: 100000, max: 999999 },
+  ];
+
+  function handleFilterPrice(value, id) {
+    if (!priceRanges.some((range) => range._id === id)) {
+      console.error("Invalid price range ID:", id);
+      return;
+    }
+
+    console.log("Product price filter ID:", id);
+    let all = [...priceChecked];
+    if (value) {
+      all.push(id);
+    } else {
+      all = all.filter((c) => c !== id);
+    }
+    setPriceChecked(all);
+  }
+
   function filterProduct() {
-    const data = { checked, radio };
+    const data = { checked, priceChecked, radio };
     fetch("http://localhost:4300/api/product/filter", {
       method: "POST",
       headers: {
@@ -105,17 +129,32 @@ function Shop() {
   }
 
   useEffect(() => {
+    if (checked.length || priceChecked.length) {
+      filterProduct();
+    } else {
+      getProducts();
+    }
+  }, [checked, priceChecked, radio]);
+
+  const filteredProducts = products
+    .filter((product) => {
+      return selectedSize ? product.size.includes(selectedSize) : true;
+    })
+    .filter((product) => {
+      if (priceChecked.length === 0) return true;
+      return priceChecked.some((id) => {
+        const range = priceRanges[id];
+
+        return (
+          range && product.price >= range.min && product.price <= range.max
+        );
+      });
+    });
+
+  useEffect(() => {
     getAllCategory();
     getProducts();
   }, []);
-
-  useEffect(() => {
-    if (checked.length || radio.length) {
-      filterProduct();
-    } else {
-      getProducts(); // Reset products if no filters are applied
-    }
-  }, [checked, radio]);
 
   function getprods() {
     fetch("http://localhost:4300/api/product/getproducts").then((resp1) => {
@@ -135,37 +174,30 @@ function Shop() {
     getprods();
   }, []);
 
-  const [selectedSize, setSelectedSize] = useState(null);
+  const handleWishlistClick = (item) => {
+    const alreadyInWishlist = heart.find((prod) => prod._id === item._id);
 
-  // Filter products by the selected size (if any)
-  const filteredProducts = selectedSize
-    ? products.filter((product) => product.size.includes(selectedSize))
-    : products;
-
-    const handleWishlistClick = (item) => {
-      const alreadyInWishlist = heart.find((prod) => prod._id === item._id);
-  
-      if (alreadyInWishlist) {
-        alert("Product is already in your wishlist!");
-      } else {
-        const updatedHeart = [...heart, item];
-        setHeart(updatedHeart);
-        localStorage.setItem("heart", JSON.stringify(updatedHeart));
-      }
-    };
-
-    const handleCartClick=(item)=>{
-      const alreadyInCart = cart.find((prod)=>prod._id === item._id);
-      if(alreadyInCart){
-        alert("Product is already in your cartlist")
-      }else{
-        const updatedCart = [...cart,item];
-        setCart(updatedCart)
-        localStorage.setItem("cart",JSON.stringify(updatedCart))
-      }
+    if (alreadyInWishlist) {
+      alert("Product is already in your wishlist!");
+    } else {
+      const updatedHeart = [...heart, item];
+      setHeart(updatedHeart);
+      localStorage.setItem("heart", JSON.stringify(updatedHeart));
     }
-    const isInWishlist = (item) => heart.some((prod) => prod._id === item._id);
-    const isInCartList = (item) => cart.some((prod)=>prod._id === item._id)
+  };
+
+  const handleCartClick = (item) => {
+    const alreadyInCart = cart.find((prod) => prod._id === item._id);
+    if (alreadyInCart) {
+      alert("Product is already in your cartlist");
+    } else {
+      const updatedCart = [...cart, item];
+      setCart(updatedCart);
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+    }
+  };
+  const isInWishlist = (item) => heart.some((prod) => prod._id === item._id);
+  // const isInCartList = (item) => cart.some((prod)=>prod._id === item._id)
 
   return (
     <div className="shopDiv pb-4" style={{ paddingTop: "135px" }}>
@@ -186,14 +218,15 @@ function Shop() {
         <Row className="ms-4">
           <Col md={3}>
             <div>
-              <Form.Group as={Col} md="4" controlId="validationCustom01">
+              {/* <Form.Group as={Col} md="4" controlId="validationCustom01">
                 <Form.Control
                   required
                   type="text"
                   placeholder="Search"
                   className="shopSearch py-2"
                 />
-              </Form.Group>
+              </Form.Group> */}
+              <Searchinput/>
             </div>
             <div className="mt-3 custom-accordion">
               <Accordion defaultActiveKey="0">
@@ -201,17 +234,6 @@ function Shop() {
                   <Accordion.Header>CATEGORIES</Accordion.Header>
                   {categories.map((c) => {
                     return (
-                      // <div className="d-flex">
-                      //   <Accordion.Body
-                      //   style={{cursor:"pointer"}}
-                      //     key={c._id}
-                      //     onClick={(e) =>
-                      //       handleFilter(e.target.checked, c._id)
-                      //     }
-                      //   >
-                      //     {c.name}
-                      //   </Accordion.Body>
-                      // </div>
                       <Form.Check
                         className="text-secondary py-2 ms-2"
                         type="checkbox"
@@ -226,11 +248,17 @@ function Shop() {
               <Accordion defaultActiveKey="0">
                 <Accordion.Item eventKey="0">
                   <Accordion.Header>FILTER</Accordion.Header>
-                  {Prices.map((p) => {
+                  {priceRanges.map((p) => {
                     return (
-                      <div className="d-flex">
-                        <Accordion.Body>{p.name}</Accordion.Body>
-                      </div>
+                      <Form.Check
+                        className="text-secondary py-2 ms-2"
+                        type="checkbox"
+                        key={p._id}
+                        label={p.label}
+                        onChange={(e) =>
+                          handleFilterPrice(e.target.checked, p._id)
+                        }
+                      />
                     );
                   })}
                 </Accordion.Item>
@@ -301,15 +329,15 @@ function Shop() {
                         style={{ padding: "0", margin: "0" }}
                       >
                         <Link
-                          to={`/getsingleproduct/${item._id}`}
+                          to={`/getsingleproduct/${item.slug}`}
                           key={item._id}
                           className="product-link text-decoration-none"
                         >
-                        <Card.Img
-                          variant="top"
-                          className="w-100 mx-auto d-block"
-                          src={`http://localhost:4300/api/product/getphoto/${item._id}`}
-                        />{" "}
+                          <Card.Img
+                            variant="top"
+                            className="w-100 mx-auto d-block"
+                            src={`http://localhost:4300/api/product/getphoto/${item._id}`}
+                          />{" "}
                         </Link>
                         <a
                           href=""
@@ -321,8 +349,15 @@ function Shop() {
                           className="heart"
                           onClick={() => handleWishlistClick(item)}
                         >
-                          <img src="./heart.png" alt="Add to favorites" 
-                          style={{ filter: isInWishlist(item) ? "invert(36%) sepia(80%) saturate(7482%) hue-rotate(340deg) brightness(91%) contrast(108%)" : "none" }} />
+                          <img
+                            src="./heart.png"
+                            alt="Add to favorites"
+                            style={{
+                              filter: isInWishlist(item)
+                                ? "invert(36%) sepia(80%) saturate(7482%) hue-rotate(340deg) brightness(91%) contrast(108%)"
+                                : "none",
+                            }}
+                          />
                         </a>
                         <Card.Body className="text-start p-2">
                           <div className="addToCart">
@@ -339,7 +374,7 @@ function Shop() {
                               //     JSON.stringify([...cart, item])
                               //   );
                               // }}
-                              onClick={()=>handleCartClick(item)}
+                              onClick={() => handleCartClick(item)}
                               style={{
                                 backgroundColor: "transparent",
                                 border: "none",

@@ -22,7 +22,7 @@ function Searchinput() {
     <div>
         <Form inline onSubmit={handleSubmit}>
         <Row>
-          <Col xs="auto">
+          <Col xs="auto" className='d-flex'>
             <Form.Control
               type="search"
               placeholder="Search"
@@ -30,6 +30,9 @@ function Searchinput() {
               className=" mr-sm-2 mt-1 rounded-0"
               onChange={(e)=>setValues({...values,keyword:e.target.value})}
             />
+            <button type="submit" className="bg-white border-0 ms-4 pe-4">
+  <img src="/search.png" alt="search" />
+</button>
           </Col>
         </Row>
       </Form>

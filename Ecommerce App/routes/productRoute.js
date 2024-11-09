@@ -6,7 +6,7 @@ const { requireSignIn, isAdmin } = require('../middlewares/authMiddleware')
 
 router.get('/getproducts',getProductsController)
 router.post('/create',requireSignIn,isAdmin,formidable(),createProductController)
-router.get('/getsingleproduct/:id', getSingleProductController);
+router.get('/getsingleproduct/:slug', getSingleProductController);
 router.get('/getphoto/:pid',getProductphotoController)
 router.delete('/delete/:pid',productDeleteController)
 router.put('/update/:pid',requireSignIn,isAdmin,formidable(),updateProductController)

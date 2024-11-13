@@ -10,19 +10,127 @@ import Accordion from "react-bootstrap/Accordion";
 import { Prices } from "./Prices";
 import { useCart } from "../context/cart";
 import { FaPlus } from "react-icons/fa6";
+import Searchinput from "./Searchinput";
 import { useHeart } from "../context/heartlist";
 
 function Shop() {
   // const [isFirstDropdownOpen, setIsFirstDropdownOpen] = useState(false);
+  const [selectedSize, setSelectedSize] = useState(null);
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([]);
+  const [priceChecked, setPriceChecked] = useState([]);
   const [radio, setRadio] = useState([]);
   const [cart, setCart] = useCart();
-  const [heart, setHeart] = useState(() => {
-    const savedHeart = localStorage.getItem("heart");
-    return savedHeart ? JSON.parse(savedHeart) : [];
-  });
+  const [heart, setHeart] = useHeart();
+  // const [heart, setHeart] = useState(() => {
+  //   const savedHeart = localStorage.getItem("heart");
+  //   return savedHeart ? JSON.parse(savedHeart) : [];
+  // });
+
+  // const handleCartClick = (item) => {
+  //   const loginData = JSON.parse(localStorage.getItem("login"));
+  //   const userToken = loginData?.token;
+  //   console.log("Usertoken: ", userToken);
+  //   if (!userToken) {
+  //     alert("Please log in to add items to your cart.");
+  //     return;
+  //   }
+
+  //   const cartKey = `cart_${userToken}`;
+  //   const existingCart = JSON.parse(localStorage.getItem(cartKey)) || [];
+  //   const alreadyInCart = existingCart.find((prod) => prod._id === item._id);
+    
+  //   if (alreadyInCart) {
+  //     alert("Product is already in your cart.");
+  //   } else {
+  //     const updatedCart = [...existingCart, item];
+  //     setCart(updatedCart);
+  //     localStorage.setItem(cartKey, JSON.stringify(updatedCart));
+  //     alert("Product successfully added to cart.");
+  //   }
+  // };
+  const handleCartClick = (item) => {
+    const loginData = localStorage.getItem("login");
+
+    if (!loginData) {
+        alert("Please log in to add items to your cart.");
+        return;
+    }
+
+    const parsedLoginData = JSON.parse(loginData);
+    const userEmail = parsedLoginData?.user?.email; // Access email from the nested 'user' object
+
+    if (!userEmail) {
+        alert("Email not found in login data.");
+        return;
+    }
+
+    console.log("User Email: ", userEmail);
+
+    const cartKey = `cart_${userEmail}`; // Use email to generate a unique cart key
+    const existingCart = JSON.parse(localStorage.getItem(cartKey)) || [];
+    const alreadyInCart = existingCart.find((prod) => prod._id === item._id);
+
+    if (alreadyInCart) {
+        alert("Product is already in your cart.");
+    } else {
+        const updatedCart = [...existingCart, item];
+        setCart(updatedCart);
+        localStorage.setItem(cartKey, JSON.stringify(updatedCart));
+        alert("Product successfully added to cart.");
+    }
+};
+
+
+const handleWishlistClick = (item) => {
+  // Retrieve the login data and extract the email
+  const loginData = localStorage.getItem("login");
+
+  if (!loginData) {
+      alert("Please log in to add items to your wishlist.");
+      return;
+  }
+
+  const parsedLoginData = JSON.parse(loginData);
+  const userEmail = parsedLoginData?.user?.email; // Access email from the nested 'user' object
+
+  if (!userEmail) {
+      alert("Email not found in login data.");
+      return;
+  }
+
+  console.log("User Email: ", userEmail);
+
+  const heartKey = `heart_${userEmail}`; 
+  const existingHeart = JSON.parse(localStorage.getItem(heartKey)) || [];
+  const alreadyInWishlist = existingHeart.find((prod) => prod._id === item._id);
+
+  if (alreadyInWishlist) {
+      alert("Product is already in your wishlist!");
+  } else {
+      const updatedHeart = [...existingHeart, item];
+      setHeart(updatedHeart);
+      localStorage.setItem(heartKey, JSON.stringify(updatedHeart));
+      alert("Product successfully added to wishlist.");
+  }
+};
+
+
+  const isInWishlist = (item) => heart.some((prod) => prod._id === item._id);
+
+  function getprods() {
+    fetch("http://localhost:4300/api/product/getproducts")
+      .then((resp1) => resp1.json())
+      .then((resp2) => {
+        console.log(resp2);
+        setProducts(resp2.product);
+      })
+      .catch((error) => console.log(error));
+  }
+  useEffect(() => {
+    getprods();
+  }, []);
 
   function reducer(state, action) {
     switch (action.type) {
@@ -85,69 +193,72 @@ function Shop() {
     setChecked(all);
   }
 
-  useEffect(() => {
-    getAllCategory();
-    getProducts();
-  }, []);
+  const priceRanges = [
+    { _id: 0, label: "0-999", min: 0, max: 999 },
+    { _id: 1, label: "1000-9999", min: 1000, max: 9999 },
+    { _id: 2, label: "10000-99999", min: 10000, max: 99999 },
+    { _id: 3, label: "100000-999999", min: 100000, max: 999999 },
+  ];
+
+  function handleFilterPrice(value, id) {
+    if (!priceRanges.some((range) => range._id === id)) {
+      console.error("Invalid price range ID:", id);
+      return;
+    }
+
+    console.log("Product price filter ID:", id);
+    let all = [...priceChecked];
+    if (value) {
+      all.push(id);
+    } else {
+      all = all.filter((c) => c !== id);
+    }
+    setPriceChecked(all);
+  }
+
+  function filterProduct() {
+    const data = { checked, priceChecked, radio };
+    fetch("http://localhost:4300/api/product/filter", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res1) => res1.json())
+      .then((res2) => {
+        console.log(res2);
+        setProducts(res2.products);
+      })
+      .catch((error) => console.log(error));
+  }
+
+  const filteredProducts = products
+    .filter((product) => {
+      return selectedSize ? product.size.includes(selectedSize) : true;
+    })
+    .filter((product) => {
+      if (priceChecked.length === 0) return true;
+      return priceChecked.some((id) => {
+        const range = priceRanges[id];
+
+        return (
+          range && product.price >= range.min && product.price <= range.max
+        );
+      });
+    });
 
   useEffect(() => {
-    if (checked.length || radio.length) {
+    if (checked.length || priceChecked.length) {
       filterProduct();
     } else {
       getProducts();
     }
-  }, [checked, radio]);
-
-  function getprods() {
-    fetch("http://localhost:4300/api/product/getproducts").then((resp1) => {
-      resp1
-        .json()
-        .then((resp2) => {
-          console.log(resp2);
-          setProducts(resp2.product);
-          console.log(products);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    });
-  }
+  }, [checked, priceChecked, radio]);
   useEffect(() => {
-    getprods();
+    getAllCategory();
+    getProducts();
   }, []);
-
-  const [selectedSize, setSelectedSize] = useState(null);
-
-  const filteredProducts = selectedSize
-    ? products.filter((product) => product.size.includes(selectedSize))
-    : products;
-
-    const handleWishlistClick = (item) => {
-      const alreadyInWishlist = heart.find((prod) => prod._id === item._id);
-  
-      if (alreadyInWishlist) {
-        alert("Product is already in your wishlist!");
-      } else {
-        const updatedHeart = [...heart, item];
-        setHeart(updatedHeart);
-        localStorage.setItem("heart", JSON.stringify(updatedHeart));
-      }
-    };
-
-    const handleCartClick=(item)=>{
-      const alreadyInCart = cart.find((prod)=>prod._id === item._id);
-      if(alreadyInCart){
-        alert("Product is already in your cartlist")
-      }else{
-        const updatedCart = [...cart,item];
-        setCart(updatedCart)
-        localStorage.setItem("cart",JSON.stringify(updatedCart))
-      }
-    }
-    const isInWishlist = (item) => heart.some((prod) => prod._id === item._id);
-    // const isInCartList = (item) => cart.some((prod)=>prod._id === item._id)
-
-    
 
   return (
     <div className="shopDiv pb-4" style={{ paddingTop: "135px" }}>
@@ -168,14 +279,7 @@ function Shop() {
         <Row className="ms-4">
           <Col md={3}>
             <div>
-              <Form.Group as={Col} md="4" controlId="validationCustom01">
-                <Form.Control
-                  required
-                  type="text"
-                  placeholder="Search"
-                  className="shopSearch py-2"
-                />
-              </Form.Group>
+              <Searchinput />
             </div>
             <div className="mt-3 custom-accordion">
               <Accordion defaultActiveKey="0">
@@ -197,11 +301,17 @@ function Shop() {
               <Accordion defaultActiveKey="0">
                 <Accordion.Item eventKey="0">
                   <Accordion.Header>FILTER</Accordion.Header>
-                  {Prices.map((p) => {
+                  {priceRanges.map((p) => {
                     return (
-                      <div className="d-flex" key={p.id} style={{cursor:"pointer"}}>
-                        <Accordion.Body>{p.name}</Accordion.Body>
-                      </div>
+                      <Form.Check
+                        className="text-secondary py-2 ms-2"
+                        type="checkbox"
+                        key={p._id}
+                        label={p.label}
+                        onChange={(e) =>
+                          handleFilterPrice(e.target.checked, p._id)
+                        }
+                      />
                     );
                   })}
                 </Accordion.Item>
@@ -243,7 +353,7 @@ function Shop() {
                 <p>
                   Showing {startItem}–{endItem} of {totalPages} pages
                 </p>
-                <NavDropdown
+                {/* <NavDropdown
                   id="nav-dropdown-light-example"
                   title="Sort by Price : "
                   menuVariant="light"
@@ -260,7 +370,7 @@ function Shop() {
                       </div>
                     );
                   })}
-                </NavDropdown>
+                </NavDropdown> */}
               </div>
               <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
                 {filteredProducts.map((item, index) => {
@@ -272,15 +382,15 @@ function Shop() {
                         style={{ padding: "0", margin: "0" }}
                       >
                         <Link
-                          to={`/getsingleproduct/${item._id}`}
+                          to={`/getsingleproduct/${item.slug}`}
                           key={item._id}
                           className="product-link text-decoration-none"
                         >
-                        <Card.Img
-                          variant="top"
-                          className="w-100 mx-auto d-block"
-                          src={`http://localhost:4300/api/product/getphoto/${item._id}`}
-                        />{" "}
+                          <Card.Img
+                            variant="top"
+                            className="w-100 mx-auto d-block"
+                            src={`http://localhost:4300/api/product/getphoto/${item._id}`}
+                          />{" "}
                         </Link>
                         <a
                           href=""
@@ -290,10 +400,20 @@ function Shop() {
                             right: "10px",
                           }}
                           className="heart"
-                          onClick={() => handleWishlistClick(item)}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleWishlistClick(item);
+                          }}
                         >
-                          <img src="./heart.png" alt="Add to favorites" 
-                          style={{ filter: isInWishlist(item) ? "invert(36%) sepia(80%) saturate(7482%) hue-rotate(340deg) brightness(91%) contrast(108%)" : "none" }} />
+                          <img
+                            src="./heart.png"
+                            alt="Add to favorites"
+                            style={{
+                              filter: isInWishlist(item)
+                                ? "invert(36%) sepia(80%) saturate(7482%) hue-rotate(340deg) brightness(91%) contrast(108%)"
+                                : "none",
+                            }}
+                          />
                         </a>
                         <Card.Body className="text-start p-2">
                           <div className="addToCart">
@@ -310,7 +430,10 @@ function Shop() {
                               //     JSON.stringify([...cart, item])
                               //   );
                               // }}
-                              onClick={()=>handleCartClick(item)}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                handleCartClick(item);
+                              }}
                               style={{
                                 backgroundColor: "transparent",
                                 border: "none",
@@ -339,19 +462,6 @@ function Shop() {
                           </p>
 
                           <h5 className="fw-bold">₹ {item.price}</h5>
-                          {/* <Button
-                              variant="dark"
-                              className="heroButton mt-4 px-4 py-2"
-                              onClick={() => {
-                                setCart([...cart, item]);
-                                localStorage.setItem(
-                                  "cart",
-                                  JSON.stringify([...cart, item])
-                                );
-                              }}
-                            >
-                              Add To Cart
-                            </Button> */}
                         </Card.Body>
                       </Card>
                     </div>

@@ -6,9 +6,9 @@ import { useNavigate } from 'react-router-dom'
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 function Heartitems() {
-    const [heart, setHeart] = useHeart() // Correct hook usage
-    const [auth, setAuth] = useAuth() // Correct hook usage
-    const navigate = useNavigate() // Correct hook usage
+    const [heart, setHeart] = useHeart() 
+    const [auth, setAuth] = useAuth() 
+    const navigate = useNavigate() 
 
     const totalPrice = () => {
         let total = 0
@@ -19,9 +19,9 @@ function Heartitems() {
     }
 
     function removeHeartItem(cid) {
-        const updatedHeart = heart.filter(item => item._id !== cid) // Filter out the item
-        setHeart(updatedHeart) // Update the heart state
-        localStorage.setItem('heart', JSON.stringify(updatedHeart)) // Save updated list to localStorage
+        const updatedHeart = heart.filter(item => item._id !== cid) 
+        setHeart(updatedHeart) 
+        localStorage.setItem('heart', JSON.stringify(updatedHeart)) 
     }
 
     return (
@@ -40,19 +40,17 @@ function Heartitems() {
         </p>
       </div>
             <Container>
-                {/* <h1 className='text-center p-3 mb-2'>{`Hello ${auth?.token && auth?.user?.name}`}</h1>
-                <h4 className='text-center'>
-                    {heart?.length > 1 ? `You have ${heart.length} items in your cart${auth.token ? "" : "Please Login to Checkout"}` : "Your cart is empty"}
-                </h4> */}
+                
                 {auth.token ? (
                     <Row className='mb-4 mt-5'>
                         <Col md={9}>
                             <table className='table'>
                                 <thead>
                                     <tr>
-                                        <th>Image</th>
-                                        <th>Products</th>
-                                        <th>Price</th>
+                                        <th className='w-25'>IMAGE</th>
+                                        <th className='w-25'>PRODUCTS</th>
+                                        <th className='w-25'>PRICE</th>
+                                        <th className='w-25'>EDIT</th>
                                     </tr>
                                 </thead>
                                 <tbody>

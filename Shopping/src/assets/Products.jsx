@@ -3,7 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import { CiStar } from "react-icons/ci";
-import AdminMenu from "./AdminMenu";
+import AdminMenu from '../assets/AdminMenu';
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -23,7 +23,7 @@ function Products() {
   }
   useEffect(() => {
     getprods();
-    //eslint-disable-next-line
+    
   }, []);
 
   return (
@@ -43,7 +43,7 @@ function Products() {
                 {products.map((item, index) => {
                   return (
                     <Link
-                      to={`/Dashboard/admin/Updateproduct/${item._id}`}
+                      to={`/Dashboard/admin/Updateproduct/${item.slug}`}
                       key={item._id}
                       className="product-link text-decoration-none"
                     >

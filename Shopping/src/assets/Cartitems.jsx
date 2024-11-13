@@ -35,19 +35,19 @@ function Cartitems() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  // Manage quantities using a state object
+
   const [quantities, setQuantities] = useState(
     cart.reduce((acc, item) => {
-      acc[item._id] = item.quantity || 1; // Default to 1 if no quantity is set
+      acc[item._id] = item.quantity || 0; 
       return acc;
     }, {})
   );
 
   useEffect(() => {
-    // Update the quantities object whenever the cart changes
+    
     setQuantities(
       cart.reduce((acc, item) => {
-        acc[item._id] = item.quantity || 1;
+        acc[item._id] = item.quantity || 0;
         return acc;
       }, {})
     );
@@ -69,7 +69,7 @@ function Cartitems() {
     localStorage.setItem("cart", JSON.stringify(myCart));
   }
 
-  // Increment and decrement quantity
+  
   const incrementQuantity = (id) => {
     setQuantities((prev) => ({ ...prev, [id]: (prev[id] || 1) + 1 }));
   };
@@ -77,7 +77,7 @@ function Cartitems() {
   const decrementQuantity = (id) => {
     setQuantities((prev) => ({
       ...prev,
-      [id]: Math.max(1, (prev[id] || 1) - 1), // Ensure quantity doesn't go below 1
+      [id]: Math.max(1, (prev[id] || 1) - 1), 
     }));
   };
 
@@ -103,15 +103,16 @@ function Cartitems() {
               <table className="table">
                 <thead>
                   <tr>
-                    <th>IMAGE</th>
-                    <th>PRODUCT</th>
-                    <th>QUANTITY</th>
-                    <th>TOTAL PRICE</th>
+                    <th className="w-25">IMAGE</th>
+                    <th className="w-25">PRODUCT</th>
+                    <th className="w-25">QUANTITY</th>
+                    <th className="w-25">TOTAL PRICE</th>
+                    <th className="w-25">EDIT</th>
                   </tr>
                 </thead>
                 <tbody>
                   {cart?.map((c) => {
-                    const quantity = quantities[c._id] || 1; // Get quantity from the quantities object
+                    const quantity = quantities[c._id] || 1; 
 
                     return (
                       <tr key={c._id}>
@@ -130,7 +131,7 @@ function Cartitems() {
                             <button
                               className="btn btn-outline-dark d-flex align-items-center justify-content-center"
                               onClick={() => decrementQuantity(c._id)}
-                              disabled={quantity <= 1} // Disable if at minimum
+                              disabled={quantity <= 1} 
                             >
                               <FaMinus />
                             </button>

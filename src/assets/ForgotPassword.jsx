@@ -29,7 +29,7 @@ function ForgotPassword() {
     });
   }
   return (
-    <div>
+    <div style={{paddingTop:"180px"}}>
       <Container className="d-flex justify-content-center">
         <Form className="my-5 w-50 " onSubmit={changePassword}>
           <h2 className="text-center">Forgot Password</h2>

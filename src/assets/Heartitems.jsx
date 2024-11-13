@@ -47,9 +47,10 @@ function Heartitems() {
                             <table className='table'>
                                 <thead>
                                     <tr>
-                                        <th>Image</th>
-                                        <th>Products</th>
-                                        <th>Price</th>
+                                        <th className='w-25'>IMAGE</th>
+                                        <th className='w-25'>PRODUCTS</th>
+                                        <th className='w-25'>PRICE</th>
+                                        <th className='w-25'>EDIT</th>
                                     </tr>
                                 </thead>
                                 <tbody>

@@ -10,7 +10,7 @@ import Accordion from "react-bootstrap/Accordion";
 import { Prices } from "./Prices";
 import { useCart } from "../context/cart";
 import { FaPlus } from "react-icons/fa6";
-import Searchinput from "./Searchinput"
+import Searchinput from "./Searchinput";
 import { useHeart } from "../context/heartlist";
 
 function Shop() {
@@ -22,10 +22,115 @@ function Shop() {
   const [priceChecked, setPriceChecked] = useState([]);
   const [radio, setRadio] = useState([]);
   const [cart, setCart] = useCart();
-  const [heart, setHeart] = useState(() => {
-    const savedHeart = localStorage.getItem("heart");
-    return savedHeart ? JSON.parse(savedHeart) : [];
-  });
+  const [heart, setHeart] = useHeart();
+  // const [heart, setHeart] = useState(() => {
+  //   const savedHeart = localStorage.getItem("heart");
+  //   return savedHeart ? JSON.parse(savedHeart) : [];
+  // });
+
+  // const handleCartClick = (item) => {
+  //   const loginData = JSON.parse(localStorage.getItem("login"));
+  //   const userToken = loginData?.token;
+  //   console.log("Usertoken: ", userToken);
+  //   if (!userToken) {
+  //     alert("Please log in to add items to your cart.");
+  //     return;
+  //   }
+
+  //   const cartKey = `cart_${userToken}`;
+  //   const existingCart = JSON.parse(localStorage.getItem(cartKey)) || [];
+  //   const alreadyInCart = existingCart.find((prod) => prod._id === item._id);
+    
+  //   if (alreadyInCart) {
+  //     alert("Product is already in your cart.");
+  //   } else {
+  //     const updatedCart = [...existingCart, item];
+  //     setCart(updatedCart);
+  //     localStorage.setItem(cartKey, JSON.stringify(updatedCart));
+  //     alert("Product successfully added to cart.");
+  //   }
+  // };
+  const handleCartClick = (item) => {
+    const loginData = localStorage.getItem("login");
+
+    if (!loginData) {
+        alert("Please log in to add items to your cart.");
+        return;
+    }
+
+    const parsedLoginData = JSON.parse(loginData);
+    const userEmail = parsedLoginData?.user?.email; // Access email from the nested 'user' object
+
+    if (!userEmail) {
+        alert("Email not found in login data.");
+        return;
+    }
+
+    console.log("User Email: ", userEmail);
+
+    const cartKey = `cart_${userEmail}`; // Use email to generate a unique cart key
+    const existingCart = JSON.parse(localStorage.getItem(cartKey)) || [];
+    const alreadyInCart = existingCart.find((prod) => prod._id === item._id);
+
+    if (alreadyInCart) {
+        alert("Product is already in your cart.");
+    } else {
+        const updatedCart = [...existingCart, item];
+        setCart(updatedCart);
+        localStorage.setItem(cartKey, JSON.stringify(updatedCart));
+        alert("Product successfully added to cart.");
+    }
+};
+
+
+const handleWishlistClick = (item) => {
+  // Retrieve the login data and extract the email
+  const loginData = localStorage.getItem("login");
+
+  if (!loginData) {
+      alert("Please log in to add items to your wishlist.");
+      return;
+  }
+
+  const parsedLoginData = JSON.parse(loginData);
+  const userEmail = parsedLoginData?.user?.email; // Access email from the nested 'user' object
+
+  if (!userEmail) {
+      alert("Email not found in login data.");
+      return;
+  }
+
+  console.log("User Email: ", userEmail);
+
+  const heartKey = `heart_${userEmail}`; 
+  const existingHeart = JSON.parse(localStorage.getItem(heartKey)) || [];
+  const alreadyInWishlist = existingHeart.find((prod) => prod._id === item._id);
+
+  if (alreadyInWishlist) {
+      alert("Product is already in your wishlist!");
+  } else {
+      const updatedHeart = [...existingHeart, item];
+      setHeart(updatedHeart);
+      localStorage.setItem(heartKey, JSON.stringify(updatedHeart));
+      alert("Product successfully added to wishlist.");
+  }
+};
+
+
+  const isInWishlist = (item) => heart.some((prod) => prod._id === item._id);
+
+  function getprods() {
+    fetch("http://localhost:4300/api/product/getproducts")
+      .then((resp1) => resp1.json())
+      .then((resp2) => {
+        console.log(resp2);
+        setProducts(resp2.product);
+      })
+      .catch((error) => console.log(error));
+  }
+  useEffect(() => {
+    getprods();
+  }, []);
 
   function reducer(state, action) {
     switch (action.type) {
@@ -128,14 +233,6 @@ function Shop() {
       .catch((error) => console.log(error));
   }
 
-  useEffect(() => {
-    if (checked.length || priceChecked.length) {
-      filterProduct();
-    } else {
-      getProducts();
-    }
-  }, [checked, priceChecked, radio]);
-
   const filteredProducts = products
     .filter((product) => {
       return selectedSize ? product.size.includes(selectedSize) : true;
@@ -152,52 +249,16 @@ function Shop() {
     });
 
   useEffect(() => {
+    if (checked.length || priceChecked.length) {
+      filterProduct();
+    } else {
+      getProducts();
+    }
+  }, [checked, priceChecked, radio]);
+  useEffect(() => {
     getAllCategory();
     getProducts();
   }, []);
-
-  function getprods() {
-    fetch("http://localhost:4300/api/product/getproducts").then((resp1) => {
-      resp1
-        .json()
-        .then((resp2) => {
-          console.log(resp2);
-          setProducts(resp2.product);
-          console.log(products);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    });
-  }
-  useEffect(() => {
-    getprods();
-  }, []);
-
-  const handleWishlistClick = (item) => {
-    const alreadyInWishlist = heart.find((prod) => prod._id === item._id);
-
-    if (alreadyInWishlist) {
-      alert("Product is already in your wishlist!");
-    } else {
-      const updatedHeart = [...heart, item];
-      setHeart(updatedHeart);
-      localStorage.setItem("heart", JSON.stringify(updatedHeart));
-    }
-  };
-
-  const handleCartClick = (item) => {
-    const alreadyInCart = cart.find((prod) => prod._id === item._id);
-    if (alreadyInCart) {
-      alert("Product is already in your cartlist");
-    } else {
-      const updatedCart = [...cart, item];
-      setCart(updatedCart);
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
-    }
-  };
-  const isInWishlist = (item) => heart.some((prod) => prod._id === item._id);
-  // const isInCartList = (item) => cart.some((prod)=>prod._id === item._id)
 
   return (
     <div className="shopDiv pb-4" style={{ paddingTop: "135px" }}>
@@ -218,15 +279,7 @@ function Shop() {
         <Row className="ms-4">
           <Col md={3}>
             <div>
-              {/* <Form.Group as={Col} md="4" controlId="validationCustom01">
-                <Form.Control
-                  required
-                  type="text"
-                  placeholder="Search"
-                  className="shopSearch py-2"
-                />
-              </Form.Group> */}
-              <Searchinput/>
+              <Searchinput />
             </div>
             <div className="mt-3 custom-accordion">
               <Accordion defaultActiveKey="0">
@@ -300,7 +353,7 @@ function Shop() {
                 <p>
                   Showing {startItem}–{endItem} of {totalPages} pages
                 </p>
-                <NavDropdown
+                {/* <NavDropdown
                   id="nav-dropdown-light-example"
                   title="Sort by Price : "
                   menuVariant="light"
@@ -317,7 +370,7 @@ function Shop() {
                       </div>
                     );
                   })}
-                </NavDropdown>
+                </NavDropdown> */}
               </div>
               <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
                 {filteredProducts.map((item, index) => {
@@ -347,7 +400,10 @@ function Shop() {
                             right: "10px",
                           }}
                           className="heart"
-                          onClick={() => handleWishlistClick(item)}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleWishlistClick(item);
+                          }}
                         >
                           <img
                             src="./heart.png"
@@ -374,7 +430,10 @@ function Shop() {
                               //     JSON.stringify([...cart, item])
                               //   );
                               // }}
-                              onClick={() => handleCartClick(item)}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                handleCartClick(item);
+                              }}
                               style={{
                                 backgroundColor: "transparent",
                                 border: "none",
@@ -403,19 +462,6 @@ function Shop() {
                           </p>
 
                           <h5 className="fw-bold">₹ {item.price}</h5>
-                          {/* <Button
-                              variant="dark"
-                              className="heroButton mt-4 px-4 py-2"
-                              onClick={() => {
-                                setCart([...cart, item]);
-                                localStorage.setItem(
-                                  "cart",
-                                  JSON.stringify([...cart, item])
-                                );
-                              }}
-                            >
-                              Add To Cart
-                            </Button> */}
                         </Card.Body>
                       </Card>
                     </div>

@@ -84,7 +84,7 @@ function Shop() {
 
 
 const handleWishlistClick = (item) => {
-  // Retrieve the login data and extract the email
+  
   const loginData = localStorage.getItem("login");
 
   if (!loginData) {
@@ -93,7 +93,7 @@ const handleWishlistClick = (item) => {
   }
 
   const parsedLoginData = JSON.parse(loginData);
-  const userEmail = parsedLoginData?.user?.email; // Access email from the nested 'user' object
+  const userEmail = parsedLoginData?.user?.email; 
 
   if (!userEmail) {
       alert("Email not found in login data.");
@@ -326,7 +326,7 @@ const handleWishlistClick = (item) => {
                         <div
                           key={size}
                           className={`w-25 text-dark fw-bold border border-secondary text-center py-2 m-2 ${
-                            selectedSize === size ? "bg-primary text-white" : ""
+                            selectedSize === size ? "bg-dark text-white" : ""
                           }`}
                           style={{ cursor: "pointer" }}
                           onClick={() => setSelectedSize(size)}

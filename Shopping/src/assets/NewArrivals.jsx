@@ -20,29 +20,68 @@ function NewArrivals() {
   // });
 
   const handleCartClick = (item) => {
-    const alreadyInCart = cart.find((prod) => prod._id === item._id);
+    const loginData = localStorage.getItem("login");
+
+    if (!loginData) {
+        alert("Please log in to add items to your cart.");
+        return;
+    }
+
+    const parsedLoginData = JSON.parse(loginData);
+    const userEmail = parsedLoginData?.user?.email; 
+
+    if (!userEmail) {
+        alert("Email not found in login data.");
+        return;
+    }
+
+    console.log("User Email: ", userEmail);
+
+    const cartKey = `cart_${userEmail}`; // Use email to generate a unique cart key
+    const existingCart = JSON.parse(localStorage.getItem(cartKey)) || [];
+    const alreadyInCart = existingCart.find((prod) => prod._id === item._id);
+
     if (alreadyInCart) {
-      alert("Product is already in your cartlist");
+        alert("Product is already in your cart.");
     } else {
-      const updatedCart = [...cart, item];
-      setCart(updatedCart);
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
-      alert("Product successfully added to cart.");
+        const updatedCart = [...existingCart, item];
+        setCart(updatedCart);
+        localStorage.setItem(cartKey, JSON.stringify(updatedCart));
+        alert("Product successfully added to cart.");
     }
-  };
+};
 
-  const handleWishlistClick = (item) => {
-    const alreadyInWishlist = heart.find((prod) => prod._id === item._id);
+const handleWishlistClick = (item) => {
+  const loginData = localStorage.getItem("login");
 
-    if (alreadyInWishlist) {
+  if (!loginData) {
+      alert("Please log in to add items to your wishlist.");
+      return;
+  }
+
+  const parsedLoginData = JSON.parse(loginData);
+  const userEmail = parsedLoginData?.user?.email; 
+
+  if (!userEmail) {
+      alert("Email not found in login data.");
+      return;
+  }
+
+  console.log("User Email: ", userEmail);
+
+  const heartKey = `heart_${userEmail}`; 
+  const existingHeart = JSON.parse(localStorage.getItem(heartKey)) || [];
+  const alreadyInWishlist = existingHeart.find((prod) => prod._id === item._id);
+
+  if (alreadyInWishlist) {
       alert("Product is already in your wishlist!");
-    } else {
-      const updatedHeart = [...heart, item];
+  } else {
+      const updatedHeart = [...existingHeart, item];
       setHeart(updatedHeart);
-      localStorage.setItem("heart", JSON.stringify(updatedHeart));
+      localStorage.setItem(heartKey, JSON.stringify(updatedHeart));
       alert("Product successfully added to wishlist.");
-    }
-  };
+  }
+};
 
   const isInWishlist = (item) => heart.some((prod) => prod._id === item._id);
 

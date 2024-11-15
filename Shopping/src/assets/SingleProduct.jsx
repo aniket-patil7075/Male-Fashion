@@ -60,16 +60,37 @@ function SingleProduct() {
 
   const colorArray = product?.color[0]?.split(",").filter(Boolean) || [];
 
-  const handleCartClick=(item)=>{
-    const alreadyInCart = cart.find((prod)=>prod._id === item._id);
-    if(alreadyInCart){
-      alert("Product is already in your cartlist")
-    }else{
-      const updatedCart = [...cart,item];
-      setCart(updatedCart)
-      localStorage.setItem("cart",JSON.stringify(updatedCart))
+  const handleCartClick = (item) => {
+    const loginData = localStorage.getItem("login");
+
+    if (!loginData) {
+        alert("Please log in to add items to your cart.");
+        return;
     }
-  }
+
+    const parsedLoginData = JSON.parse(loginData);
+    const userEmail = parsedLoginData?.user?.email; // Access email from the nested 'user' object
+
+    if (!userEmail) {
+        alert("Email not found in login data.");
+        return;
+    }
+
+    console.log("User Email: ", userEmail);
+
+    const cartKey = `cart_${userEmail}`; // Use email to generate a unique cart key
+    const existingCart = JSON.parse(localStorage.getItem(cartKey)) || [];
+    const alreadyInCart = existingCart.find((prod) => prod._id === item._id);
+
+    if (alreadyInCart) {
+        alert("Product is already in your cart.");
+    } else {
+        const updatedCart = [...existingCart, item];
+        setCart(updatedCart);
+        localStorage.setItem(cartKey, JSON.stringify(updatedCart));
+        alert("Product successfully added to cart.");
+    }
+};
 
   return (
     <div className="singleProduct" style={{ paddingTop: "200px" }}>
@@ -138,9 +159,9 @@ function SingleProduct() {
             <h4 className="fw-bold mt-3">₹ {product.price || "N/A"}</h4>
             <Button
               variant="dark"
-              onClick={() => {
-                setCart([...cart, product]);
-                localStorage.setItem("cart", JSON.stringify([...cart, product]));
+              onClick={(e) => {
+                e.preventDefault();
+                handleCartClick(product);
               }}
               className="mt-3 px-4 py-2 rounded-0"
             >

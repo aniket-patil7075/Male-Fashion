@@ -14,10 +14,6 @@ function NewArrivals() {
   const [fade, setFade] = useState(false);
   const [cart, setCart] = useCart();
   const [heart, setHeart] = useHeart();
-  // const [heart, setHeart] = useState(() => {
-  //   const savedHeart = localStorage.getItem("heart");
-  //   return savedHeart ? JSON.parse(savedHeart) : [];
-  // });
 
   const handleCartClick = (item) => {
     const loginData = localStorage.getItem("login");

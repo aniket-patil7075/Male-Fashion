@@ -45,7 +45,7 @@ function Header() {
             ) : (
               <>
                 <>
-                  <NavDropdown title={auth?.user?.name} id="basic-nav-dropdown">
+                  <NavDropdown title={auth?.user?.name} id="basic-nav-dropdown" className="custom-dropdown">
                     <Link
                       to={`/Dashboard/${
                         auth?.user?.role === 1 ? "admin" : "user"

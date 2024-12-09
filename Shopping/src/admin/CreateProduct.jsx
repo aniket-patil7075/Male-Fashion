@@ -28,6 +28,9 @@ function CreateProduct() {
   const [auth] = useAuth();
   const token = auth.token;
   const navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   function getAllCategory() {
     fetch("http://localhost:4300/api/category/getcategory").then((res1) => {

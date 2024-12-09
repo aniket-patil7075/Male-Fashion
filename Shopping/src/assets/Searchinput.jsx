@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
@@ -6,6 +6,9 @@ import Col from 'react-bootstrap/Col';
 import { useNavigate } from 'react-router-dom';
 import { useSearch } from '../context/search';
 function Searchinput() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
     const [values,setValues]=useSearch()
     const navigate=useNavigate()
     function handleSubmit(e)

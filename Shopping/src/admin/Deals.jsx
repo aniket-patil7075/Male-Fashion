@@ -6,6 +6,9 @@ import AdminMenu from "../assets/AdminMenu";
 import DealWeek from "../assets/DealWeek"
 
 function Deals() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div style={{ paddingTop: "200px" }}>
       <Container>

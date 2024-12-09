@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/esm/Container";
 import Form from "react-bootstrap/Form";
@@ -10,6 +10,9 @@ function ForgotPassword() {
   const [newPassword, setNewPassword] = useState("");
   const [answer, setAnswer] = useState("");
   const navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   function changePassword(e) {
     e.preventDefault();

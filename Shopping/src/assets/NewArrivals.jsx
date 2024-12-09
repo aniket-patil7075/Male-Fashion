@@ -8,6 +8,9 @@ import { useCart } from "../context/cart";
 import { useHeart } from "../context/heartlist";
 
 function NewArrivals() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [products, setProducts] = useState([]);
   const [newArrivals, setNewArrivals] = useState([]);
   const [showArrival, setShowArrival] = useState(false);

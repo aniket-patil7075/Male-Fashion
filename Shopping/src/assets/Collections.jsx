@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Container from "react-bootstrap/esm/Container";
 import { Row, Col } from "react-bootstrap";
 
 function Collections() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div style={{ marginTop: "100px" }}>
       <Container fluid className="position-relative collection">

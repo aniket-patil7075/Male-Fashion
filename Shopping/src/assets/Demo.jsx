@@ -1,16 +1,19 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 function Demo() {
     const [productName, setProductName] = useState('');
-  const [colors, setColors] = useState(['']); // Store colors as an array
-  const [newColor, setNewColor] = useState('#000000'); // Default color (black)
+  const [colors, setColors] = useState(['']); 
+  const [newColor, setNewColor] = useState('#000000'); 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleAddProduct = (e) => {
     e.preventDefault();
-    // Handle product creation logic here
+    
     console.log('Product Name:', productName);
     console.log('Selected Colors:', colors);
-    // Reset form
+    
     setProductName('');
     setColors(['']);
   };

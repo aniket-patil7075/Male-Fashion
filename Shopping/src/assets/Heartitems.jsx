@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useHeart } from '../context/heartlist'
 import { useAuth } from '../context/auth'
 import { Button, Col, Container, Row } from 'react-bootstrap'
@@ -9,6 +9,9 @@ function Heartitems() {
     const [heart, setHeart] = useHeart() 
     const [auth, setAuth] = useAuth() 
     const navigate = useNavigate() 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
 
     const totalPrice = () => {
         let total = 0

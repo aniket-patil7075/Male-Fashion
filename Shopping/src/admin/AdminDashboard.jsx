@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuth } from "../context/auth";
 import AdminMenu from "../assets/AdminMenu";
 import { Card, Container, Row, Col } from "react-bootstrap";
@@ -6,6 +6,9 @@ import Form from "react-bootstrap/Form";
 
 function AdminDashboard() {
   const [auth] = useAuth();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div style={{ paddingTop: "200px" }}>
       <Container>

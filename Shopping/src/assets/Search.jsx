@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
@@ -9,6 +9,9 @@ import { FaPlus } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 function Search() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [cart, setCart] = useCart();
   const [heart, setHeart] = useState(() => {
     const savedHeart = localStorage.getItem("heart");

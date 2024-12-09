@@ -8,14 +8,14 @@ import LatestNews from "./LatestNews";
 
 function Home() {
   useEffect(() => {
-    // Check if the page has already been refreshed after login
+    window.scrollTo(0, 0);
+  }, []);
+  useEffect(() => {
     if (sessionStorage.getItem("loggedIn") && !sessionStorage.getItem("refreshed")) {
-      // Set a flag to prevent infinite reloads
       sessionStorage.setItem("refreshed", "true");
-      // Reload the page once after a successful login
       window.location.reload();
     }
-  }, []); // Empty dependency array ensures it runs only once
+  }, []); 
 
   return (
     <div>

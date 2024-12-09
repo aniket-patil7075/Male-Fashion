@@ -1,8 +1,12 @@
 // import React from "react";
+import { useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 
 function LatestNews() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="latestNewsMainDiv" style={{paddingTop:"180px"}} >
       <Container className="">

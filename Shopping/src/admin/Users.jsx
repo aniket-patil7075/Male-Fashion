@@ -7,6 +7,9 @@ function Users() {
   const [error, setError] = useState(null);
 
   async function getUser() {
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
     try {
       const response = await fetch("http://localhost:4300/api/user/getuser", {
         method: "GET",

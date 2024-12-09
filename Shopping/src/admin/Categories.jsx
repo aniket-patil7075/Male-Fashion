@@ -14,6 +14,9 @@ function Categories() {
   const [selected, setSelected] = useState(null);
   const [updatedName, setUpdateName] = useState("");
   const [auth] = useAuth();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const token = auth.token;
   function getAllCategory() {
     fetch("http://localhost:4300/api/category/getcategory").then((res1) => {

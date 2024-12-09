@@ -14,6 +14,9 @@ import Searchinput from "./Searchinput";
 import { useHeart } from "../context/heartlist";
 
 function Shop() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   // const [isFirstDropdownOpen, setIsFirstDropdownOpen] = useState(false);
   const [selectedSize, setSelectedSize] = useState(null);
   const [products, setProducts] = useState([]);

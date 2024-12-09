@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Accordion from "react-bootstrap/Accordion";
 
 function AdminMenu() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div>
       {/* <ListGroup defaultActiveKey="#link1" className="ms-3 p-3"> */}

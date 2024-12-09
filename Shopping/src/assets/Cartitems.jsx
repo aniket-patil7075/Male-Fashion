@@ -16,6 +16,9 @@ function Cartitems() {
   const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState("QR");
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const renderPaymentOption = () => {
     switch (selectedOption) {

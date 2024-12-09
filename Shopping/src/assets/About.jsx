@@ -6,6 +6,9 @@ import { useEffect, useState } from "react";
 function About() {
   const [numberOfUsers, setNumberOfUsers] = useState(0);
   const [numberOfCategories, setNumberOfCategories] = useState(0);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   async function fetchUserCount() {
     try {
       const response = await fetch("http://localhost:4300/api/user/getuser");

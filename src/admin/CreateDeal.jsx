@@ -24,6 +24,9 @@ function CreateDeal() {
   const [auth] = useAuth();
   const token = auth.token;
   const navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   function addDeal(e) {
     e.preventDefault();

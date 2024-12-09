@@ -8,16 +8,15 @@ import { useCart } from "../context/cart";
 import { useHeart } from "../context/heartlist";
 
 function NewArrivals() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [products, setProducts] = useState([]);
   const [newArrivals, setNewArrivals] = useState([]);
   const [showArrival, setShowArrival] = useState(false);
   const [fade, setFade] = useState(false);
   const [cart, setCart] = useCart();
   const [heart, setHeart] = useHeart();
-  // const [heart, setHeart] = useState(() => {
-  //   const savedHeart = localStorage.getItem("heart");
-  //   return savedHeart ? JSON.parse(savedHeart) : [];
-  // });
 
   const handleCartClick = (item) => {
     const loginData = localStorage.getItem("login");

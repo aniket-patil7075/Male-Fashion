@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Form from "react-bootstrap/Form";
 import Button from 'react-bootstrap/Button';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 function CreditCard() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="p-3 bg-light border border-secondary border-opacity-25">
         <h5 className='text-center'>Card Details</h5>

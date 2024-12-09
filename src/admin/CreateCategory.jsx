@@ -17,6 +17,9 @@ function CreateCategory() {
   const [selected, setSelected] = useState(null);
   const [updatedName, setUpdateName] = useState("");
   const [auth] = useAuth();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const token = auth.token;
   console.log(token);
   function handleSubmit(e) {

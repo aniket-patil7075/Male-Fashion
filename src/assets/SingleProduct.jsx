@@ -4,6 +4,9 @@ import { Carousel, Card, Button, Container, Col, Row } from "react-bootstrap";
 import { useCart } from "../context/cart";
 
 function SingleProduct() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const { id } = useParams(); // Extract 'id' from the URL
   const [product, setProduct] = useState(null); // Store product details
   const [loading, setLoading] = useState(true); // Loading state

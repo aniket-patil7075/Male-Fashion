@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import Cartitems from "./Cartitems";
 
 function ShoppingCart() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
-    <div>ShoppingCart</div>
+    <div>
+      <Cartitems/>
+    </div>
   )
 }
 

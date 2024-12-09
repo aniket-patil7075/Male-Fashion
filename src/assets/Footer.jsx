@@ -1,8 +1,12 @@
 // import React from "react";
+import { useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 
 function Footer() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="bg-dark text-light text-center p-4 " style={{marginTop:"75px"}}>
       <Container>

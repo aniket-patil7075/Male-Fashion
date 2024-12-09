@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/esm/Container";
 import Form from "react-bootstrap/Form";
@@ -7,6 +7,9 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/auth";
 
 function Signin() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -47,11 +50,17 @@ function Signin() {
           JSON.parse(localStorage.getItem("login"))
         );
 
-        navigate("/");
+        // Set the "loggedIn" flag in sessionStorage to indicate login success
+        sessionStorage.setItem("loggedIn", "true");
+
+        // Navigate to home page after successful login
+        navigate("/", { replace: true });
+
+        // Force a reload of the page after navigation
+        window.location.reload();
       });
     });
   }
-  
 
   return (
     <div className="" style={{ paddingTop: "180px" }}>
@@ -82,7 +91,7 @@ function Signin() {
           <Button
             variant="dark"
             onClick={() => navigate("/Forgotpassword")}
-            type="submit"
+            type="button"
             className="mx-auto d-block heroButton mt-4 px-4 py-2"
           >
             Forgot Password

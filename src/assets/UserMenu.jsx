@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import Accordion from "react-bootstrap/Accordion";
 
 function UserMenu() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div  style={{paddingTop:'150px'}}>
         {/* <ListGroup defaultActiveKey="#link1" className='m-3 p-3'>

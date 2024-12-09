@@ -2,8 +2,12 @@
 import { Col, Container, Row } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form';
 import Button from "react-bootstrap/Button";
+import { useEffect } from 'react';
 
 function Contact() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div style={{paddingTop:"135px"}}>
       <iframe

@@ -5,6 +5,9 @@ export default function AdminRoute()
 {
     const [ok,setOk]=useState(false)
     const [auth,setAuth]=useAuth()
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
     useEffect(()=>{
         const authCheck=()=>{
             fetch("http://localhost:4300/api/auth/adminauth",{

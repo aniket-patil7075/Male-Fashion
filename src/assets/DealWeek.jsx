@@ -3,6 +3,9 @@ import { Container, Row, Col, Button, Carousel } from "react-bootstrap";
 
 function DealWeek() {
   const [deal, setDeal] = useState([]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // Fetch deals from backend
   function getDeals() {

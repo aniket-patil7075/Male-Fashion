@@ -16,6 +16,9 @@ function Cartitems() {
   const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState("QR");
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const renderPaymentOption = () => {
     switch (selectedOption) {
@@ -35,19 +38,17 @@ function Cartitems() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-
   const [quantities, setQuantities] = useState(
     cart.reduce((acc, item) => {
-      acc[item._id] = item.quantity || 0; 
+      acc[item._id] = 1; // Set default quantity to 1
       return acc;
     }, {})
   );
 
   useEffect(() => {
-    
     setQuantities(
       cart.reduce((acc, item) => {
-        acc[item._id] = item.quantity || 0;
+        acc[item._id] = quantities[item._id] || 1; // Default to 1 if undefined
         return acc;
       }, {})
     );
@@ -71,7 +72,7 @@ function Cartitems() {
 
   
   const incrementQuantity = (id) => {
-    setQuantities((prev) => ({ ...prev, [id]: (prev[id] || 1) + 1 }));
+    setQuantities((prev) => ({ ...prev, [id]: (prev[id] || 1) + 1 })); // Start increment from 1
   };
 
   const decrementQuantity = (id) => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Col, Container, Row,Button } from "react-bootstrap";
 import { FaFacebookF, FaTwitter, FaYoutube, FaLinkedinIn } from "react-icons/fa";
 import { FaQuoteLeft } from "react-icons/fa6";
@@ -6,6 +6,9 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import Form from 'react-bootstrap/Form';
 function BlogDetails() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="blog-div-main">
       <div className="bg-div1 py-5" >

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import Button from "react-bootstrap/Button";
 import { FaArrowRightLong } from "react-icons/fa6";
@@ -8,6 +8,9 @@ import { FaTwitter } from "react-icons/fa";
 import { FaPinterestP } from "react-icons/fa";
 
 function Hero() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="mainHero">
       <Carousel

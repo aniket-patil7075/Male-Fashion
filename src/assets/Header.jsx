@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -13,6 +13,9 @@ function Header() {
   const [auth, setAuth] = useAuth();
   const [cart] = useCart();
   const [heart] = useHeart();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   function handleLogout() {
     setAuth({
@@ -45,7 +48,7 @@ function Header() {
             ) : (
               <>
                 <>
-                  <NavDropdown title={auth?.user?.name} id="basic-nav-dropdown">
+                  <NavDropdown title={auth?.user?.name} id="basic-nav-dropdown" className="custom-dropdown">
                     <Link
                       to={`/Dashboard/${
                         auth?.user?.role === 1 ? "admin" : "user"
@@ -82,7 +85,7 @@ function Header() {
           <Navbar.Collapse id="basic-navbar-nav" className="w-100">
             <div className="d-flex justify-content-between w-100 align-items-center">
               <Nav className="mx-auto">
-                <Nav.Link as={Link} to="/" className="nav-home px-4">
+                <Nav.Link as={Link} to="/" className="nav-line px-4">
                   Home
                 </Nav.Link>
                 <Nav.Link as={Link} to="/Shop" className="nav-line px-4">
@@ -91,7 +94,7 @@ function Header() {
                 <NavDropdown
                   title="Pages"
                   id="basic-nav-dropdown"
-                  className="nav-line px-4"
+                  className="custom-dropdown nav-line px-4"
                 >
                   <NavDropdown.Item as={Link} to="/About">
                     About Us

@@ -6,6 +6,9 @@ import { CiStar } from "react-icons/ci";
 import AdminMenu from '../assets/AdminMenu';
 
 function Products() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [products, setProducts] = useState([]);
   function getprods() {
     fetch("http://localhost:4300/api/product/getproducts").then((resp1) => {

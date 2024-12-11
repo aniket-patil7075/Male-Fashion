@@ -57,7 +57,7 @@ function Cartitems() {
   const totlePrice = () => {
     let total = 0;
     cart?.forEach((item) => {
-      total = total + item.price * (quantities[item._id] || 1); // Multiply by quantity
+      total = total + item.price * (quantities[item._id] || 1);
     });
     return total;
   };
@@ -172,10 +172,10 @@ function Cartitems() {
                 <h6>Total: ₹ {totlePrice()}</h6>
                 <Button
                   variant="dark"
-                  className="heroButton px-4 py-2 mt-4 rounded-0"
+                  className="heroButton px-2 py-2 mt-4 rounded-0"
                   onClick={handleShow}
                 >
-                  Proceed to Checkout
+                  PROCEED TO CHECKOUT
                 </Button>
               </div>
               <Modal
@@ -232,7 +232,7 @@ function Cartitems() {
                 className="heroButton py-2 px-4 "
                 onClick={handleClose}
               >
-                Close
+                CLOSE
               </Button>
               <Button
                 variant=""
@@ -240,7 +240,7 @@ function Cartitems() {
                 className="heroButton py-2 px-4 "
                 onClick={handleClose}
               >
-                Save Changes
+                 PLACE ORDER
               </Button>
             </Modal.Footer>
           </Modal>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useAuth } from '../context/auth'
 import { Card, Container, Row, Col } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
@@ -6,6 +6,9 @@ import UserMenu from '../assets/UserMenu'
 
 function Dashboard() {
   const [auth]=useAuth()
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className='p-5' style={{paddingTop:"200px"}}>
       <Container fluid>

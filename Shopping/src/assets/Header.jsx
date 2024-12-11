@@ -94,20 +94,16 @@ function Header() {
                 <NavDropdown
                   title="Pages"
                   id="basic-nav-dropdown"
-                  className="custom-dropdown nav-line px-4"
+                  className="custom-dropdown nav-line px-4 bg-white"
                 >
                   <NavDropdown.Item as={Link} to="/About">
                     About Us
                   </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/ShopDetails">
-                    Shop Details
-                  </NavDropdown.Item>
+                  
                   <NavDropdown.Item as={Link} to="/ShoppingCart">
                     Shopping Cart
                   </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/CheckOut">
-                    Check Out
-                  </NavDropdown.Item>
+                  
                   <NavDropdown.Item as={Link} to="/BlogDetails">
                     Blog Details
                   </NavDropdown.Item>

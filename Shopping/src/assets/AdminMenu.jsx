@@ -15,12 +15,29 @@ function AdminMenu() {
       <div className="custom-accordion">
         <Accordion defaultActiveKey="0">
           <Accordion.Item eventKey="0">
+            <Accordion.Header>Admin Dashboard</Accordion.Header>
+            <Accordion.Body>
+              <ListGroupItem className="py-2">
+                <Link
+                  to="/Dashboard/admin"
+                  className="text-decoration-none text-secondary"
+                >
+                  Dashboard
+                </Link>
+              </ListGroupItem>
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
+      </div>
+      <div className="custom-accordion">
+        <Accordion defaultActiveKey="0">
+          <Accordion.Item eventKey="0">
             <Accordion.Header>PROFILE</Accordion.Header>
 
             <Accordion.Body>
               <ListGroupItem className="py-2">
                 <Link
-                  to="/Dashboard/admin"
+                  to="/Dashboard/admin/Profile"
                   className="text-decoration-none text-secondary"
                 >
                   My Profile
@@ -44,7 +61,6 @@ function AdminMenu() {
                   Create Category
                 </Link>
               </ListGroupItem>
-
               <ListGroupItem className="py-2">
                 <Link
                   to="/Dashboard/admin/Category"
@@ -61,7 +77,6 @@ function AdminMenu() {
         <Accordion defaultActiveKey="0">
           <Accordion.Item eventKey="0">
             <Accordion.Header>PRODUCT</Accordion.Header>
-
             <Accordion.Body>
               <ListGroupItem className="py-2">
                 <Link
@@ -71,7 +86,6 @@ function AdminMenu() {
                   Create Product
                 </Link>
               </ListGroupItem>
-
               <ListGroupItem className="py-2">
                 <Link
                   to="/Dashboard/admin/Products"
@@ -88,7 +102,6 @@ function AdminMenu() {
         <Accordion defaultActiveKey="0">
           <Accordion.Item eventKey="0">
             <Accordion.Header>DEAL</Accordion.Header>
-
             <Accordion.Body>
               <ListGroupItem className="py-2">
                 <Link
@@ -98,7 +111,6 @@ function AdminMenu() {
                   Create Deal
                 </Link>
               </ListGroupItem>
-
               <ListGroupItem className="py-2">
                 <Link
                   to="/Dashboard/admin/Deals"
@@ -115,7 +127,6 @@ function AdminMenu() {
         <Accordion defaultActiveKey="0">
           <Accordion.Item eventKey="0">
             <Accordion.Header>USERS</Accordion.Header>
-
             <Accordion.Body>
               <ListGroupItem className="py-2">
                 <Link

@@ -7,9 +7,6 @@ function Users() {
   const [error, setError] = useState(null);
 
   async function getUser() {
-    useEffect(() => {
-      window.scrollTo(0, 0);
-    }, []);
     try {
       const response = await fetch("http://localhost:4300/api/user/getuser", {
         method: "GET",
@@ -17,13 +14,14 @@ function Users() {
           "Content-Type": "application/json",
         },
       });
+      
 
       if (!response.ok) {
         throw new Error(`Error: ${response.status} ${response.statusText}`);
       }
 
       const data = await response.json();
-      console.log(data.user); // Log the response directly
+      console.log(data.user); 
       setUsers(data.user);
     } catch (error) {
       console.error("Fetch error:", error);

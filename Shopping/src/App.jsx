@@ -17,7 +17,6 @@ import AdminRoute from "./assets/AdminRoute";
 import AdminDashboard from "./admin/AdminDashboard";
 import CreateCategory from "./admin/CreateCategory";
 import CreateProduct from "./admin/CreateProduct";
-import Users from "./admin/users";
 import ShoppingCart from "./assets/ShoppingCart";
 import ShopDetails from "./assets/ShopDetails"
 import CheckOut from "./assets/CheckOut"
@@ -25,6 +24,7 @@ import BlogDetails from "./assets/BlogDetails"
 import Blog from "./assets/Blog";
 import Products from "./assets/Products";
 import CreateDeal from "./admin/CreateDeal";
+import Profiles from "./admin/Profile";
 import Updateproduct from "./admin/Updateproduct";
 import Categories from "./admin/Categories";
 import Deals from "./admin/Deals";
@@ -32,6 +32,7 @@ import SingleProduct from "./assets/SingleProduct";
 import Search from "./assets/Search"
 import Cartitems from "./assets/Cartitems";
 import Heartitems from "./assets/Heartitems";
+import Users from "./admin/Users";
 
 function App() {
   return (
@@ -64,6 +65,7 @@ function App() {
           {/* {Admin Routes} */}
           <Route path="Dashboard" element={<AdminRoute/>}>
             <Route path="admin" element={<AdminDashboard/>} />
+            <Route path="admin/Profile" element={<Profiles/>} />
             <Route path="admin/Createcategory" element={<CreateCategory/>} />
             <Route path="admin/Category" element={<Categories/>} />
             <Route path="admin/Createproduct" element={<CreateProduct/>} />

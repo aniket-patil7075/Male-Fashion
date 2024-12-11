@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {Row, Col , Container} from 'react-bootstrap'
 import UserMenu from '../assets/UserMenu'
 
 function Profile() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
   return (
     <div>
         <Container fluid>

@@ -64,26 +64,18 @@ function DealWeek() {
           {deal.map((item, index) => (
             <Carousel.Item key={index}>
               <Row className="py-5">
-                <Col lg={4} className="position-relative pe-5">
-                  <div className="white-div"></div>
-                  <h3 className="h11">
-                    <span className="text-danger">D</span>EAL{" "}
-                    <span className="text-danger">O</span>F{" "}
-                    <span className="text-danger">T</span>HE{" "}
-                    <span className="text-danger">W</span>EEK
-                  </h3>
-                </Col>
-                <Col lg={4} className="position-relative px-5">
+               
+                <Col lg={6} className="position-relative px-5">
                   <div className="deal-sale text-white rounded rounded-circle p-4">
                     <p className="sale">Sale Of</p>
                     <p className="fw-bold">₹ {item.price}</p>
                   </div>
                   <img
                     src={`http://localhost:4300/api/deal/getphoto/${item._id}`}
-                    alt="Special Deal" className="" style={{width:"350px", height:"350px"}}
+                    alt="Special Deal" className="ms-5" style={{width:"350px", height:"350px"}}
                   />
                 </Col>
-                <Col lg={4} className="text-start ps-5">
+                <Col lg={6} className="text-start ps-5">
                   <div className="ps-3">
                     <p className="text-danger">
                       <span className="text-danger">D</span>EAL{" "}

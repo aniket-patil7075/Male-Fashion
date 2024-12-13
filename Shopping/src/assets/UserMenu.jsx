@@ -26,7 +26,7 @@ function UserMenu() {
             <Accordion.Body>
               <ListGroupItem className="py-2">
                 <Link
-                  to='/Dashboard/user/Profile'
+                  to='/Dashboard/user'
                   className="text-decoration-none text-secondary"
                 >
                   My Profile

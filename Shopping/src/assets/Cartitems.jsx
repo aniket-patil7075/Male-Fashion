@@ -82,6 +82,42 @@ function Cartitems() {
     }));
   };
 
+  const handlePlaceOrder = () => {
+    const userEmail = JSON.parse(localStorage.getItem("login")).user.email;
+
+    const currentOrders =
+      JSON.parse(localStorage.getItem("adminOrders")) || [];
+    const currentDate = new Date().toISOString();
+
+    let lastOrderId = JSON.parse(localStorage.getItem("lastOrderId")) || 0;
+
+    const newOrders = [
+      ...currentOrders,
+      ...cart.map((item) => {
+          lastOrderId += 1; 
+          const orderId = `#MF${lastOrderId.toString().padStart(4, "0")}`;
+          return {
+              ...item,
+              quantity: quantities[item._id],
+              userEmail,
+              date: currentDate,
+              orderId, 
+          };
+      }),
+  ];
+
+    // console.log("Cart Item : ",currentOrders);
+    
+    localStorage.setItem("adminOrders", JSON.stringify(newOrders));
+    localStorage.setItem("lastOrderId", JSON.stringify(lastOrderId));
+
+    setCart([]);
+    localStorage.setItem("cart", JSON.stringify([]));
+
+    setShow(false);
+    alert("Your order has been placed successfully! Thank you for shopping with us.");
+  };
+
   return (
     <div style={{ paddingTop: "135px" }}>
       <div
@@ -238,7 +274,10 @@ function Cartitems() {
                 variant=""
                 id=""
                 className="heroButton py-2 px-4 "
-                onClick={handleClose}
+                onClick={() => {
+                  handleClose();
+                  handlePlaceOrder();
+                }}
               >
                  PLACE ORDER
               </Button>

@@ -170,7 +170,7 @@ const handleWishlistClick = (item) => {
     fetch("http://localhost:4300/api/category/getcategory")
       .then((res1) => res1.json())
       .then((res2) => {
-        console.log(res2);
+        // console.log(res2);
         setCategories(res2.category);
       })
       .catch((error) => console.log(error));
@@ -180,7 +180,7 @@ const handleWishlistClick = (item) => {
     fetch("http://localhost:4300/api/product/getproducts")
       .then((resp1) => resp1.json())
       .then((resp2) => {
-        console.log(resp2);
+        // console.log(resp2);
         setProducts(resp2.product);
       })
       .catch((error) => console.log(error));
@@ -448,10 +448,11 @@ const handleWishlistClick = (item) => {
                               Add To Cart
                             </a>
                           </div>
-                          <p className="m-0 p-0 fw-bold prodName">
+                          <p className="m-0 p-0 fw-bold prodName ">
                             {item.name}
                           </p>
-                          <div className="d-flex gap-1 my-1">
+                         <div className="">
+                         <div className="d-flex gap-1 my-1">
                             <CiStar />
                             <CiStar />
                             <CiStar />
@@ -465,6 +466,7 @@ const handleWishlistClick = (item) => {
                           </p>
 
                           <h5 className="fw-bold">₹ {item.price}</h5>
+                         </div>
                         </Card.Body>
                       </Card>
                     </div>

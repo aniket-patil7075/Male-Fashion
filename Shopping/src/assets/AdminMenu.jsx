@@ -13,7 +13,7 @@ function AdminMenu() {
       <h4 className="fw-bold mb-4">ADMIN DASHBOARD</h4>
 
       <div className="custom-accordion">
-        <Accordion defaultActiveKey="0">
+        <Accordion defaultActiveKey="0" >
           <Accordion.Item eventKey="0">
             <Accordion.Header>Admin Dashboard</Accordion.Header>
             <Accordion.Body>

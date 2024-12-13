@@ -197,7 +197,9 @@ const handleWishlistClick = (item) => {
                       />
                     </button>
                     <Card.Body className="text-start p-2">
-                      <div className="addToCart">
+
+                      <div className="" style={{height:"25px"}}>
+                      <div className="addToCart ">
                         <FaPlus
                           style={{ color: "#e53637", fontSize: "12px" }}
                         />
@@ -217,7 +219,10 @@ const handleWishlistClick = (item) => {
                           Add To Cart
                         </button>
                       </div>
+                      
                       <p className="m-0 p-0 fw-bold prodName">{item.name}</p>
+                      </div>
+                      <div className="" >
                       <div className="d-flex gap-1 my-1">
                         <CiStar />
                         <CiStar />
@@ -229,6 +234,7 @@ const handleWishlistClick = (item) => {
                         Available Size: <span>{item.size}</span>
                       </p>
                       <h5 className="fw-bold">₹ {item.price}</h5>
+                      </div>
                     </Card.Body>
                   </Card>
                 </div>

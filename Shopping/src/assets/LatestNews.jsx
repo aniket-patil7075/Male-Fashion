@@ -19,7 +19,7 @@ function LatestNews() {
             <Card.Text>
               <p><img src="/calendar.png" alt="calender" className="me-2"/>16 February 2023</p>
               <h6 className="fw-bold">What Curling Irons Are The Best Ones</h6>
-              <p className="fw-bold ">READ MORE</p>
+              <p className="fw-bold read">READ MORE</p>
             </Card.Text>
             
           </Card.Body>
@@ -34,7 +34,7 @@ function LatestNews() {
             <Card.Text>
               <p><img src="/calendar.png" alt="calender" className="me-2"/>16 February 2023</p>
               <h6 className="fw-bold">What Curling Irons Are The Best Ones</h6>
-              <p className="fw-bold ">READ MORE</p>
+              <p className="fw-bold read">READ MORE</p>
             </Card.Text>
             
           </Card.Body>
@@ -49,7 +49,7 @@ function LatestNews() {
             <Card.Text>
               <p><img src="/calendar.png" alt="calender" className="me-2"/>16 February 2023</p>
               <h6 className="fw-bold">What Curling Irons Are The Best Ones</h6>
-              <p className="fw-bold ">READ MORE</p>
+              <p className="fw-bold read">READ MORE</p>
             </Card.Text>
             
           </Card.Body>

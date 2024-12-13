@@ -11,12 +11,12 @@ function Dashboard() {
   }, []);
   return (
     <div className='p-5' style={{paddingTop:"200px"}}>
-      <Container fluid>
-          <Row>
+      <Container>
+          <Row className='mx-4'>
             <Col md={3}>
               <UserMenu/>
             </Col>
-            <Col md={9} className="">
+            <Col md={9} className="" style={{marginTop:"100px"}}>
             <h3 className="fw-bold text-center my-5">PROFILE</h3>
             <Card className="p3 m-3 border-0 w-75">
               <Card.Header className="border-0 fs-5 fw-bold">
@@ -95,23 +95,7 @@ function Dashboard() {
                     </Col>
                   </Form.Group>
 
-                  <Form.Group
-                    as={Row}
-                    className="mb-3 fw-bold"
-                    controlId="formPlaintextPassword"
-                  >
-                    <Form.Label column sm="2">
-                      Password
-                    </Form.Label>
-                    <Col sm="10">
-                      <Form.Control
-                        plaintext
-                        readOnly
-                        defaultValue={auth?.user?.password}
-                        className="ms-5"
-                      />
-                    </Col>
-                  </Form.Group>
+                  
                 </Form>
               </Card.Body>
             </Card>

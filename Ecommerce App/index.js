@@ -8,6 +8,7 @@ const productRoutes= require('./routes/productRoute.js')
 const dealRoutes = require('./routes/dealRoute.js')
 const userRoutes=require('./routes/userRoute.js')
 const cartRoutes = require('./routes/cartRoute.js')
+const orderRoutes = require('./routes/orderRoute.js')
 const cors = require('cors')
 
 dotenv.config()
@@ -25,6 +26,8 @@ app.use("/api/product",productRoutes)
 app.use("/api/deal",dealRoutes)
 app.use("/api/user",userRoutes)
 app.use("/api/cart",cartRoutes)
+app.use("/api/orders",orderRoutes)
+
 app.get("/",(req,resp)=>{
     resp.send("<h1>Welcome to E-commerce App</h1>")
 })

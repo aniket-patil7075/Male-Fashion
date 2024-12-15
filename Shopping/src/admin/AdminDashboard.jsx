@@ -8,6 +8,7 @@ import { FaRupeeSign } from "react-icons/fa";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import OrderStatusDropdown from "./OrderStatusDropdown";
+import axios from "axios";
 
 function AdminDashboard() {
   const [auth] = useAuth();
@@ -104,8 +105,21 @@ function AdminDashboard() {
         return orderDate.getMonth() + 1 === parseInt(selectedMonth);
       });
 
-  const handleStatusChange = (orderId, newStatus) => {
-    console.log(`Order ID: ${orderId}, New Status: ${newStatus}`);
+  const handleStatusChange = async(orderId, newStatus) => {
+    try {
+      const updatedOrder = filteredOrders.find((order) => order.orderId === orderId);
+      const updatedData = { ...updatedOrder, status: newStatus };
+
+      // Send updated data to the backend
+      const response = await axios.put("/api/orders/update", updatedData);
+
+      if (response.status === 200) {
+        alert("Order status updated successfully!");
+      }
+    } catch (error) {
+      console.error("Failed to update order status:", error);
+      alert("An error occurred while updating the order status.");
+    }
   };
 
 

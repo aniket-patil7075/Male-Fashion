@@ -10,11 +10,17 @@ import Modal from "react-bootstrap/Modal";
 import QRcode from './QRcode'
 import CreditCard from "./CreditCard";
 import COD from "./COD";
+import axios from "axios";
 
 function Cartitems() {
   const [cart, setCart] = useCart();
   const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const token = auth.token;
+
   const [selectedOption, setSelectedOption] = useState("QR");
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -26,17 +32,12 @@ function Cartitems() {
         return <QRcode />;
       case "Card":
         return <CreditCard />;
-        case "COD":
+      case "COD":
         return <COD />;
       default:
         return null;
     }
   };
-
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   const [quantities, setQuantities] = useState(
     cart.reduce((acc, item) => {
@@ -70,7 +71,7 @@ function Cartitems() {
     localStorage.setItem("cart", JSON.stringify(myCart));
   }
 
-  
+
   const incrementQuantity = (id) => {
     setQuantities((prev) => ({ ...prev, [id]: (prev[id] || 1) + 1 })); // Start increment from 1
   };
@@ -78,11 +79,11 @@ function Cartitems() {
   const decrementQuantity = (id) => {
     setQuantities((prev) => ({
       ...prev,
-      [id]: Math.max(1, (prev[id] || 1) - 1), 
+      [id]: Math.max(1, (prev[id] || 1) - 1),
     }));
   };
 
-  const handlePlaceOrder = () => {
+  const handlePlaceOrder = async () => {
     const userEmail = JSON.parse(localStorage.getItem("login")).user.email;
 
     const currentOrders =
@@ -94,28 +95,71 @@ function Cartitems() {
     const newOrders = [
       ...currentOrders,
       ...cart.map((item) => {
-          lastOrderId += 1; 
-          const orderId = `#MF${lastOrderId.toString().padStart(4, "0")}`;
-          return {
-              ...item,
-              quantity: quantities[item._id],
-              userEmail,
-              date: currentDate,
-              orderId, 
-          };
+        lastOrderId += 1;
+        const orderId = `#MF${lastOrderId.toString().padStart(4, "0")}`;
+        return {
+          ...item,
+          quantity: quantities[item._id],
+          userEmail,
+          date: currentDate,
+          orderId,
+        };
       }),
-  ];
+    ];
 
-    // console.log("Cart Item : ",currentOrders);
-    
-    localStorage.setItem("adminOrders", JSON.stringify(newOrders));
-    localStorage.setItem("lastOrderId", JSON.stringify(lastOrderId));
+     console.log("Cart Item : ", newOrders);
 
-    setCart([]);
-    localStorage.setItem("cart", JSON.stringify([]));
+    try {
+      if (!Array.isArray(newOrders) || newOrders.length === 0) {
+        console.error("Invalid orders data: Orders should be a non-empty array.");
+        return;
+      }
+  
+      // Format `newOrders` before sending (if needed)
+      const formattedOrders = newOrders.map((order) => ({
+        orderId: order.orderId,
+        name: order.name,
+        quantity: order.quantity,
+        userEmail: order.userEmail,
+        price: order.price,
+        date: order.date || new Date().toISOString(),
+        color: typeof order.color === "string" ? order.color.split(",") : order.color,
+        size: Array.isArray(order.size) ? order.size.join(",") : order.size || null,
+        slug: order.slug || null,
+        description: order.description || null,
+        createdAt: order.createdAt || new Date().toISOString(),
+        updatedAt: order.updatedAt || new Date().toISOString(),
+      }));
+  
+      // Send the formatted orders to the backend
+      const response = await fetch("http://localhost:4300/api/orders/createorder", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Ensure token is properly formatted
+        },
+        body: JSON.stringify({ orders: formattedOrders }), // Wrap orders in an object
+      });
 
-    setShow(false);
-    alert("Your order has been placed successfully! Thank you for shopping with us.");
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log("Orders saved successfully:", data);
+        localStorage.setItem("adminOrders", JSON.stringify(newOrders));
+        localStorage.setItem("lastOrderId", JSON.stringify(lastOrderId));
+
+        setCart([]);
+        localStorage.setItem("cart", JSON.stringify([]));
+
+        setShow(false);
+        alert("Your order has been placed successfully! Thank you for shopping with us.");
+      } else {
+        throw new Error("Failed to save orders to the database.");
+      }
+    } catch (error) {
+      console.log("Error placing order : ", error);
+      alert("An error occurred while placing your order. Please try again.");
+    }
   };
 
   return (
@@ -149,7 +193,7 @@ function Cartitems() {
                 </thead>
                 <tbody>
                   {cart?.map((c) => {
-                    const quantity = quantities[c._id] || 1; 
+                    const quantity = quantities[c._id] || 1;
 
                     return (
                       <tr key={c._id}>
@@ -168,7 +212,7 @@ function Cartitems() {
                             <button
                               className="btn btn-outline-dark d-flex align-items-center justify-content-center"
                               onClick={() => decrementQuantity(c._id)}
-                              disabled={quantity <= 1} 
+                              disabled={quantity <= 1}
                             >
                               <FaMinus />
                             </button>
@@ -215,74 +259,74 @@ function Cartitems() {
                 </Button>
               </div>
               <Modal
-            show={show}
-            onHide={handleClose}
-            className="bg-secondary bg-opacity-25"
-          >
-            <Modal.Header closeButton>
-              <Modal.Title className="text-dark">
-                PAYMENT OPTION
-              </Modal.Title>
-            </Modal.Header>
-            <Modal.Body className="bg-secondary bg-opacity-10">
-              <Row
-                className="p-3 bg-light border border-opacity-25"
-                style={{ borderColor: "#13357b" }}
+                show={show}
+                onHide={handleClose}
+                className="bg-secondary bg-opacity-25"
               >
-                {renderPaymentOption()}
-              </Row>
-              <h5 className="py-3 ps-2 text-dark" style={{ color: "#13357b" }}>
-                UPI, Cards & More
-              </h5>
-              <Row
-                className="p-3 border border-opacity-25"
-                style={{ borderColor: "#13357b" }}
-              >
-                <div
-                  className="p-3 bg-light border border-opacity-25"
-                  onClick={() => setSelectedOption("QR")}
-                  style={{ cursor: "pointer", borderColor: "#13357b" }}
-                >
-                  UPI / QR
-                </div>
-                <div
-                  className="p-3 bg-light border border-opacity-25"
-                  onClick={() => setSelectedOption("Card")}
-                  style={{ cursor: "pointer", borderColor: "#13357b" }}
-                >
-                  Cards
-                </div>
-                <div
-                  className="p-3 bg-light border border-opacity-25"
-                  onClick={() => setSelectedOption("COD")}
-                  style={{ cursor: "pointer", borderColor: "#13357b" }}
-                >
-                  Cash On Delivery
-                </div>
-              </Row>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button
-                variant=""
-                id=""
-                className="heroButton py-2 px-4 "
-                onClick={handleClose}
-              >
-                CLOSE
-              </Button>
-              <Button
-                variant=""
-                id=""
-                className="heroButton py-2 px-4 "
-                onClick={() => {
-                  handleClose();
-                  handlePlaceOrder();
-                }}
-              >
-                 PLACE ORDER
-              </Button>
-            </Modal.Footer>
-          </Modal>
+                <Modal.Header closeButton>
+                  <Modal.Title className="text-dark">
+                    PAYMENT OPTION
+                  </Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="bg-secondary bg-opacity-10">
+                  <Row
+                    className="p-3 bg-light border border-opacity-25"
+                    style={{ borderColor: "#13357b" }}
+                  >
+                    {renderPaymentOption()}
+                  </Row>
+                  <h5 className="py-3 ps-2 text-dark" style={{ color: "#13357b" }}>
+                    UPI, Cards & More
+                  </h5>
+                  <Row
+                    className="p-3 border border-opacity-25"
+                    style={{ borderColor: "#13357b" }}
+                  >
+                    <div
+                      className="p-3 bg-light border border-opacity-25"
+                      onClick={() => setSelectedOption("QR")}
+                      style={{ cursor: "pointer", borderColor: "#13357b" }}
+                    >
+                      UPI / QR
+                    </div>
+                    <div
+                      className="p-3 bg-light border border-opacity-25"
+                      onClick={() => setSelectedOption("Card")}
+                      style={{ cursor: "pointer", borderColor: "#13357b" }}
+                    >
+                      Cards
+                    </div>
+                    <div
+                      className="p-3 bg-light border border-opacity-25"
+                      onClick={() => setSelectedOption("COD")}
+                      style={{ cursor: "pointer", borderColor: "#13357b" }}
+                    >
+                      Cash On Delivery
+                    </div>
+                  </Row>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button
+                    variant=""
+                    id=""
+                    className="heroButton py-2 px-4 "
+                    onClick={handleClose}
+                  >
+                    CLOSE
+                  </Button>
+                  <Button
+                    variant=""
+                    id=""
+                    className="heroButton py-2 px-4 "
+                    onClick={() => {
+                      handleClose();
+                      handlePlaceOrder();
+                    }}
+                  >
+                    PLACE ORDER
+                  </Button>
+                </Modal.Footer>
+              </Modal>
             </Col>
           </Row>
         ) : (

@@ -8,10 +8,10 @@ const orderSchema = new mongoose.Schema({
     price: { type: Number, required: true },
     date: { type: Date, required: true },
     status: { type: String, required: true },
-    color: { type: [String], required: false }, // Array of colors
+    color: { type: [String], required: false }, 
     size: {
-        type: [String], // Define `size` as an array of strings
-        default: [],    // Optional: Default to an empty array
+        type: [String], 
+        default: [],    
       },
     slug: { type: String, required: false },
     description: { type: String, required: false },

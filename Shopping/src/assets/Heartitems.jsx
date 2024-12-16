@@ -22,9 +22,21 @@ function Heartitems() {
     }
 
     function removeHeartItem(cid) {
-        const updatedHeart = heart.filter(item => item._id !== cid) 
-        setHeart(updatedHeart) 
-        localStorage.setItem('heart', JSON.stringify(updatedHeart)) 
+        let updatedHeart = [...heart]; 
+        const index = updatedHeart.findIndex((item) => item._id === cid);
+        if (index !== -1) {
+            updatedHeart.splice(index, 1); 
+            setHeart(updatedHeart); 
+            localStorage.setItem('heart', JSON.stringify(updatedHeart)); 
+            const loginData = JSON.parse(localStorage.getItem('login'));
+            if (loginData?.user?.email) {
+                const userEmail = loginData.user.email;
+                const heartKey = `heart_${userEmail}`;
+                localStorage.setItem(heartKey, JSON.stringify(updatedHeart));
+            }
+
+            console.log('Updated Heart List:', updatedHeart);
+        }
     }
 
     return (

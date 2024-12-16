@@ -110,7 +110,6 @@ function AdminDashboard() {
       const updatedOrder = filteredOrders.find((order) => order.orderId === orderId);
       const updatedData = { ...updatedOrder, status: newStatus };
 
-      // Send updated data to the backend
       const response = await axios.put("/api/orders/update", updatedData);
 
       if (response.status === 200) {

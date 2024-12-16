@@ -23,7 +23,7 @@ function Searchinput() {
     }
   return (
     <div>
-        <Form inline onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
         <Row>
           <Col xs="auto" className='d-flex'>
             <Form.Control

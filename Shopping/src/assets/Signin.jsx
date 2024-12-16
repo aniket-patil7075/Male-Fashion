@@ -50,13 +50,9 @@ function Signin() {
           JSON.parse(localStorage.getItem("login"))
         );
 
-        // Set the "loggedIn" flag in sessionStorage to indicate login success
         sessionStorage.setItem("loggedIn", "true");
-
-        // Navigate to home page after successful login
         navigate("/", { replace: true });
 
-        // Force a reload of the page after navigation
         window.location.reload();
       });
     });

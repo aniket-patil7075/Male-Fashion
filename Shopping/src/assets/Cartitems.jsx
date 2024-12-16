@@ -10,7 +10,7 @@ import Modal from "react-bootstrap/Modal";
 import QRcode from './QRcode'
 import CreditCard from "./CreditCard";
 import COD from "./COD";
-import axios from "axios";
+
 
 function Cartitems() {
   const [cart, setCart] = useCart();
@@ -69,7 +69,15 @@ function Cartitems() {
     myCart.splice(index, 1);
     setCart(myCart);
     localStorage.setItem("cart", JSON.stringify(myCart));
+    const loginData = JSON.parse(localStorage.getItem("login"));
+    if (loginData?.user?.email) {
+      const userEmail = loginData.user.email;
+      const cartKey = `cart_${userEmail}`;
+      localStorage.setItem(cartKey, JSON.stringify(myCart));
+    }
+    console.log("Updated Cart:", myCart);
   }
+
 
 
   const incrementQuantity = (id) => {
@@ -81,6 +89,20 @@ function Cartitems() {
       ...prev,
       [id]: Math.max(1, (prev[id] || 1) - 1),
     }));
+  };
+
+  const generateNewOrderId = () => {
+    // Read `lastOrderId` from localStorage or default to 0
+    let lastOrderId = JSON.parse(localStorage.getItem("lastOrderId")) || 0;
+  
+    // Increment `lastOrderId`
+    lastOrderId += 1;
+  
+    // Update `lastOrderId` back to localStorage
+    localStorage.setItem("lastOrderId", JSON.stringify(lastOrderId));
+  
+    // Return the new `orderId`
+    return `#MF${lastOrderId.toString().padStart(4, "0")}`;
   };
 
   const handlePlaceOrder = async () => {
@@ -107,15 +129,14 @@ function Cartitems() {
       }),
     ];
 
-     console.log("Cart Item : ", newOrders);
+    console.log("Cart Item : ", newOrders);
 
     try {
       if (!Array.isArray(newOrders) || newOrders.length === 0) {
         console.error("Invalid orders data: Orders should be a non-empty array.");
         return;
       }
-  
-      // Format `newOrders` before sending (if needed)
+
       const formattedOrders = newOrders.map((order) => ({
         orderId: order.orderId,
         name: order.name,
@@ -130,8 +151,7 @@ function Cartitems() {
         createdAt: order.createdAt || new Date().toISOString(),
         updatedAt: order.updatedAt || new Date().toISOString(),
       }));
-  
-      // Send the formatted orders to the backend
+
       const response = await fetch("http://localhost:4300/api/orders/createorder", {
         method: "POST",
         headers: {
@@ -144,15 +164,26 @@ function Cartitems() {
       const data = await response.json();
 
       if (response.ok) {
-        console.log("Orders saved successfully:", data);
+        // console.log("Orders saved successfully:", data);
         localStorage.setItem("adminOrders", JSON.stringify(newOrders));
         localStorage.setItem("lastOrderId", JSON.stringify(lastOrderId));
 
-        setCart([]);
-        localStorage.setItem("cart", JSON.stringify([]));
+        let myCart = [];
+        setCart(myCart);
+        localStorage.setItem("cart", JSON.stringify(myCart));
+
+        const loginData = JSON.parse(localStorage.getItem("login"));
+        if (loginData?.user?.email) {
+          const userEmail = loginData.user.email;
+          const cartKey = `cart_${userEmail}`;
+          localStorage.setItem(cartKey, JSON.stringify(myCart));
+        }
+
+        // console.log("Updated Cart:", myCart); 
 
         setShow(false);
         alert("Your order has been placed successfully! Thank you for shopping with us.");
+        navigate("/Dashboard/user/Orders");
       } else {
         throw new Error("Failed to save orders to the database.");
       }

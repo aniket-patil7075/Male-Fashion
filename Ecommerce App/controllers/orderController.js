@@ -59,7 +59,21 @@ const createOrders = async (req, res) => {
       res.status(500).json({ message: "Internal Server Error" });
     }
   };
-    
+  
+  const getAllOrders = async (req, res) => {
+    try {
+      const orders = await Order.find(); 
+      res.status(200).send({
+        success : true,
+        total : orders.length,
+        message : "All Orders",
+        orders,
+      })
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Unable to fetch orders" });
+    }
+  };
 
 const updateOrder = async (req, res) => {
   const { orderId, name, quantity, userEmail, price, date, status } = req.body;
@@ -84,4 +98,6 @@ const updateOrder = async (req, res) => {
   }
 };
 
-module.exports = { createOrders, updateOrder };
+
+
+module.exports = { getAllOrders , createOrders, updateOrder };

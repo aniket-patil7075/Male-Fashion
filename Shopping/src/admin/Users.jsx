@@ -14,14 +14,14 @@ function Users() {
           "Content-Type": "application/json",
         },
       });
-      
+
 
       if (!response.ok) {
         throw new Error(`Error: ${response.status} ${response.statusText}`);
       }
 
       const data = await response.json();
-      console.log(data.user); 
+      console.log(data.user);
       setUsers(data.user);
     } catch (error) {
       console.error("Fetch error:", error);
@@ -34,7 +34,7 @@ function Users() {
   }, []);
 
   return (
-    <div className="users-page" style={{paddingTop:"200px"}}>
+    <div className="users-page" style={{ paddingTop: "200px" }}>
       <Container>
         <Row className='mx-4'>
           <Col md={3} sm={12}>
@@ -51,7 +51,7 @@ function Users() {
                     <th>Phone</th>
                     <th>Address</th>
                     <th>Answer</th>
-                    
+
                   </tr>
                 </thead>
                 <tbody>
@@ -62,7 +62,7 @@ function Users() {
                       <td>{user.phone}</td>
                       <td>{user.address}</td>
                       <td>{user.answer}</td>
-                     
+
                     </tr>
                   ))}
                 </tbody>

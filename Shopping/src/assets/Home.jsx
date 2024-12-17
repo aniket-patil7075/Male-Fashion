@@ -7,9 +7,7 @@ import Instagram from "./Instagram";
 import LatestNews from "./LatestNews";
 
 function Home() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  
   useEffect(() => {
     if (sessionStorage.getItem("loggedIn") && !sessionStorage.getItem("refreshed")) {
       sessionStorage.setItem("refreshed", "true");
@@ -24,6 +22,8 @@ function Home() {
       <NewArrivals />
       <DealWeek />
       <Instagram />
+      <p className="text-danger fw-bold text-center " style={{marginTop:"80px"}}>LATESET NEWS</p>
+      <h2 className="text-center fw-bold mb-5 ">Fashion New trends</h2>
       <LatestNews />
     </div>
   );

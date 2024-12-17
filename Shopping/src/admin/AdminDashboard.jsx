@@ -12,6 +12,7 @@ import axios from "axios";
 
 function AdminDashboard() {
   const [auth] = useAuth();
+  const token = auth.token;
   const [orders, setOrders] = useState([]);
   const [totalOrders, setTotalOrders] = useState(0);
   const [totalIncome, setTotalIncome] = useState(0);
@@ -105,21 +106,36 @@ function AdminDashboard() {
         return orderDate.getMonth() + 1 === parseInt(selectedMonth);
       });
 
-  const handleStatusChange = async(orderId, newStatus) => {
-    try {
-      const updatedOrder = filteredOrders.find((order) => order.orderId === orderId);
-      const updatedData = { ...updatedOrder, status: newStatus };
-
-      const response = await axios.put("/api/orders/update", updatedData);
-
-      if (response.status === 200) {
-        alert("Order status updated successfully!");
-      }
-    } catch (error) {
-      console.error("Failed to update order status:", error);
-      alert("An error occurred while updating the order status.");
-    }
-  };
+      const handleStatusChange = async (orderId, newStatus) => {
+        try {
+          // Find the order to update
+          const updatedOrder = filteredOrders.find((order) => order.orderId === orderId);
+          const updatedData = { ...updatedOrder, status: newStatus };
+      
+          // Send the PUT request to update the order status
+          const response = await fetch("http://localhost:4300/api/orders/update", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`, // Ensure token is properly formatted
+            },
+            body: JSON.stringify(updatedData),
+          });
+      
+          const data = await response.json();
+      
+          if (response.ok) {
+            alert("Order status updated successfully!");
+          } else {
+            console.error("Failed to update order status:", data);
+            alert(data.message || "Failed to update order status.");
+          }
+        } catch (error) {
+          console.error("An error occurred while updating the order status:", error);
+          alert("An error occurred while updating the order status.");
+        }
+      };
+      
 
 
   return (

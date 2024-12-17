@@ -8,12 +8,12 @@ function LatestNews() {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <div className="latestNewsMainDiv" style={{paddingTop:"180px"}} >
+    <div className="latestNewsMainDiv" style={{ paddingBottom: "100px"}} >
       <Container className="">
-        <Row>
+        <Row  className='mx-4'>
           <Col lg={4}>
           <Card style={{ width: "22rem" }} className="blogCard ">
-          <Card.Img variant="top" src="/blog-1.jpg" />
+          <Card.Img variant="top" src="/blog-1.jpg" className="rounded-0" />
           <Card.Body className="cardBody w-75 px-4">
             
             <Card.Text>
@@ -28,7 +28,7 @@ function LatestNews() {
           </Col>
           <Col lg={4}>
           <Card style={{ width: "22rem" }} className="blogCard">
-          <Card.Img variant="top" src="/blog-1.jpg" />
+          <Card.Img variant="top" src="/blog-2.jpg" className="rounded-0"  />
           <Card.Body className="cardBody w-75 px-4">
             
             <Card.Text>
@@ -43,7 +43,7 @@ function LatestNews() {
           </Col>
           <Col lg={4}>
           <Card style={{ width: "22rem" }} className="blogCard">
-          <Card.Img variant="top" src="/blog-1.jpg" />
+          <Card.Img variant="top" src="/blog-3.jpg" className="rounded-0"  />
           <Card.Body className="cardBody w-75 px-4">
             
             <Card.Text>

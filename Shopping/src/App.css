@@ -678,6 +678,37 @@
   transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
 
+/* *********************************************************LOADER********************************************************** */
+/* Loader.css */
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+  z-index: 9999;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #ddd;
+  border-top-color: #13357b; /* Loader color */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
 
 /* ***************************************************** Below 425 px ********************************************************** */
 @media (max-width: 426px) {

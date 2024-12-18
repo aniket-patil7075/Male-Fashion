@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { Container, Row, Col, Button, Carousel } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 function DealWeek() {
+  const navigate = useNavigate();
   const [deal, setDeal] = useState([]);
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -113,7 +115,7 @@ function DealWeek() {
                         <span className="ps-3">Seconds</span>
                       </div>
                     </div>
-                    <Button variant="dark" className="heroButton mt-4 px-4 py-3">
+                    <Button variant="dark" className="heroButton mt-4 px-4 py-3" onClick={() => navigate('/Shop')}>
                       SHOP NOW
                     </Button>
                   </div>

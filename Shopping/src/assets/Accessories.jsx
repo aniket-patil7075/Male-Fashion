@@ -18,7 +18,6 @@ function Accessories() {
   const [cart, setCart] = useCart();
   const [heart, setHeart] = useHeart();
 
-  // Add to Cart Handler
   const handleCartClick = (item) => {
     const loginData = localStorage.getItem("login");
 
@@ -49,7 +48,6 @@ function Accessories() {
     }
   };
 
-  // Add to Wishlist Handler
   const handleWishlistClick = (item) => {
     const loginData = localStorage.getItem("login");
 
@@ -80,18 +78,14 @@ function Accessories() {
     }
   };
 
-  // Check if product is in the wishlist
   const isInWishlist = (item) => heart.some((prod) => prod._id === item._id);
 
-  // Fetch Products and Filter by Category
   const getprods = () => {
     fetch("http://localhost:4300/api/product/getproducts")
       .then((response) => response.json())
       .then((data) => {
-        // console.log("Products list: ", data);
         setProducts(data.product);
 
-        // Filter products by category name
         const filtered = data.product.filter(
           (item) => item.category?.name === "Accessories"
         );
@@ -106,101 +100,110 @@ function Accessories() {
 
   return (
     <div className="newArrivalMainDiv mb-5" style={{ paddingTop: "135px" }}>
-        <div
-                      className="bg-secondary bg-opacity-10 py-4 mb-5"
-                      style={{ paddingLeft: "10%" }}
-                    >
-                      <h4 className="fw-bold">Accessories</h4>
-                      <p>
-                        Home{" "}
-                        <span>
-                          <MdOutlineKeyboardArrowRight />
-                        </span>{" "}
-                        <span className="text-secondary"> Accessories</span>
-                      </p>
-                    </div>
+      <div
+        className="bg-secondary bg-opacity-10 py-4 mb-5"
+        style={{ paddingLeft: "10%" }}
+      >
+        <h4 className="fw-bold">Accessories</h4>
+        <p>
+          Home{" "}
+          <span>
+            <MdOutlineKeyboardArrowRight />
+          </span>{" "}
+          <span className="text-secondary"> Accessories</span>
+        </p>
+      </div>
       <Container>
         <div className="mx-lg-5">
-          <Row className="product-row">
-            {filteredProducts.map((item) => (
-              <Col sm={5} lg={3} key={item._id} className="mb-4 mt-5 fade-in">
-                <div className="addTo">
-                  <Card
-                    className="productCard"
-                    style={{ padding: "0", margin: "0" }}
-                  >
-                    <Card.Img
-                      variant="top"
-                      className="w-100 mx-auto d-block"
-                      src={`http://localhost:4300/api/product/getphoto/${item._id}`}
-                    />
-                    <button
-                      style={{
-                        position: "absolute",
-                        top: "10px",
-                        right: "10px",
-                        background: "none",
-                        border: "none",
-                      }}
-                      className="heart"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleWishlistClick(item);
-                      }}
+          {filteredProducts.length === 0 ? (
+            <div className="text-center">
+              <h5 className="fw-bold">No products found.</h5>
+              <p>We couldn't find any accessories matching your search.</p>
+            </div>
+          ) : (
+            <Row className="product-row">
+              {filteredProducts.map((item) => (
+                <Col sm={5} lg={3} key={item._id} className="mb-4 mt-5 fade-in">
+                  <div className="addTo">
+                    <Card
+                      className="productCard"
+                      style={{ padding: "0", margin: "0" }}
                     >
-                      <img
-                        src="./heart.png"
-                        alt="Add to favorites"
-                        style={{
-                          filter: isInWishlist(item)
-                            ? "invert(36%) sepia(80%) saturate(7482%) hue-rotate(340deg) brightness(91%) contrast(108%)"
-                            : "none",
-                        }}
+                      <Card.Img
+                        variant="top"
+                        className="w-100 mx-auto d-block"
+                        src={`http://localhost:4300/api/product/getphoto/${item._id}`}
                       />
-                    </button>
-                    <Card.Body className="text-start p-2">
-                      <div style={{ height: "25px" }}>
-                        <div className="addToCart">
-                          <FaPlus
-                            style={{ color: "#e53637", fontSize: "12px" }}
-                          />
-                          <button
-                            onClick={(e) => {
-                              e.preventDefault();
-                              handleCartClick(item);
-                            }}
-                            style={{
-                              backgroundColor: "transparent",
-                              border: "none",
-                              color: "#e53637",
-                              fontWeight: "bold",
-                              textDecoration: "none",
-                            }}
-                          >
-                            Add To Cart
-                          </button>
+                      <button
+                        style={{
+                          position: "absolute",
+                          top: "10px",
+                          right: "10px",
+                          background: "none",
+                          border: "none",
+                        }}
+                        className="heart"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleWishlistClick(item);
+                        }}
+                      >
+                        <img
+                          src="./heart.png"
+                          alt="Add to favorites"
+                          style={{
+                            filter: isInWishlist(item)
+                              ? "invert(36%) sepia(80%) saturate(7482%) hue-rotate(340deg) brightness(91%) contrast(108%)"
+                              : "none",
+                          }}
+                        />
+                      </button>
+                      <Card.Body className="text-start p-2">
+                        <div style={{ height: "25px" }}>
+                          <div className="addToCart">
+                            <FaPlus
+                              style={{ color: "#e53637", fontSize: "12px" }}
+                            />
+                            <button
+                              onClick={(e) => {
+                                e.preventDefault();
+                                handleCartClick(item);
+                              }}
+                              style={{
+                                backgroundColor: "transparent",
+                                border: "none",
+                                color: "#e53637",
+                                fontWeight: "bold",
+                                textDecoration: "none",
+                              }}
+                            >
+                              Add To Cart
+                            </button>
+                          </div>
+                          <p className="m-0 p-0 fw-bold prodName">
+                            {item.name}
+                          </p>
                         </div>
-                        <p className="m-0 p-0 fw-bold prodName">{item.name}</p>
-                      </div>
-                      <div>
-                        <div className="d-flex gap-1 my-1">
-                          <CiStar />
-                          <CiStar />
-                          <CiStar />
-                          <CiStar />
-                          <CiStar />
+                        <div>
+                          <div className="d-flex gap-1 my-1">
+                            <CiStar />
+                            <CiStar />
+                            <CiStar />
+                            <CiStar />
+                            <CiStar />
+                          </div>
+                          <p>
+                            Available Size: <span>{item.size}</span>
+                          </p>
+                          <h5 className="fw-bold">₹ {item.price}</h5>
                         </div>
-                        <p>
-                          Available Size: <span>{item.size}</span>
-                        </p>
-                        <h5 className="fw-bold">₹ {item.price}</h5>
-                      </div>
-                    </Card.Body>
-                  </Card>
-                </div>
-              </Col>
-            ))}
-          </Row>
+                      </Card.Body>
+                    </Card>
+                  </div>
+                </Col>
+              ))}
+            </Row>
+          )}
         </div>
       </Container>
     </div>

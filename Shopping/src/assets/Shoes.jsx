@@ -13,6 +13,7 @@ function Shoes() {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [cart, setCart] = useCart();
   const [heart, setHeart] = useHeart();
+  const [isLoading, setIsLoading] = useState(true); // Loading state
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -20,6 +21,7 @@ function Shoes() {
   }, []);
 
   const fetchProducts = () => {
+    setIsLoading(true); // Set loading to true before fetching
     fetch("http://localhost:4300/api/product/getproducts")
       .then((response) => response.json())
       .then((data) => {
@@ -29,7 +31,8 @@ function Shoes() {
         );
         setFilteredProducts(filtered);
       })
-      .catch((error) => console.error("Error fetching products:", error));
+      .catch((error) => console.error("Error fetching products:", error))
+      .finally(() => setIsLoading(false)); // Stop loading after fetch
   };
 
   const handleCartClick = (item) => {
@@ -96,96 +99,101 @@ function Shoes() {
 
   return (
     <div className="newArrivalMainDiv mb-5" style={{ paddingTop: "135px" }}>
-      <div
-              className="bg-secondary bg-opacity-10 py-4 mb-5"
-              style={{ paddingLeft: "10%" }}
-            >
-              <h4 className="fw-bold">Shoes</h4>
-              <p>
-                Home{" "}
-                <span>
-                  <MdOutlineKeyboardArrowRight />
-                </span>{" "}
-                <span className="text-secondary"> Shoes</span>
-              </p>
-            </div>
+      <div className="bg-secondary bg-opacity-10 py-4 mb-5" style={{ paddingLeft: "10%" }}>
+        <h4 className="fw-bold">Shoes</h4>
+        <p>
+          Home <span><MdOutlineKeyboardArrowRight /></span>{" "}
+          <span className="text-secondary"> Shoes</span>
+        </p>
+      </div>
       <Container>
         <div className="mx-lg-5">
-          <Row className="product-row">
-            {filteredProducts.map((item) => (
-              <Col sm={5} lg={3} key={item._id} className="mb-4 mt-5 fade-in">
-                <div className="addTo">
-                  <Card className="productCard" style={{ padding: "0", margin: "0" }}>
-                    <Card.Img
-                      variant="top"
-                      className="w-100 mx-auto d-block"
-                      src={`http://localhost:4300/api/product/getphoto/${item._id}`}
-                    />
-                    <button
-                      style={{
-                        position: "absolute",
-                        top: "10px",
-                        right: "10px",
-                        background: "none",
-                        border: "none",
-                      }}
-                      className="heart"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleWishlistClick(item);
-                      }}
-                    >
-                      <img
-                        src="./heart.png"
-                        alt="Add to favorites"
-                        style={{
-                          filter: isInWishlist(item)
-                            ? "invert(36%) sepia(80%) saturate(7482%) hue-rotate(340deg) brightness(91%) contrast(108%)"
-                            : "none",
-                        }}
+          {isLoading ? (
+            <div className="text-center py-5">
+              <p>Loading products...</p>
+            </div>
+          ) : filteredProducts.length === 0 ? (
+            <div className="text-center py-5">
+              <h5>No Products Found</h5>
+              <p>Try exploring other categories or check back later!</p>
+            </div>
+          ) : (
+            <Row className="product-row">
+              {filteredProducts.map((item) => (
+                <Col sm={5} lg={3} key={item._id} className="mb-4 mt-5 fade-in">
+                  <div className="addTo">
+                    <Card className="productCard" style={{ padding: "0", margin: "0" }}>
+                      <Card.Img
+                        variant="top"
+                        className="w-100 mx-auto d-block"
+                        src={`http://localhost:4300/api/product/getphoto/${item._id}`}
                       />
-                    </button>
-                    <Card.Body className="text-start p-2">
-                      <div style={{ height: "25px" }}>
-                        <div className="addToCart">
-                          <FaPlus style={{ color: "#e53637", fontSize: "12px" }} />
-                          <button
-                            onClick={(e) => {
-                              e.preventDefault();
-                              handleCartClick(item);
-                            }}
-                            style={{
-                              backgroundColor: "transparent",
-                              border: "none",
-                              color: "#e53637",
-                              fontWeight: "bold",
-                              textDecoration: "none",
-                            }}
-                          >
-                            Add To Cart
-                          </button>
+                      <button
+                        style={{
+                          position: "absolute",
+                          top: "10px",
+                          right: "10px",
+                          background: "none",
+                          border: "none",
+                        }}
+                        className="heart"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleWishlistClick(item);
+                        }}
+                      >
+                        <img
+                          src="./heart.png"
+                          alt="Add to favorites"
+                          style={{
+                            filter: isInWishlist(item)
+                              ? "invert(36%) sepia(80%) saturate(7482%) hue-rotate(340deg) brightness(91%) contrast(108%)"
+                              : "none",
+                          }}
+                        />
+                      </button>
+                      <Card.Body className="text-start p-2">
+                        <div style={{ height: "25px" }}>
+                          <div className="addToCart">
+                            <FaPlus style={{ color: "#e53637", fontSize: "12px" }} />
+                            <button
+                              onClick={(e) => {
+                                e.preventDefault();
+                                handleCartClick(item);
+                              }}
+                              style={{
+                                backgroundColor: "transparent",
+                                border: "none",
+                                color: "#e53637",
+                                fontWeight: "bold",
+                                textDecoration: "none",
+                              }}
+                            >
+                              Add To Cart
+                            </button>
+                          </div>
+                          <p className="m-0 p-0 fw-bold prodName">{item.name}</p>
                         </div>
-                        <p className="m-0 p-0 fw-bold prodName">{item.name}</p>
-                      </div>
-                      <div>
-                        <div className="d-flex gap-1 my-1">
-                          <CiStar />
-                          <CiStar />
-                          <CiStar />
-                          <CiStar />
-                          <CiStar />
+                        <div>
+                          <div className="d-flex gap-1 my-1">
+                            <CiStar />
+                            <CiStar />
+                            <CiStar />
+                            <CiStar />
+                            <CiStar />
+                          </div>
+                          <p>
+                            Available Size: <span>{item.size}</span>
+                          </p>
+                          <h5 className="fw-bold">₹ {item.price}</h5>
                         </div>
-                        <p>
-                          Available Size: <span>{item.size}</span>
-                        </p>
-                        <h5 className="fw-bold">₹ {item.price}</h5>
-                      </div>
-                    </Card.Body>
-                  </Card>
-                </div>
-              </Col>
-            ))}
-          </Row>
+                      </Card.Body>
+                    </Card>
+                  </div>
+                </Col>
+              ))}
+            </Row>
+          )}
         </div>
       </Container>
     </div>

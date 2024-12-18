@@ -58,10 +58,10 @@ function ForgotPassword() {
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridAnswer" className="my-4">
-            <Form.Label>Answer</Form.Label>
+            <Form.Label>Hint</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter your favourite sports"
+              placeholder="Enter your Hint"
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
             />

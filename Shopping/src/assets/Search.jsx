@@ -31,84 +31,92 @@ function Search() {
   const isInWishlist = (item) => heart.some((prod) => prod._id === item._id);
   return (
     <div style={{ paddingTop: "180px" }}>
-      <h5 className="mb-4">
-        {values?.result.length < 1
-          ? "No Products Found"
-          : `Found ${values?.result.length} Products`}
-      </h5>
+
       <Container>
-        <div className="row row-cols-1 row-cols-md-3 g-4">
-          {values?.result.map((item, index) => {
-            return (
-              <div className="col" key={index}>
-                <div className="col addTo">
-                  <Card
-                    key={index}
-                    className="productCard"
-                    style={{ padding: "0", margin: "0" }}
-                  >
-                    <Card.Img
-                      variant="top"
-                      className="w-100 mx-auto d-block"
-                      src={`http://localhost:4300/api/product/getphoto/${item._id}`}
-                    />{" "}
-                    <a
-                      href=""
-                      style={{
-                        position: "absolute",
-                        top: "10px",
-                        right: "10px",
-                      }}
-                      className="heart"
-                      onClick={() => handleWishlistClick(item)}
+        <div className="mx-4">
+          <h5 className="mb-4">
+            {values?.result.length < 1
+              ? "No Products Found"
+              : `Found ${values?.result.length} Products`}
+          </h5>
+          <div className="row row-cols-1 row-cols-md-4 g-4">
+            {values?.result.map((item, index) => {
+              return (
+                <div className="col" key={index}>
+                  <div className="col addTo">
+                    <Card
+                      key={index}
+                      className="productCard"
+                      style={{ padding: "0", margin: "0" }}
                     >
-                      <img
-                        src="./heart.png"
-                        alt="Add to favorites"
+                      <Link
+                        to={`/getsingleproduct/${item.slug}`}
+                        key={item._id}
+                        className="product-link text-decoration-none"
+                      >
+                        <Card.Img
+                          variant="top"
+                          className="w-100 mx-auto d-block"
+                          src={`http://localhost:4300/api/product/getphoto/${item._id}`}
+                        />{" "}
+                      </Link>
+                      <a
+                        href=""
                         style={{
-                          filter: isInWishlist(item)
-                            ? "invert(36%) sepia(80%) saturate(7482%) hue-rotate(340deg) brightness(91%) contrast(108%)"
-                            : "none",
+                          position: "absolute",
+                          top: "10px",
+                          right: "10px",
                         }}
-                      />
-                    </a>
-                    <Card.Body className="text-start p-2">
-                      <div className="addToCart">
-                        <FaPlus
-                          style={{ color: "#e53637", fontSize: "12px" }}
-                        />
-                        <a
-                          href=""
-                          variant="success"
-                          
-                          onClick={() => handleCartClick(item)}
+                        className="heart"
+                        onClick={() => handleWishlistClick(item)}
+                      >
+                        <img
+                          src="./heart.png"
+                          alt="Add to favorites"
                           style={{
-                            backgroundColor: "transparent",
-                            border: "none",
-                            color: "#e53637",
-                            fontWeight: "bold",
-                            textDecoration: "none",
+                            filter: isInWishlist(item)
+                              ? "invert(36%) sepia(80%) saturate(7482%) hue-rotate(340deg) brightness(91%) contrast(108%)"
+                              : "none",
                           }}
-                        >
-                          Add To Cart
-                        </a>
-                      </div>
-                      <p className="m-0 p-0 fw-bold prodName">{item.name}</p>
-                      <div className="d-flex gap-1 my-1">
-                        <CiStar />
-                        <CiStar />
-                        <CiStar />
-                        <CiStar />
-                        <CiStar />
-                      </div>
+                        />
+                      </a>
+                      <Card.Body className="text-start p-2">
+                        <div className="addToCart">
+                          <FaPlus
+                            style={{ color: "#e53637", fontSize: "12px" }}
+                          />
+                          <a
+                            href=""
+                            variant="success"
 
-                      <p>
-                        Available Size :<span> </span>
-                        {item.size}
-                      </p>
+                            onClick={() => handleCartClick(item)}
+                            style={{
+                              backgroundColor: "transparent",
+                              border: "none",
+                              color: "#e53637",
+                              fontWeight: "bold",
+                              textDecoration: "none",
+                            }}
+                          >
+                            Add To Cart
+                          </a>
+                        </div>
+                        <p className="m-0 p-0 fw-bold prodName">{item.name}</p>
+                        <div className="d-flex gap-1 my-1">
+                          <CiStar />
+                          <CiStar />
+                          <CiStar />
+                          <CiStar />
+                          <CiStar />
+                        </div>
 
-                      <h5 className="fw-bold">₹ {item.price}</h5>
-                      {/* <Button
+                        <p>
+                          Available Size :<span> </span>
+                          {item.size}
+                        </p>
+
+                        <h5 className="fw-bold">₹ {item.price}</h5>
+                        {/* <Button
                               variant="dark"
                               className="heroButton mt-4 px-4 py-2"
                               onClick={() => {
@@ -121,12 +129,13 @@ function Search() {
                             >
                               Add To Cart
                             </Button> */}
-                    </Card.Body>
-                  </Card>
+                      </Card.Body>
+                    </Card>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </Container>
     </div>

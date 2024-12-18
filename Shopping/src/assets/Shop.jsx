@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { CiStar } from "react-icons/ci";
 import Card from "react-bootstrap/Card";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import Form from "react-bootstrap/Form";
 import Accordion from "react-bootstrap/Accordion";
 import { Prices } from "./Prices";
@@ -26,6 +25,8 @@ function Shop() {
   const [radio, setRadio] = useState([]);
   const [cart, setCart] = useCart();
   const [heart, setHeart] = useHeart();
+  const [activeCategoryKey, setActiveCategoryKey] = useState("0");
+  const [activeFilterKey, setActiveFilterKey] = useState("0")
   // const [heart, setHeart] = useState(() => {
   //   const savedHeart = localStorage.getItem("heart");
   //   return savedHeart ? JSON.parse(savedHeart) : [];
@@ -43,7 +44,7 @@ function Shop() {
   //   const cartKey = `cart_${userToken}`;
   //   const existingCart = JSON.parse(localStorage.getItem(cartKey)) || [];
   //   const alreadyInCart = existingCart.find((prod) => prod._id === item._id);
-    
+
   //   if (alreadyInCart) {
   //     alert("Product is already in your cart.");
   //   } else {
@@ -57,16 +58,16 @@ function Shop() {
     const loginData = localStorage.getItem("login");
 
     if (!loginData) {
-        alert("Please log in to add items to your cart.");
-        return;
+      alert("Please log in to add items to your cart.");
+      return;
     }
 
     const parsedLoginData = JSON.parse(loginData);
     const userEmail = parsedLoginData?.user?.email; // Access email from the nested 'user' object
 
     if (!userEmail) {
-        alert("Email not found in login data.");
-        return;
+      alert("Email not found in login data.");
+      return;
     }
 
     console.log("User Email: ", userEmail);
@@ -76,48 +77,48 @@ function Shop() {
     const alreadyInCart = existingCart.find((prod) => prod._id === item._id);
 
     if (alreadyInCart) {
-        alert("Product is already in your cart.");
+      alert("Product is already in your cart.");
     } else {
-        const updatedCart = [...existingCart, item];
-        setCart(updatedCart);
-        localStorage.setItem(cartKey, JSON.stringify(updatedCart));
-        alert("Product successfully added to cart.");
+      const updatedCart = [...existingCart, item];
+      setCart(updatedCart);
+      localStorage.setItem(cartKey, JSON.stringify(updatedCart));
+      alert("Product successfully added to cart.");
     }
-};
+  };
 
 
-const handleWishlistClick = (item) => {
-  
-  const loginData = localStorage.getItem("login");
+  const handleWishlistClick = (item) => {
 
-  if (!loginData) {
+    const loginData = localStorage.getItem("login");
+
+    if (!loginData) {
       alert("Please log in to add items to your wishlist.");
       return;
-  }
+    }
 
-  const parsedLoginData = JSON.parse(loginData);
-  const userEmail = parsedLoginData?.user?.email; 
+    const parsedLoginData = JSON.parse(loginData);
+    const userEmail = parsedLoginData?.user?.email;
 
-  if (!userEmail) {
+    if (!userEmail) {
       alert("Email not found in login data.");
       return;
-  }
+    }
 
-  console.log("User Email: ", userEmail);
+    console.log("User Email: ", userEmail);
 
-  const heartKey = `heart_${userEmail}`; 
-  const existingHeart = JSON.parse(localStorage.getItem(heartKey)) || [];
-  const alreadyInWishlist = existingHeart.find((prod) => prod._id === item._id);
+    const heartKey = `heart_${userEmail}`;
+    const existingHeart = JSON.parse(localStorage.getItem(heartKey)) || [];
+    const alreadyInWishlist = existingHeart.find((prod) => prod._id === item._id);
 
-  if (alreadyInWishlist) {
+    if (alreadyInWishlist) {
       alert("Product is already in your wishlist!");
-  } else {
+    } else {
       const updatedHeart = [...existingHeart, item];
       setHeart(updatedHeart);
       localStorage.setItem(heartKey, JSON.stringify(updatedHeart));
       alert("Product successfully added to wishlist.");
-  }
-};
+    }
+  };
 
 
   const isInWishlist = (item) => heart.some((prod) => prod._id === item._id);
@@ -170,7 +171,7 @@ const handleWishlistClick = (item) => {
     fetch("http://localhost:4300/api/category/getcategory")
       .then((res1) => res1.json())
       .then((res2) => {
-        // console.log(res2);
+         console.log("Categories : ",res2);
         setCategories(res2.category);
       })
       .catch((error) => console.log(error));
@@ -285,11 +286,13 @@ const handleWishlistClick = (item) => {
               <Searchinput />
             </div>
             <div className="mt-3 custom-accordion">
-              <Accordion defaultActiveKey="0">
+              <Accordion className="w-75 "
+              // activeKey={activeFilterKey}
+              onSelect={(key) => setActiveFilterKey(key)}>
                 <Accordion.Item eventKey="0">
                   <Accordion.Header>CATEGORIES</Accordion.Header>
-                  {categories.map((c) => {
-                    return (
+                  <Accordion.Body>
+                    {categories.map((c) => (
                       <Form.Check
                         className="text-secondary py-2 ms-2"
                         type="checkbox"
@@ -297,15 +300,20 @@ const handleWishlistClick = (item) => {
                         label={c.name}
                         onChange={(e) => handleFilter(e.target.checked, c._id)}
                       />
-                    );
-                  })}
+                    ))}
+                  </Accordion.Body>
                 </Accordion.Item>
               </Accordion>
-              <Accordion defaultActiveKey="0">
+
+              <Accordion
+                className="w-75"
+                // activeKey={activeFilterKey}
+                onSelect={(key) => setActiveFilterKey(key)}
+              >
                 <Accordion.Item eventKey="0">
                   <Accordion.Header>FILTER</Accordion.Header>
-                  {priceRanges.map((p) => {
-                    return (
+                  <Accordion.Body>
+                    {priceRanges.map((p) => (
                       <Form.Check
                         className="text-secondary py-2 ms-2"
                         type="checkbox"
@@ -315,12 +323,12 @@ const handleWishlistClick = (item) => {
                           handleFilterPrice(e.target.checked, p._id)
                         }
                       />
-                    );
-                  })}
+                    ))}
+                  </Accordion.Body>
                 </Accordion.Item>
               </Accordion>
 
-              <Accordion defaultActiveKey="0" className="my-4">
+              <Accordion defaultActiveKey="0" className="my-2 w-75 ">
                 <Accordion.Item eventKey="0">
                   <Accordion.Header>SIZE</Accordion.Header>
                   <Accordion.Body>
@@ -351,7 +359,7 @@ const handleWishlistClick = (item) => {
             </div>
           </Col>
           <Col sm={9} md={9}>
-            <Container>
+            <Container className="ps-4">
               <div className="d-flex justify-content-between pb-3 me-2">
                 <p>
                   Showing {startItem}–{endItem} of {totalPages} pages
@@ -451,22 +459,22 @@ const handleWishlistClick = (item) => {
                           <p className="m-0 p-0 fw-bold prodName ">
                             {item.name}
                           </p>
-                         <div className="">
-                         <div className="d-flex gap-1 my-1">
-                            <CiStar />
-                            <CiStar />
-                            <CiStar />
-                            <CiStar />
-                            <CiStar />
+                          <div className="">
+                            <div className="d-flex gap-1 my-1">
+                              <CiStar />
+                              <CiStar />
+                              <CiStar />
+                              <CiStar />
+                              <CiStar />
+                            </div>
+
+                            <p>
+                              Available Size :<span> </span>
+                              {item.size}
+                            </p>
+
+                            <h5 className="fw-bold">₹ {item.price}</h5>
                           </div>
-
-                          <p>
-                            Available Size :<span> </span>
-                            {item.size}
-                          </p>
-
-                          <h5 className="fw-bold">₹ {item.price}</h5>
-                         </div>
                         </Card.Body>
                       </Card>
                     </div>
@@ -480,9 +488,8 @@ const handleWishlistClick = (item) => {
                     key={index + 1}
                     active={index + 1 === currentPage}
                     onClick={() => handlePageChange(index + 1)}
-                    className={`text-dark bg-white border-dark ${
-                      index + 1 === currentPage ? "active" : ""
-                    }`}
+                    className={`text-dark bg-white border-dark ${index + 1 === currentPage ? "active" : ""
+                      }`}
                   >
                     {index + 1}
                   </Pagination.Item>

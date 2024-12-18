@@ -391,6 +391,19 @@
 }
 
 /* ***************************************************** Deal Week ********************************************************** */
+.mainWhiteImg{
+  position: relative;
+}
+.whiteImg{
+  position: absolute;
+  left: -20%;
+}
+.dealWeektext1{
+  position: absolute;
+  top: 70%;
+  left: 35%;
+}
+
 .deal {
   background-color: #f2f3ee;
 }
@@ -510,12 +523,47 @@
   border-radius: 15px;
   
 } */
+.accordion-button {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
 
+.accordion-button:focus {
+  box-shadow: none !important;
+  outline: none !important;
+  
+}
+.mainAccor{
+  border: 1px solid rgba(202, 202, 202, 0.177);
+  border-radius: 3px;
+}
+
+.accor{
+  /* border: 1px solid rgba(202, 202, 202, 0.177)!important; */
+
+  border-left: none !important;
+  border-right: none !important;
+
+
+}
+.dark{
+  color: #111111 !important;
+
+}
+.accorhead{
+  font-size: 20px !important;
+  color: #111111 !important;
+}
+.AccorBody{
+  border: none !important;
+}
 
 /* CSS */
 
 /* CSS */
-
+/* ******************************************************FAQ*************************************************************** */
 .admin-menu .admin-menu-item {
   position: relative;
 }
@@ -706,6 +754,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.custom-modal-position {
+  margin-top: 500px; /* Adjust this value to position the modal vertically */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 

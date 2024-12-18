@@ -91,9 +91,9 @@ function Signup() {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formGridSport">
-            <Form.Label>Answer</Form.Label>
+            <Form.Label>Hint</Form.Label>
             <Form.Control
-              placeholder="Enter sport"
+              placeholder="Enter Hint"
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
             />

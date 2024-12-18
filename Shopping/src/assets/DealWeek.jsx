@@ -29,7 +29,7 @@ function DealWeek() {
     setDeal((prevDeals) =>
       prevDeals.map((item) => {
         let { days, hours, minutes, seconds } = item;
-
+  
         if (seconds > 0) {
           seconds--;
         } else if (minutes > 0) {
@@ -45,11 +45,19 @@ function DealWeek() {
           minutes = 59;
           seconds = 59;
         }
-
-        return { ...item, days, hours, minutes, seconds };
+  
+        // Ensure all time components are two digits
+        return {
+          ...item,
+          days: String(days).padStart(2, "0"),
+          hours: String(hours).padStart(2, "0"),
+          minutes: String(minutes).padStart(2, "0"),
+          seconds: String(seconds).padStart(2, "0"),
+        };
       })
     );
   };
+  
 
   useEffect(() => {
     getDeals(); // Fetch deals on mount
@@ -59,23 +67,33 @@ function DealWeek() {
 
   return (
     <div className="mt-5 py-5 deal">
-      <Container>
+      <Container fluid>
         <Carousel interval={3000}>
           {deal.map((item, index) => (
             <Carousel.Item key={index}>
               <Row className="py-5">
-               
-                <Col lg={6} className="position-relative px-5">
+              <Col lg={4} className="text-start ps-5">
+                  <div className="mainWhiteImg ps-3">
+                  <img
+                    src="/DealWeek.png"
+                    alt="DealWeek" className="whiteImg ms-5" style={{width:"350px", height:"350px"}}
+                  />
+                    <h2 className="fw-bold text-dark dealWeektext1">Clothing Collection</h2>
+                    <h2 className="fw-bold text-dark dealWeektext2">Clothing Collection</h2>
+                    <h2 className="fw-bold text-dark dealWeektext3">Clothing Collection</h2>
+                  </div>
+                </Col>
+                <Col lg={4} className="position-relative ">
                   <div className="deal-sale text-white rounded rounded-circle p-4">
                     <p className="sale">Sale Of</p>
                     <p className="fw-bold">₹ {item.price}</p>
                   </div>
                   <img
                     src={`http://localhost:4300/api/deal/getphoto/${item._id}`}
-                    alt="Special Deal" className="ms-5" style={{width:"350px", height:"350px"}}
+                    alt="Special Deal" className="ms-5" style={{width:"400px", height:"350px"}}
                   />
                 </Col>
-                <Col lg={6} className="text-start ps-5">
+                <Col lg={4} className="text-start ps-5">
                   <div className="ps-3">
                     <p className="text-danger">
                       <span className="text-danger">D</span>EAL{" "}
@@ -86,7 +104,7 @@ function DealWeek() {
                     <h1 className="fw-bold">{item.title}</h1>
                     <div className="mt-4 mb-3">
                       <h1 className="fw-bold">
-                        {item.days} : {item.hours} : {item.minutes} : {item.seconds}
+                        <spam>{"  "}</spam>{" "+item.days} : {item.hours} : {item.minutes} : {item.seconds}
                       </h1>
                       <div className="mt-3">
                         <span className="px-3">Days</span>

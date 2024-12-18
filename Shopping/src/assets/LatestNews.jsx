@@ -32,8 +32,8 @@ function LatestNews() {
           <Card.Body className="cardBody w-75 px-4">
             
             <Card.Text>
-              <p><img src="/calendar.png" alt="calender" className="me-2"/>16 February 2023</p>
-              <h6 className="fw-bold">What Curling Irons Are The Best Ones</h6>
+              <p><img src="/calendar.png" alt="calender" className="me-2"/>07 June 2023</p>
+              <h6 className="fw-bold">Eternity Bands Do Last Forever</h6>
               <p className="fw-bold read">READ MORE</p>
             </Card.Text>
             
@@ -47,8 +47,8 @@ function LatestNews() {
           <Card.Body className="cardBody w-75 px-4">
             
             <Card.Text>
-              <p><img src="/calendar.png" alt="calender" className="me-2"/>16 February 2023</p>
-              <h6 className="fw-bold">What Curling Irons Are The Best Ones</h6>
+              <p><img src="/calendar.png" alt="calender" className="me-2"/>01 February 2023</p>
+              <h6 className="fw-bold">The Health Benefits Of Sunglasses</h6>
               <p className="fw-bold read">READ MORE</p>
             </Card.Text>
             

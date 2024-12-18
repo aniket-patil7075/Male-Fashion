@@ -2,8 +2,11 @@
 import { useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
+import { useNavigate } from "react-router-dom";
 
 function Footer() {
+  const navigate = useNavigate();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -22,31 +25,31 @@ function Footer() {
             </Col>
             <Col sm={6} lg={3} className="footerSecond mt-5 pt-2">
               <h6 className="text-start mb-4 fw-bold">SHOPPING</h6>
-              <p className="text-start text-light text-opacity-50">
+              <p className="text-start text-light text-opacity-50" style={{cursor:"pointer"}}>
                 Clothing Store
               </p>
-              <p className="text-start text-light text-opacity-50">
+              <p className="text-start text-light text-opacity-50"  style={{cursor:"pointer"}} onClick={() => navigate('/Shoes')}>
                 Trending Shoes
               </p>
-              <p className="text-start text-light text-opacity-50">
+              <p className="text-start text-light text-opacity-50"  style={{cursor:"pointer"}}  onClick={() => navigate('/Accessories')}>
                 Accessories
               </p>
-              <p className="text-start text-light text-opacity-50">
+              <p className="text-start text-light text-opacity-50"  style={{cursor:"pointer"}}>
                 Sale
               </p>
             </Col>
             <Col sm={6} lg={3} className="footerThird mt-5 pt-2">
               <h6 className="text-start mb-4 fw-bold">SHOPPING</h6>
-              <p className="text-start text-light text-opacity-50">
+              <p className="text-start text-light text-opacity-50"  style={{cursor:"pointer"}} onClick={() => navigate('/Contact')}>
                 Contact Us
               </p>
-              <p className="text-start text-light text-opacity-50">
+              <p className="text-start text-light text-opacity-50"  style={{cursor:"pointer"}}>
                 Payment Methods
               </p>
-              <p className="text-start text-light text-opacity-50">
+              <p className="text-start text-light text-opacity-50"  style={{cursor:"pointer"}}>
                 Delivery
               </p>
-              <p className="text-start text-light text-opacity-50">
+              <p className="text-start text-light text-opacity-50"  style={{cursor:"pointer"}}>
                 Return and Exchanges
               </p>
             </Col>

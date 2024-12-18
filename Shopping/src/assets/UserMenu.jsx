@@ -19,7 +19,7 @@ function UserMenu() {
       <h4 className="fw-bold mb-4">USER DASHBOARD</h4>
 
       <div className="custom-accordion">
-        <Accordion defaultActiveKey="0">
+        <Accordion defaultActiveKey="0"  className="w-75 ">
           <Accordion.Item eventKey="0">
             <Accordion.Header>PROFILE</Accordion.Header>
 
@@ -37,7 +37,7 @@ function UserMenu() {
         </Accordion>
       </div>
       <div className="custom-accordion">
-        <Accordion defaultActiveKey="0">
+        <Accordion defaultActiveKey="0"  className="w-75 ">
           <Accordion.Item eventKey="0">
             <Accordion.Header>ORDERS</Accordion.Header>
 

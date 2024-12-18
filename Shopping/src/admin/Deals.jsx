@@ -13,7 +13,7 @@ function Deals() {
     <div style={{ paddingTop: "200px" }}>
       <Container>
         <Row className="mx-4">
-          {/* Admin Menu on the left */}
+          
           <Col md={3}>
             <AdminMenu />
           </Col>
@@ -21,9 +21,9 @@ function Deals() {
           {/* Product List */}
           <Col md={9}>
             <Container>
-            <h3 className="fw-bold text-center my-5">DEALS</h3>
+              <h3 className="fw-bold text-center my-5">DEALS</h3>
               {/* <h1>Deals</h1> */}
-              <DealWeek/>
+              <DealWeek />
             </Container>
           </Col>
         </Row>

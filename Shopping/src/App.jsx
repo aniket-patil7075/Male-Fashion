@@ -33,6 +33,9 @@ import Search from "./assets/Search"
 import Cartitems from "./assets/Cartitems";
 import Heartitems from "./assets/Heartitems";
 import Users from "./admin/Users";
+import FAQ from "./assets/FAQ";
+import Accessories from "./assets/Accessories";
+import Shoes from "./assets/Shoes";
 
 function App() {
   return (
@@ -53,7 +56,9 @@ function App() {
           <Route path="/Cart" element={<Cartitems/>} />
           <Route path="/getsingleproduct/:id" element={<SingleProduct />} />
           <Route path="/Heart" element={<Heartitems/>} />
-
+          <Route path="/Accessories" element={<Accessories/>} />
+          <Route path="/Shoes" element={<Shoes/>} />
+          <Route path="/faq" element={<FAQ/>} />
 
           {/* {Private Routes for users} */}
           <Route path="Dashboard" element={<PrivateRoute />}>
@@ -80,8 +85,9 @@ function App() {
           <Route path="/Signin" element={<Signin />} />
           <Route path="/forgotPassword" element={<ForgotPassword />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
-      <Footer />
+      
     </>
   );
 }

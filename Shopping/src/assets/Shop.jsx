@@ -27,6 +27,8 @@ function Shop() {
   const [heart, setHeart] = useHeart();
   const [activeCategoryKey, setActiveCategoryKey] = useState("0");
   const [activeFilterKey, setActiveFilterKey] = useState("0")
+  
+  
   // const [heart, setHeart] = useState(() => {
   //   const savedHeart = localStorage.getItem("heart");
   //   return savedHeart ? JSON.parse(savedHeart) : [];

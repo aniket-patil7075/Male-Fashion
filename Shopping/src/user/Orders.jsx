@@ -29,7 +29,7 @@ function Orders() {
                     }
                 );
                 const data = await response.json();
-                console.log(data);
+                console.log("order history ",data);
 
                 if (Array.isArray(data.orders)) {
                     const filteredOrders = data.orders.filter(
@@ -48,18 +48,18 @@ function Orders() {
     }, [userEmail]);
 
     const formatDate = (dateString) => {
-        const date = new Date(dateString); 
+        const date = new Date(dateString);
         const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0'); 
-        const day = String(date.getDate()).padStart(2, '0'); 
-        return `${year}-${month}-${day}`; 
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
     };
 
 
     const getDeliveryDate = (orderDate) => {
-        const date = new Date(orderDate); 
-        date.setDate(date.getDate() + 5); 
-        return date.toISOString().split('T')[0]; 
+        const date = new Date(orderDate);
+        date.setDate(date.getDate() + 5);
+        return date.toISOString().split('T')[0];
     };
 
 

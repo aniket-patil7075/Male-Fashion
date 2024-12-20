@@ -36,6 +36,7 @@ import Users from "./admin/Users";
 import FAQ from "./assets/FAQ";
 import Accessories from "./assets/Accessories";
 import Shoes from "./assets/Shoes";
+import RetunExchange from "./assets/RetunExchange";
 
 function App() {
   return (
@@ -59,7 +60,8 @@ function App() {
           <Route path="/Accessories" element={<Accessories/>} />
           <Route path="/Shoes" element={<Shoes/>} />
           <Route path="/faq" element={<FAQ/>} />
-
+          <Route path="/RetunExchange" element={<RetunExchange/>} />
+          
           {/* {Private Routes for users} */}
           <Route path="Dashboard" element={<PrivateRoute />}>
             <Route path="user" element={<Dashboard />} />

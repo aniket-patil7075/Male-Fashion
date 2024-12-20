@@ -49,7 +49,7 @@ function Footer() {
               <p className="text-start text-light text-opacity-50"  style={{cursor:"pointer"}}>
                 Delivery
               </p>
-              <p className="text-start text-light text-opacity-50"  style={{cursor:"pointer"}}>
+              <p className="text-start text-light text-opacity-50"  style={{cursor:"pointer"}} onClick={() => navigate('/RetunExchange')}>
                 Return and Exchanges
               </p>
             </Col>

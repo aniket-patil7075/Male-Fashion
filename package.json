@@ -3,6 +3,8 @@
     "axios": "^1.7.9",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
-    "react-hook-form": "^7.54.0"
+    "prop-types": "^15.8.1",
+    "react-hook-form": "^7.54.0",
+    "react-stars": "^2.2.5"
   }
 }

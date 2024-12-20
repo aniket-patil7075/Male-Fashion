@@ -25,6 +25,7 @@ function Home() {
       <p className="text-danger fw-bold text-center " style={{marginTop:"80px"}}>LATESET NEWS</p>
       <h2 className="text-center fw-bold mb-5 ">Fashion New trends</h2>
       <LatestNews />
+      
     </div>
   );
 }

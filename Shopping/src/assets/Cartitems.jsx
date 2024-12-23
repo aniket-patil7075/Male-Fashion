@@ -92,51 +92,39 @@ function Cartitems() {
   };
 
   const generateNewOrderId = () => {
-    // Read `lastOrderId` from localStorage or default to 0
     let lastOrderId = JSON.parse(localStorage.getItem("lastOrderId")) || 0;
   
-    // Increment `lastOrderId`
     lastOrderId += 1;
   
-    // Update `lastOrderId` back to localStorage
     localStorage.setItem("lastOrderId", JSON.stringify(lastOrderId));
   
-    // Return the new `orderId`
     return `#MF${lastOrderId.toString().padStart(4, "0")}`;
   };
-
+  
   const handlePlaceOrder = async () => {
     const userEmail = JSON.parse(localStorage.getItem("login")).user.email;
-
-    const currentOrders =
-      JSON.parse(localStorage.getItem("adminOrders")) || [];
+    const currentOrders = JSON.parse(localStorage.getItem("adminOrders")) || [];
     const currentDate = new Date().toISOString();
-
-    let lastOrderId = JSON.parse(localStorage.getItem("lastOrderId")) || 0;
-
-    const newOrders = [
-      ...currentOrders,
-      ...cart.map((item) => {
-        lastOrderId += 1;
-        const orderId = `#MF${lastOrderId.toString().padStart(4, "0")}`;
-        return {
-          ...item,
-          quantity: quantities[item._id],
-          userEmail,
-          date: currentDate,
-          orderId,
-        };
-      }),
-    ];
-
+  
+    const newOrders = cart.map((item) => {
+      const orderId = generateNewOrderId(); 
+      return {
+        ...item,
+        quantity: quantities[item._id],
+        userEmail,
+        date: currentDate,
+        orderId,
+      };
+    });
+  
     console.log("Cart Item : ", newOrders);
-
+  
     try {
       if (!Array.isArray(newOrders) || newOrders.length === 0) {
         console.error("Invalid orders data: Orders should be a non-empty array.");
         return;
       }
-
+  
       const formattedOrders = newOrders.map((order) => ({
         orderId: order.orderId,
         name: order.name,
@@ -151,7 +139,7 @@ function Cartitems() {
         createdAt: order.createdAt || new Date().toISOString(),
         updatedAt: order.updatedAt || new Date().toISOString(),
       }));
-
+  
       const response = await fetch("http://localhost:4300/api/orders/createorder", {
         method: "POST",
         headers: {
@@ -160,27 +148,26 @@ function Cartitems() {
         },
         body: JSON.stringify({ orders: formattedOrders }), // Wrap orders in an object
       });
-
+  
       const data = await response.json();
-
+  
       if (response.ok) {
-        // console.log("Orders saved successfully:", data);
-        localStorage.setItem("adminOrders", JSON.stringify(newOrders));
-        localStorage.setItem("lastOrderId", JSON.stringify(lastOrderId));
-
+        // Save orders to localStorage
+        const updatedOrders = [...currentOrders, ...newOrders];
+        localStorage.setItem("adminOrders", JSON.stringify(updatedOrders));
+  
+        // Clear cart
         let myCart = [];
         setCart(myCart);
         localStorage.setItem("cart", JSON.stringify(myCart));
-
+  
         const loginData = JSON.parse(localStorage.getItem("login"));
         if (loginData?.user?.email) {
           const userEmail = loginData.user.email;
           const cartKey = `cart_${userEmail}`;
           localStorage.setItem(cartKey, JSON.stringify(myCart));
         }
-
-        // console.log("Updated Cart:", myCart); 
-
+  
         setShow(false);
         alert("Your order has been placed successfully! Thank you for shopping with us.");
         navigate("/Dashboard/user/Orders");
@@ -188,7 +175,7 @@ function Cartitems() {
         throw new Error("Failed to save orders to the database.");
       }
     } catch (error) {
-      console.log("Error placing order : ", error);
+      console.error("Error placing order:", error);
       alert("An error occurred while placing your order. Please try again.");
     }
   };

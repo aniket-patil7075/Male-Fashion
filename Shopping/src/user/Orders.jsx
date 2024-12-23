@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { Row, Col, Container, Button, Modal } from "react-bootstrap";
 import UserMenu from "../assets/UserMenu";
+import ReactStars from 'react-stars';
+import { useAuth } from "../context/auth";
 
 function Orders() {
     const [orders, setOrders] = useState([]);
     const [show, setShow] = useState(false);
-    const [selectedOrder, setSelectedOrder] = useState(null); // State to store the selected order
+    const [selectedOrder, setSelectedOrder] = useState(null);
+    const [rating, setRating] = useState(0);
+    const [auth] = useAuth();
+    const token = auth.token;
 
+    const handleRatingChange = (newRating) => {
+        setRating(newRating);
+    };
+    
     const handleClose = () => setShow(false);
     const handleShow = (order) => {
-        setSelectedOrder(order); // Set the clicked order data
+        setSelectedOrder(order); 
         setShow(true);
     };
 
@@ -29,7 +38,7 @@ function Orders() {
                     }
                 );
                 const data = await response.json();
-                console.log("order history ",data);
+                //  console.log("order history ", data);
 
                 if (Array.isArray(data.orders)) {
                     const filteredOrders = data.orders.filter(
@@ -38,7 +47,7 @@ function Orders() {
                     setOrders(filteredOrders);
                 } else {
                     console.error("Expected orders to be an array, but got:", data.orders);
-                    setOrders([]); // Fallback to an empty array
+                    setOrders([]); 
                 }
             } catch (error) {
                 console.error("Error fetching orders:", error);
@@ -46,6 +55,46 @@ function Orders() {
         };
         fetchOrders();
     }, [userEmail]);
+
+    // console.log("Selected order for review:", selectedOrder);
+
+
+    function handleSubmitReview(e) {
+        e.preventDefault();
+    
+        if (!selectedOrder || !selectedOrder.productId) {
+            alert("No valid order selected for review.");
+            return;
+        }
+    
+        const reviewPayload = {
+            productId: selectedOrder.productId, 
+            rating,
+        };
+    
+        console.log("Review payload:", reviewPayload);
+    
+        fetch("http://localhost:4300/api/product/reviews", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                authorization: token,
+            },
+            body: JSON.stringify(reviewPayload),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log("Review submitted successfully:", data);
+                alert("Review submitted successfully!");
+                setShow(false); 
+            })
+            .catch((error) => {
+                console.error("Error submitting review:", error);
+                alert("Failed to submit review");
+            });
+    }
+    
+    
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
@@ -127,6 +176,9 @@ function Orders() {
                                             </span>
                                         </p>
                                         <p>
+                                            <strong>ProductId:</strong> {selectedOrder.productId}
+                                        </p>
+                                        <p>
                                             <strong>Name:</strong> {selectedOrder.name}
                                         </p>
                                         <p>
@@ -144,10 +196,30 @@ function Orders() {
                                         <p>
                                             <strong>Delivery Date:</strong> {getDeliveryDate(selectedOrder.date)}
                                         </p>
+                                        {/* <div>
+                                            <h5>How was the product?</h5>
+                                            <ReactStars
+                                                count={5}
+                                                size={50}
+                                                value={rating}
+                                                onChange={handleRatingChange}
+                                                color2={'#000000'}
+                                                className="custom-react-stars"
+                                            />
+
+                                            <p style={{ color: "back" }}>Your rating: {rating} out of 5</p>
+                                        </div> */}
                                     </div>
                                 ) : (
                                     <p>No order details available.</p>
                                 )}
+                                <Button
+                                    variant="secondary"
+                                    className="heroButton py-2 px-4"
+                                    onClick={handleSubmitReview}
+                                >
+                                    SUBMIT
+                                </Button>
                             </Modal.Body>
                             <Modal.Footer>
                                 <Button

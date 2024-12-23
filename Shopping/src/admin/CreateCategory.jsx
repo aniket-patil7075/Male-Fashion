@@ -20,6 +20,7 @@ function CreateCategory() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  
   const token = auth.token;
   console.log(token);
   function handleSubmit(e) {

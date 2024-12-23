@@ -27,6 +27,7 @@ const createOrders = async (req, res) => {
   
         return {
           orderId: order.orderId,
+          productId : order.productId,
           name: order.name,
           quantity: order.quantity,
           userEmail: order.userEmail,

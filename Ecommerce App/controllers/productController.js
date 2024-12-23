@@ -43,6 +43,7 @@ const createProductController=async (req,resp)=>{
           })
       }
 }
+
 const getProductsController=async (req,resp)=>{
  try{
   const product=await productModel.find({}).select("-photo").limit(10).sort({createdAt:-1}).populate("category")
@@ -192,4 +193,44 @@ const searchProductController=async (req,resp)=>{
       })
   }
 }
-module.exports={ createProductController,getProductsController,getProductphotoController,getSingleProductController,searchProductController,filterProductController,updateProductController,productDeleteController }
+
+const createReviewController = async (req, resp) => {
+    try {
+        const { productId, rating } = req.body;
+
+        // Validation
+        switch (true) {
+            case !productId:
+                return resp.status(400).send({ error: "Product ID is required" });
+            case !rating:
+                return resp.status(400).send({ error: "Rating is required" });
+            case rating < 1 || rating > 5:
+                return resp.status(400).send({ error: "Rating must be between 1 and 5" });
+        }
+
+        // Find product
+        const product = await productModel.findById(productId);
+        if (!product) {
+            return resp.status(404).send({ error: "Product not found" });
+        }
+
+        // Add review
+        product.reviews.push({ rating });
+        await product.save();
+
+        resp.status(201).send({
+            success: true,
+            message: "Review submitted successfully",
+            product,
+        });
+    } catch (error) {
+        resp.status(500).send({
+            success: false,
+            error,
+            message: "Error in submitting review",
+        });
+    }
+};
+
+
+module.exports={ createProductController,getProductsController,getProductphotoController,getSingleProductController,searchProductController,filterProductController,updateProductController,productDeleteController,createReviewController }

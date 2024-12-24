@@ -137,7 +137,7 @@ const handleWishlistClick = (item) => {
   return (
     <div className="newArrivalMainDiv my-5" style={{ paddingTop: "100px" }}>
       <Container>
-        <div className="mx-lg-5">
+        <div className="mx-5 mx-xs-3 ">
           <div className="d-flex justify-content-around">
             <h3
               className={`fw-bold ${

@@ -40,6 +40,8 @@ exports.getCartitem=async (req,resp)=>{
      })
     }
  }
+
+ //cart controller
  exports.deleteCartitem=async (req,resp)=>{
     try{
         await Cart.findByIdAndDelete(req.params.pid).select("-photo")

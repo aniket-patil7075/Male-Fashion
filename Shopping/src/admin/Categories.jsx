@@ -30,6 +30,8 @@ function Categories() {
     getAllCategory();
   }, []);
 
+  // console.l
+
   function handleUpdate(e) {
     e.preventDefault();
     console.log();

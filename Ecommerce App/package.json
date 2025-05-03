@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npx nodemon index.js"
   },
-  "author": "Ekata Jadhav",
+  "author": "Aniket Patil",
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.1.1",

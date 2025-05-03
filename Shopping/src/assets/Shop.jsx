@@ -126,7 +126,7 @@ function Shop() {
   const isInWishlist = (item) => heart.some((prod) => prod._id === item._id);
 
   function getprods() {
-    fetch("https://male-fashion-pi.vercel.app/api/product/getproducts")
+    fetch("http://localhost:4300/api/product/getproducts")
       .then((resp1) => resp1.json())
       .then((resp2) => {
         console.log(resp2);
@@ -170,7 +170,7 @@ function Shop() {
   };
 
   function getAllCategory() {
-    fetch("https://male-fashion-pi.vercel.app/api/category/getcategory")
+    fetch("http://localhost:4300/api/category/getcategory")
       .then((res1) => res1.json())
       .then((res2) => {
          console.log("Categories : ",res2);
@@ -180,7 +180,7 @@ function Shop() {
   }
 
   function getProducts() {
-    fetch("https://male-fashion-pi.vercel.app/api/product/getproducts")
+    fetch("http://localhost:4300/api/product/getproducts")
       .then((resp1) => resp1.json())
       .then((resp2) => {
         // console.log(resp2);
@@ -224,7 +224,7 @@ function Shop() {
 
   function filterProduct() {
     const data = { checked, priceChecked, radio };
-    fetch("https://male-fashion-pi.vercel.app/api/product/filter", {
+    fetch("http://localhost:4300/api/product/filter", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -402,7 +402,7 @@ function Shop() {
                           <Card.Img
                             variant="top"
                             className="w-100 mx-auto d-block"
-                            src={`https://male-fashion-pi.vercel.app/api/product/getphoto/${item._id}`}
+                            src={`http://localhost:4300/api/product/getphoto/${item._id}`}
                           />{" "}
                         </Link>
                         <a

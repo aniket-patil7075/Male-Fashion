@@ -22,7 +22,7 @@ function Signin() {
 
     console.log("Login request payload:", user);
 
-    fetch("https://male-fashion-pi.vercel.app/api/auth/login", {
+    fetch("http://localhost:4300/api/auth/login", {
       method: "post",
       headers: {
         "Content-type": "application/json",

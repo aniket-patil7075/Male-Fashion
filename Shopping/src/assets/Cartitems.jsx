@@ -140,7 +140,7 @@ function Cartitems() {
         updatedAt: order.updatedAt || new Date().toISOString(),
       }));
   
-      const response = await fetch("https://male-fashion-pi.vercel.app/api/orders/createorder", {
+      const response = await fetch("http://localhost:4300/api/orders/createorder", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -218,7 +218,7 @@ function Cartitems() {
                         <td>
                           <img
                             className="ax-auto d-block"
-                            src={`https://male-fashion-pi.vercel.app/api/product/getphoto/${c._id}`}
+                            src={`http://localhost:4300/api/product/getphoto/${c._id}`}
                             alt=""
                             height={100}
                             width={100}

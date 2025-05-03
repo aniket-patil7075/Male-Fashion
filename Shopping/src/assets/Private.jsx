@@ -8,7 +8,7 @@ export default function PrivateRoute()
     const [auth,setAuth]=useAuth()
     useEffect(()=>{
         const authCheck=()=>{
-            fetch("https://male-fashion-pi.vercel.app/api/auth/userauth",{
+            fetch("http://localhost:4300/api/auth/userauth",{
                 headers:{
                     "authorization":auth?.token
                 }

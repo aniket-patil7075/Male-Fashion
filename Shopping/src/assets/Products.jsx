@@ -11,7 +11,7 @@ function Products() {
   }, []);
   const [products, setProducts] = useState([]);
   function getprods() {
-    fetch("https://male-fashion-pi.vercel.app/api/product/getproducts").then((resp1) => {
+    fetch("http://localhost:4300/api/product/getproducts").then((resp1) => {
       resp1
         .json()
         .then((resp2) => {
@@ -59,7 +59,7 @@ function Products() {
                           <Card.Img
                             variant="top"
                             className="w-100 mx-auto d-block"
-                            src={`https://male-fashion-pi.vercel.app/api/product/getphoto/${item._id}`}
+                            src={`http://localhost:4300/api/product/getphoto/${item._id}`}
                           />
                           <Card.Body className="text-start p-2">
                             <p className="m-0 p-0">{item.name}</p>

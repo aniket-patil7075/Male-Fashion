@@ -57,7 +57,7 @@ function Search() {
                         <Card.Img
                           variant="top"
                           className="w-100 mx-auto d-block"
-                          src={`https://male-fashion-pi.vercel.app/api/product/getphoto/${item._id}`}
+                          src={`http://localhost:4300/api/product/getphoto/${item._id}`}
                         />{" "}
                       </Link>
                       <a

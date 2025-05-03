@@ -23,7 +23,7 @@ function Updateproduct() {
   }, []);
 
   function getAllCategory() {
-    fetch("https://male-fashion-pi.vercel.app/api/category/getcategory").then((res1)=>{
+    fetch("http://localhost:4300/api/category/getcategory").then((res1)=>{
       res1.json().then((res2)=>{
         console.log(res2)
         setCategories(res2.category)
@@ -35,7 +35,7 @@ getAllCategory()
   },[])
 
   function getsingleprod(){
-    fetch(`https://male-fashion-pi.vercel.app/api/product/getsingleproduct/${params.slug}`).then((res1)=>{
+    fetch(`http://localhost:4300/api/product/getsingleproduct/${params.slug}`).then((res1)=>{
       res1.json().then((res2)=>{
           console.log(res2)
           console.log(res2.product.category)
@@ -64,7 +64,7 @@ getAllCategory()
     photo && prod.append("photo", photo);
     console.log(prod);
 
-    fetch(`https://male-fashion-pi.vercel.app/api/product/update/${id}`,{      
+    fetch(`http://localhost:4300/api/product/update/${id}`,{      
       method:"put",
       headers:{
         // "Accept":'application/json',
@@ -85,7 +85,7 @@ getAllCategory()
 }
 
   function getprods() {
-    fetch("https://male-fashion-pi.vercel.app/api/product/getproducts").then((res1) => {
+    fetch("http://localhost:4300/api/product/getproducts").then((res1) => {
       res1
         .json()
         .then((res2) => {
@@ -104,7 +104,7 @@ getAllCategory()
   }, []);
   
   function deleteprod(){
-    fetch(`https://male-fashion-pi.vercel.app/api/product/delete/${id}`,{
+    fetch(`http://localhost:4300/api/product/delete/${id}`,{
       method:"delete"
     }).then((resp1)=>{
       resp1.json().then((resp2)=>{

@@ -29,7 +29,7 @@ function Orders() {
         const fetchOrders = async () => {
             try {
                 const response = await fetch(
-                    "https://male-fashion-pi.vercel.app/api/orders/allorders",
+                    "http://localhost:4300/api/orders/allorders",
                     {
                         method: "GET",
                         headers: {
@@ -74,7 +74,7 @@ function Orders() {
     
         console.log("Review payload:", reviewPayload);
     
-        fetch("https://male-fashion-pi.vercel.app/api/product/reviews", {
+        fetch("http://localhost:4300/api/product/reviews", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

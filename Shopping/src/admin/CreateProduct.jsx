@@ -33,7 +33,7 @@ function CreateProduct() {
   }, []);
 
   function getAllCategory() {
-    fetch("https://male-fashion-pi.vercel.app/api/category/getcategory").then((res1) => {
+    fetch("http://localhost:4300/api/category/getcategory").then((res1) => {
       res1.json().then((res2) => {
         console.log(res2);
         setCategories(res2.category);
@@ -58,7 +58,7 @@ function CreateProduct() {
     prod.append("category", category);
     console.log(prod);
 
-    fetch("https://male-fashion-pi.vercel.app/api/product/create", {
+    fetch("http://localhost:4300/api/product/create", {
       method: "post",
       headers: {
         authorization: token,
@@ -79,7 +79,7 @@ function CreateProduct() {
   }
 
   function getprods() {
-    fetch("https://male-fashion-pi.vercel.app/api/product/getproducts").then((res1) => {
+    fetch("http://localhost:4300/api/product/getproducts").then((res1) => {
       res1
         .json()
         .then((res2) => {

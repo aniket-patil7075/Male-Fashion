@@ -21,7 +21,7 @@ function Signup() {
   function userSignup(e) {
     e.preventDefault();
     let user = { name, email, password, phone, address, answer };
-    fetch("https://male-fashion-pi.vercel.app/api/auth/register", {
+    fetch("http://localhost:4300/api/auth/register", {
       method: "post",
       headers: {
         "Content-type": "application/json",

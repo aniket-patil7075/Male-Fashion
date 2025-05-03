@@ -85,7 +85,7 @@ const handleWishlistClick = (item) => {
   const isInWishlist = (item) => heart.some((prod) => prod._id === item._id);
 
   function getprods() {
-    fetch("http://localhost:4300/api/product/getproducts")
+    fetch("https://male-fashion-pi.vercel.app/api/product/getproducts")
       .then((resp1) => resp1.json())
       .then((resp2) => {
         console.log(resp2);
@@ -170,7 +170,7 @@ const handleWishlistClick = (item) => {
                     <Card.Img
                       variant="top"
                       className="w-100 mx-auto d-block"
-                      src={`http://localhost:4300/api/product/getphoto/${item._id}`}
+                      src={`https://male-fashion-pi.vercel.app/api/product/getphoto/${item._id}`}
                     />
                     <button
                       style={{

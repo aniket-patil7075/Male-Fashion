@@ -11,7 +11,7 @@ function DealWeek() {
 
   // Fetch deals from backend
   function getDeals() {
-    fetch("http://localhost:4300/api/deal/getdeal")
+    fetch("https://male-fashion-pi.vercel.app/api/deal/getdeal")
       .then((res1) => res1.json())
       .then((res2) => {
         const updatedDeals = res2.deal.map((item) => ({
@@ -91,7 +91,7 @@ function DealWeek() {
                     <p className="fw-bold">₹ {item.price}</p>
                   </div>
                   <img
-                    src={`http://localhost:4300/api/deal/getphoto/${item._id}`}
+                    src={`https://male-fashion-pi.vercel.app/api/deal/getphoto/${item._id}`}
                     alt="Special Deal" className="ms-5" style={{width:"400px", height:"350px"}}
                   />
                 </Col>

@@ -27,7 +27,7 @@ function SingleProduct() {
     const fetchProduct = async () => {
       try {
         const response = await fetch(
-          `http://localhost:4300/api/product/getsingleproduct/${id}`
+          `https://male-fashion-pi.vercel.app/api/product/getsingleproduct/${id}`
         );
 
         if (!response.ok) {
@@ -40,7 +40,7 @@ function SingleProduct() {
         // Fetch image directly using the product ID
         if (data.product && data.product._id) {
           const imgResponse = await fetch(
-            `http://localhost:4300/api/product/getphoto/${data.product._id}`
+            `https://male-fashion-pi.vercel.app/api/product/getphoto/${data.product._id}`
           );
           if (imgResponse.ok) {
             const imgBlob = await imgResponse.blob();

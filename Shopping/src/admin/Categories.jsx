@@ -19,7 +19,7 @@ function Categories() {
   }, []);
   const token = auth.token;
   function getAllCategory() {
-    fetch("http://localhost:4300/api/category/getcategory").then((res1) => {
+    fetch("https://male-fashion-pi.vercel.app/api/category/getcategory").then((res1) => {
       res1.json().then((res2) => {
         console.log(res2);
         setCategories(res2.category);
@@ -34,7 +34,7 @@ function Categories() {
     e.preventDefault();
     console.log();
     const data = { name: updatedName };
-    fetch(`http://localhost:4300/api/category/updatecategory/${selected._id}`, {
+    fetch(`https://male-fashion-pi.vercel.app/api/category/updatecategory/${selected._id}`, {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -53,7 +53,7 @@ function Categories() {
   }
 
   function handleDelete(id) {
-    fetch(`http://localhost:4300/api/category/deletecategory/${id}`, {
+    fetch(`https://male-fashion-pi.vercel.app/api/category/deletecategory/${id}`, {
       method: "delete",
       headers: {
         "Content-Type": "application/json",

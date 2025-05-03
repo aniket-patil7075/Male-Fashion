@@ -39,7 +39,7 @@ function CreateDeal() {
     deal.append("seconds", seconds);
     photo && deal.append("photo", photo);
 
-    fetch("http://localhost:4300/api/deal/createdeal", {
+    fetch("https://male-fashion-pi.vercel.app/api/deal/createdeal", {
       method: "post",
       headers: {
         authorization: token,

@@ -17,7 +17,7 @@ function ForgotPassword() {
   function changePassword(e) {
     e.preventDefault();
     let user = { email, newPassword,answer };
-    fetch("http://localhost:4300/api/auth/forgotPassword", {
+    fetch("https://male-fashion-pi.vercel.app/api/auth/forgotPassword", {
       method: "post",
       headers: {
         "Content-type": "application/json",

@@ -9,7 +9,7 @@
   "author": "Aniket Patil",
   "license": "MIT",
   "dependencies": {
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.2",
     "colors": "^1.4.0",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",

@@ -25,7 +25,7 @@ function AdminDashboard() {
 
   async function getUser() {
     try {
-      const response = await fetch("http://localhost:4300/api/user/getuser", {
+      const response = await fetch("https://male-fashion-pj3d.onrender.com/api/user/getuser", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -113,7 +113,7 @@ function AdminDashboard() {
           const updatedData = { ...updatedOrder, status: newStatus };
       
           // Send the PUT request to update the order status
-          const response = await fetch("http://localhost:4300/api/orders/update", {
+          const response = await fetch("https://male-fashion-pj3d.onrender.com/api/orders/update", {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",

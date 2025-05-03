@@ -10,7 +10,7 @@ export default function AdminRoute()
       }, []);
     useEffect(()=>{
         const authCheck=()=>{
-            fetch("http://localhost:4300/api/auth/adminauth",{
+            fetch("https://male-fashion-pj3d.onrender.com/api/auth/adminauth",{
                 headers:{
                     "authorization":auth?.token
                 }

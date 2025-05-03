@@ -8,7 +8,7 @@ export default function PrivateRoute()
     const [auth,setAuth]=useAuth()
     useEffect(()=>{
         const authCheck=()=>{
-            fetch("http://localhost:4300/api/auth/userauth",{
+            fetch("https://male-fashion-pj3d.onrender.com/api/auth/userauth",{
                 headers:{
                     "authorization":auth?.token
                 }

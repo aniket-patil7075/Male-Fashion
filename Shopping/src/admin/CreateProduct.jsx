@@ -33,7 +33,7 @@ function CreateProduct() {
   }, []);
 
   function getAllCategory() {
-    fetch("http://localhost:4300/api/category/getcategory").then((res1) => {
+    fetch("https://male-fashion-pj3d.onrender.com/api/category/getcategory").then((res1) => {
       res1.json().then((res2) => {
         console.log(res2);
         setCategories(res2.category);
@@ -58,7 +58,7 @@ function CreateProduct() {
     prod.append("category", category);
     console.log(prod);
 
-    fetch("http://localhost:4300/api/product/create", {
+    fetch("https://male-fashion-pj3d.onrender.com/api/product/create", {
       method: "post",
       headers: {
         authorization: token,
@@ -79,7 +79,7 @@ function CreateProduct() {
   }
 
   function getprods() {
-    fetch("http://localhost:4300/api/product/getproducts").then((res1) => {
+    fetch("https://male-fashion-pj3d.onrender.com/api/product/getproducts").then((res1) => {
       res1
         .json()
         .then((res2) => {

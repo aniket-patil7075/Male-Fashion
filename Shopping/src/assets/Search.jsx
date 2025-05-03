@@ -57,7 +57,7 @@ function Search() {
                         <Card.Img
                           variant="top"
                           className="w-100 mx-auto d-block"
-                          src={`http://localhost:4300/api/product/getphoto/${item._id}`}
+                          src={`https://male-fashion-pj3d.onrender.com/api/product/getphoto/${item._id}`}
                         />{" "}
                       </Link>
                       <a

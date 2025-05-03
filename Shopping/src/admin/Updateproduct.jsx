@@ -23,7 +23,7 @@ function Updateproduct() {
   }, []);
 
   function getAllCategory() {
-    fetch("http://localhost:4300/api/category/getcategory").then((res1)=>{
+    fetch("https://male-fashion-pj3d.onrender.com/api/category/getcategory").then((res1)=>{
       res1.json().then((res2)=>{
         console.log(res2)
         setCategories(res2.category)
@@ -35,7 +35,7 @@ getAllCategory()
   },[])
 
   function getsingleprod(){
-    fetch(`http://localhost:4300/api/product/getsingleproduct/${params.slug}`).then((res1)=>{
+    fetch(`https://male-fashion-pj3d.onrender.com/api/product/getsingleproduct/${params.slug}`).then((res1)=>{
       res1.json().then((res2)=>{
           console.log(res2)
           console.log(res2.product.category)
@@ -64,7 +64,7 @@ getAllCategory()
     photo && prod.append("photo", photo);
     console.log(prod);
 
-    fetch(`http://localhost:4300/api/product/update/${id}`,{      
+    fetch(`https://male-fashion-pj3d.onrender.com/api/product/update/${id}`,{      
       method:"put",
       headers:{
         // "Accept":'application/json',
@@ -85,7 +85,7 @@ getAllCategory()
 }
 
   function getprods() {
-    fetch("http://localhost:4300/api/product/getproducts").then((res1) => {
+    fetch("https://male-fashion-pj3d.onrender.com/api/product/getproducts").then((res1) => {
       res1
         .json()
         .then((res2) => {
@@ -104,7 +104,7 @@ getAllCategory()
   }, []);
   
   function deleteprod(){
-    fetch(`http://localhost:4300/api/product/delete/${id}`,{
+    fetch(`https://male-fashion-pj3d.onrender.com/api/product/delete/${id}`,{
       method:"delete"
     }).then((resp1)=>{
       resp1.json().then((resp2)=>{

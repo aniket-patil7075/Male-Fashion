@@ -21,7 +21,7 @@ function Signup() {
   function userSignup(e) {
     e.preventDefault();
     let user = { name, email, password, phone, address, answer };
-    fetch("http://localhost:4300/api/auth/register", {
+    fetch("https://male-fashion-pj3d.onrender.com/api/auth/register", {
       method: "post",
       headers: {
         "Content-type": "application/json",

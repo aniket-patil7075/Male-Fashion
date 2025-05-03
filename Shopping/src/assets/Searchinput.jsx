@@ -14,7 +14,7 @@ function Searchinput() {
     function handleSubmit(e)
     {
         e.preventDefault()
-        fetch(`http://localhost:4300/api/product/search/${values.keyword}`).then((res1)=>{
+        fetch(`https://male-fashion-pj3d.onrender.com/api/product/search/${values.keyword}`).then((res1)=>{
             res1.json().then((res2)=>{
                 setValues({...values,result:res2})
                 navigate('/Search')

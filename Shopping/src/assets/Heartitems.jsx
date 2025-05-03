@@ -74,7 +74,7 @@ function Heartitems() {
                                             return (
                                                 <tr key={c._id}>
                                                     <td>
-                                                        <img className='ax-auto d-block' src={`http://localhost:4300/api/product/getphoto/${c._id}`} alt="" height={100} width={100} />
+                                                        <img className='ax-auto d-block' src={`https://male-fashion-pj3d.onrender.com/api/product/getphoto/${c._id}`} alt="" height={100} width={100} />
                                                     </td>
                                                     <td>{c.name}</td>
                                                     <td>{c.price}</td>

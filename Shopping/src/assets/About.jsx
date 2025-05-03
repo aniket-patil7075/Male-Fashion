@@ -11,7 +11,7 @@ function About() {
   }, []);
   async function fetchUserCount() {
     try {
-      const response = await fetch("http://localhost:4300/api/user/getuser");
+      const response = await fetch("https://male-fashion-pj3d.onrender.com/api/user/getuser");
       if (!response.ok) throw new Error("Failed to fetch users");
       const data = await response.json();
       setNumberOfUsers(data.user.length);
@@ -24,7 +24,7 @@ function About() {
   async function fetchCategoryCount() {
     try {
       const response = await fetch(
-        "http://localhost:4300/api/category/getcategory"
+        "https://male-fashion-pj3d.onrender.com/api/category/getcategory"
       );
       if (!response.ok) throw new Error("Failed to fetch categories");
       const data = await response.json();

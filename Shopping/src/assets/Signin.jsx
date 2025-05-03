@@ -22,7 +22,7 @@ function Signin() {
 
     console.log("Login request payload:", user);
 
-    fetch("http://localhost:4300/api/auth/login", {
+    fetch("https://male-fashion-pj3d.onrender.com/api/auth/login", {
       method: "post",
       headers: {
         "Content-type": "application/json",

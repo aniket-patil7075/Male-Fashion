@@ -29,7 +29,7 @@ function Orders() {
         const fetchOrders = async () => {
             try {
                 const response = await fetch(
-                    "http://localhost:4300/api/orders/allorders",
+                    "https://male-fashion-pj3d.onrender.com/api/orders/allorders",
                     {
                         method: "GET",
                         headers: {
@@ -74,7 +74,7 @@ function Orders() {
     
         console.log("Review payload:", reviewPayload);
     
-        fetch("http://localhost:4300/api/product/reviews", {
+        fetch("https://male-fashion-pj3d.onrender.com/api/product/reviews", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

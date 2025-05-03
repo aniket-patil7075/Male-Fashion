@@ -8,7 +8,7 @@ function Users() {
 
   async function getUser() {
     try {
-      const response = await fetch("http://localhost:4300/api/user/getuser", {
+      const response = await fetch("https://male-fashion-pj3d.onrender.com/api/user/getuser", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

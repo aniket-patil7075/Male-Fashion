@@ -1,5 +1,9 @@
 const bcrypt = require("bcryptjs");
 
+
+
+
+
 const hashPassword=async (password)=>{
     try{
         const saltRounds=10

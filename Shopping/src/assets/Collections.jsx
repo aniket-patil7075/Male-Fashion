@@ -14,7 +14,7 @@ function Collections() {
         <Row className="">
         <Col sm={12} md={12} lg={7} >
             <div className="banner1-text ">
-              <h1 className="fw-bold">Clothing Collection 2024</h1>
+              <h1 className="fw-bold">Clothing Collection 2025</h1>
               <p className="banner-p" onClick={() => navigate('/Shop')}>SHOP NOW</p>
             </div>
             <div className="d-flex flex-row-reverse">
@@ -40,7 +40,7 @@ function Collections() {
           
           <Col lg={6} md={12} className="banner3-col text-start">
             <div className="banner3-text">
-              <h1 className="fw-bold">Shoes Spring 2024</h1>
+              <h1 className="fw-bold">Shoes Spring 2025</h1>
               <p className="banner-p" onClick={() => navigate('/Shop')}>SHOP NOW</p>
             </div>
             <div className="d-flex flex-row-reverse">

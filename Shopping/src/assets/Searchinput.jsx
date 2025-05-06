@@ -9,21 +9,20 @@ function Searchinput() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-    const [values,setValues]=useSearch()
-    const navigate=useNavigate()
-    function handleSubmit(e)
-    {
-        e.preventDefault()
-        fetch(`https://male-fashion-pj3d.onrender.com/api/product/search/${values.keyword}`).then((res1)=>{
-            res1.json().then((res2)=>{
-                setValues({...values,result:res2})
-                navigate('/Search')
-            })
-        })
-    }
+  const [values, setValues] = useSearch()
+  const navigate = useNavigate()
+  function handleSubmit(e) {
+    e.preventDefault()
+    fetch(`https://male-fashion-pj3d.onrender.com/api/product/search/${values.keyword}`).then((res1) => {
+      res1.json().then((res2) => {
+        setValues({ ...values, result: res2 })
+        navigate('/Search')
+      })
+    })
+  }
   return (
-    <div>
-        <Form onSubmit={handleSubmit}>
+    <div className='mt-2'>
+      <Form onSubmit={handleSubmit}>
         <Row>
           <Col xs="auto" className='d-flex'>
             <Form.Control
@@ -31,11 +30,11 @@ function Searchinput() {
               placeholder="Search"
               value={values.keyword}
               className=" mr-sm-2 mt-1 rounded-0"
-              onChange={(e)=>setValues({...values,keyword:e.target.value})}
+              onChange={(e) => setValues({ ...values, keyword: e.target.value })}
             />
             <button type="submit" className="bg-white border-0 ms-4 pe-4">
-  <img src="/search.png" alt="search" />
-</button>
+              <img src="/search.png" alt="search" />
+            </button>
           </Col>
         </Row>
       </Form>

@@ -125,7 +125,7 @@ function Header() {
                 
               </Nav>
 
-              <Nav className="ms-auto">
+              <Nav className="ms-auto ">
               <Searchinput />
                 {/* <Nav.Link as={Link} to="/" className="px-3">
                   <img src="/search.png" alt="search" />

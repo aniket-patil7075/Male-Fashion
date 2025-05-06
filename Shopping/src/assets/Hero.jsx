@@ -23,36 +23,37 @@ function Hero() {
       >
         <Carousel.Item>
           <img src="/hero-1.jpg" alt="Hero1" className="caraImg w-100" />
-          
+
           <div className="caraText w-25">
-            <p className="text-danger fw-bold">SUMMER COLLECTION</p>
-            <h1 className="text-dark fw-bold mt-4">Fall - Winter </h1>
-            <h1 className="text-dark fw-bold">Collections 2024</h1>
+            <p className="text-danger fw-bold">WINTER COLLECTION</p>
+            <h1 className="text-dark fw-bold mt-4">Fall - Winter</h1>
+            <h1 className="text-dark fw-bold">2025 Collection</h1>
             <p className="text-dark fw-bold mt-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt aliqua.
+              Step into the season with confidence — tailored elegance meets modern edge.
+              Discover premium fashion crafted for the bold, the refined, and the timeless.
             </p>
+
             <Button variant="dark" className="heroButton mt-4 px-4 py-3" onClick={() => navigate('/Shop')}>
               SHOP NOW <FaArrowRightLong className="heroArrow ms-1" />
             </Button>
-            <div className="mt-3"><FaFacebookF className="mx-2"/><FaPinterestP className="mx-2" /><FaInstagram className="mx-2" /><FaTwitter className="mx-2" /></div>
+            <div className="mt-3"><FaFacebookF className="mx-2" /><FaPinterestP className="mx-2" /><FaInstagram className="mx-2" /><FaTwitter className="mx-2" /></div>
           </div>
         </Carousel.Item>
         <Carousel.Item>
           <img src="/hero-2.jpg" alt="Hero2" className="caraImg w-100" />
 
           <div className="caraText w-25">
-            <p className="text-danger fw-bold">SUMMER COLLECTION</p>
-            <h1 className="text-dark fw-bold mt-4">Fall - Winter </h1>
-            <h1 className="text-dark fw-bold">Collections 2024</h1>
+            <p className="text-danger fw-bold">WINTER COLLECTION</p>
+            <h1 className="text-dark fw-bold mt-4">Fall - Winter</h1>
+            <h1 className="text-dark fw-bold">2025 Collection</h1>
             <p className="text-dark fw-bold mt-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt aliqua.
+              Step into the season with confidence — tailored elegance meets modern edge.
+              Discover premium fashion crafted for the bold, the refined, and the timeless.
             </p>
             <Button variant="dark" className="heroButton mt-4  px-4 py-3" onClick={() => navigate('/Shop')}>
               SHOP NOW <FaArrowRightLong className="heroArrow ms-1" />
             </Button>
-            <div className="mt-3"><FaFacebookF className="mx-2"/><FaPinterestP className="mx-2" /><FaInstagram className="mx-2" /><FaTwitter className="mx-2" /></div>
+            <div className="mt-3"><FaFacebookF className="mx-2" /><FaPinterestP className="mx-2" /><FaInstagram className="mx-2" /><FaTwitter className="mx-2" /></div>
           </div>
         </Carousel.Item>
       </Carousel>
